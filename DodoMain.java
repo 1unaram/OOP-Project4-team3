@@ -3,6 +3,8 @@ package oop_proj4;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +22,7 @@ public class DodoMain {
 
 
 @SuppressWarnings("serial")
-class MainFrame extends JFrame {
+class MainFrame extends JFrame{
 	Container contentpane = getContentPane();
 	
 	MainFrame() {
@@ -33,13 +35,23 @@ class MainFrame extends JFrame {
 		this.setLayout(null);
 		
 		contentpane.setBackground(Color.BLACK);
-		
+	
 		init();
 	}
 	
 	public void init() {
 		Intro intro = new Intro();
-		contentpane.add(intro);
+		
+		intro.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					contentpane.removeAll();		
+					contentpane.repaint();					// contentpane 초기화
+				}
+			}
+		});
+		
+		contentpane.add(intro);			
 	}
 }
 
@@ -54,8 +66,11 @@ class Intro extends JPanel{
 		title.setLocation(500, 300);
 		title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 80));
 		
+		this.requestFocus();
+		this.setFocusable(true);
 		this.setBackground(Color.BLACK);
 		this.setBounds(0,320,1200,780);
 		this.add(title);
 	}
 }
+		
