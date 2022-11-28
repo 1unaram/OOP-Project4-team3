@@ -18,9 +18,7 @@ public class Block extends JLabel {
 	}
 	
 	Block(String path) {
-		ImageIcon icon = new ImageIcon(path);
-		this.setBounds(0, 600, 60, 60);
-		this.setIcon(icon);
+		this.setIcon(new ImageIcon(path));
 	}
 	
 	
@@ -69,6 +67,10 @@ class ObjBlock extends Block {
 	/* Constructor */
 	ObjBlock() {
 		
+	}
+	
+	ObjBlock(String path) {
+		this.setIcon(new ImageIcon(path));
 	}
 	
 	
