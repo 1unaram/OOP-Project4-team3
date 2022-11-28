@@ -1,5 +1,6 @@
 package oop_project4_dodo;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
@@ -14,6 +15,11 @@ public class Block extends JLabel {
 	/* Constructor */
 	Block() {
 		this.setIcon(null);
+	}
+	
+	Block(String path) {
+		ImageIcon icon = new ImageIcon(path);
+		this.setIcon(icon);
 	}
 	
 	

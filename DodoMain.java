@@ -42,19 +42,21 @@ class MainFrame extends JFrame{
 	public void init() {
 		IntroPanel intro = new IntroPanel();
 		
-		intro.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					contentpane.removeAll();		
-					contentpane.repaint();					// contentpane 초기화
-					
-					// Stage1 Panel
-					contentpane.add(new Stage1Panel());
-				}
-			}
-		});
+//		intro.addKeyListener(new KeyAdapter() {
+//			public void keyPressed(KeyEvent e) {
+//				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+//					contentpane.removeAll();		
+//					contentpane.repaint();					// contentpane 초기화
+//					
+//					// Stage1 Panel
+//					Stage1Panel s1p = new Stage1Panel();
+//					contentpane.add(s1p);
+//				}
+//			}
+//		});
 		
-		contentpane.add(intro);			
+		
+		contentpane.add(intro);
 	}
 }
 
