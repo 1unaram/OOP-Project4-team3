@@ -14,11 +14,12 @@ public class Block extends JLabel {
 	
 	/* Constructor */
 	Block() {
-		this.setIcon(null);
+		
 	}
 	
 	Block(String path) {
 		ImageIcon icon = new ImageIcon(path);
+		this.setBounds(0, 660, 60, 60);
 		this.setIcon(icon);
 	}
 	
