@@ -1,4 +1,4 @@
-package oop_proj4;
+package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
