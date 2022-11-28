@@ -1,4 +1,4 @@
-package oop_proj4;
+package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -40,13 +40,16 @@ class MainFrame extends JFrame{
 	}
 	
 	public void init() {
-		Intro intro = new Intro();
+		IntroPanel intro = new IntroPanel();
 		
 		intro.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					contentpane.removeAll();		
 					contentpane.repaint();					// contentpane 초기화
+					
+					// Stage1 Panel
+					contentpane.add(new Stage1Panel());
 				}
 			}
 		});
@@ -55,22 +58,4 @@ class MainFrame extends JFrame{
 	}
 }
 
-
-
-@SuppressWarnings("serial")
-class Intro extends JPanel{
-	
-	Intro() {
-		JLabel title = new JLabel("DoDo is You");
-		title.setForeground(Color.WHITE);
-		title.setLocation(500, 300);
-		title.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 80));
-		
-		this.requestFocus();
-		this.setFocusable(true);
-		this.setBackground(Color.BLACK);
-		this.setBounds(0,320,1200,780);
-		this.add(title);
-	}
-}
 		
