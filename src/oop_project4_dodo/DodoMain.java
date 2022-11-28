@@ -2,8 +2,6 @@ package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
@@ -35,7 +33,7 @@ class MainFrame extends JFrame{
 		this.setSize(ConstantClass.FRAME_WIDTH, ConstantClass.FRAME_HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-//		this.setResizable(false);
+		this.setResizable(false);
 		this.setTitle("Dodo is You");
 		this.setLayout(null);
 		

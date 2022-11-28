@@ -23,7 +23,7 @@ public class IntroPanel extends JPanel{
 		title.setBounds(0, 300, ConstantClass.FRAME_WIDTH, 80);
 		title.setHorizontalAlignment(JLabel.CENTER);
 		
-		this.setBackground(Color.PINK);
+		this.setBackground(Color.BLACK);
 		this.setBounds(0, 0, ConstantClass.FRAME_WIDTH, ConstantClass.FRAME_HEIGHT);
 		this.add(title);
 		this.setLayout(null);

@@ -21,7 +21,7 @@ public class Stage1Panel extends JPanel {
 	Stage1Panel(Container cp) {		
 		contentpane = cp;
 		
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.BLACK);
 		this.setBounds(20, ConstantClass.BANNER_HEIGHT,ConstantClass.PANEL_WIDTH,ConstantClass.PANEL_HEIGHT);
 		
 		initBlock();
