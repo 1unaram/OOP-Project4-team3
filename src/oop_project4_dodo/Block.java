@@ -19,7 +19,7 @@ public class Block extends JLabel {
 	
 	Block(String path) {
 		ImageIcon icon = new ImageIcon(path);
-		this.setBounds(0, 660, 60, 60);
+		this.setBounds(0, 600, 60, 60);
 		this.setIcon(icon);
 	}
 	

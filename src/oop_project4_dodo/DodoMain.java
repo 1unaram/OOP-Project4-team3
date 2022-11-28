@@ -24,7 +24,7 @@ class MainFrame extends JFrame{
 	
 	MainFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setSize(1200, 840);
+		this.setSize(1200, 780);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setResizable(false);

@@ -9,10 +9,13 @@ public class Stage1Panel extends JPanel {
 	
 	Stage1Panel() {		
 		Block dodo = new Block("img/dodo.png");
-		this.add(dodo);
 
+		
+		this.add(dodo);
+		
+		
 		this.setBackground(Color.BLUE);
-		this.setBounds(0,80,1200,720);
+		this.setBounds(0,80,1200,660);
 	}
 	
 }
