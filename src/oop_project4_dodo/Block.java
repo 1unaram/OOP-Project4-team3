@@ -1,5 +1,7 @@
 package oop_project4_dodo;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -7,9 +9,10 @@ import javax.swing.JLabel;
 public class Block extends JLabel {
 	
 	/* Private member variable */
-	private int width;
-	private int height;
-	private boolean isPusable;
+	private boolean isPushable = true;
+	
+	private int arrX;
+	private int arrY;
 	
 	
 	/* Constructor */
@@ -23,8 +26,37 @@ public class Block extends JLabel {
 	
 	
 	/* Method */
-	public boolean checkPushable() {
-		return isPusable;
+	public boolean checkPushable(int n) {
+		
+		switch(n) {
+		case KeyEvent.VK_UP :
+			if(arrY == 0) isPushable = false;
+			break;
+		case KeyEvent.VK_DOWN :
+			if(arrY == 11) isPushable = false;
+			break;
+		case KeyEvent.VK_LEFT :
+			if(arrX == 0) isPushable = false;
+			break;
+		case KeyEvent.VK_RIGHT :
+			if(arrX == 20) isPushable = false;
+			break;
+		}
+		
+		return isPushable;
+	}
+	
+	public void setPos(int y, int x) {
+		this.arrY = y;
+		this.arrX = x;
+	}
+	
+	public int getArrX() {
+		return this.arrX;
+	}
+	
+	public int getArrY() {
+		return this.arrY;
 	}
 }
 
@@ -41,6 +73,10 @@ class WordBlock extends Block {
 	/* Constructor */
 	WordBlock() {
 		
+	}
+	
+	WordBlock(String path) {
+		this.setIcon(new ImageIcon(path));
 	}
 	
 	

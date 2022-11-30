@@ -14,24 +14,40 @@ public class YouKeyListener extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         switch (keyCode) {
+        
+        // 상
         case KeyEvent.VK_UP:
             if(you.getY() > 0) {
-                you.setLocation(you.getX(), you.getY() - 60);
+            	if(you.checkPushable(KeyEvent.VK_UP)) {            		
+            		you.setLocation(you.getX(), you.getY() - 60);
+            	}
             }
             break;
+        
+        // 하
         case KeyEvent.VK_DOWN:
             if(you.getY() < 600) {
-                you.setLocation(you.getX(), you.getY() + 60);
+            	if(you.checkPushable(KeyEvent.VK_DOWN)) {            		
+            		you.setLocation(you.getX(), you.getY() + 60);
+            	}
             }
             break;
+            
+        // 좌
         case KeyEvent.VK_LEFT:
             if(you.getX() > 0) {
-                you.setLocation(you.getX() - 60, you.getY());
+            	if(you.checkPushable(KeyEvent.VK_LEFT)) {            		
+            		you.setLocation(you.getX() - 60, you.getY());
+            	}
             }
             break;
+            
+        // 우
         case KeyEvent.VK_RIGHT:
             if(you.getX() < 1140) {
-                you.setLocation(you.getX() + 60, you.getY());
+            	if(you.checkPushable(KeyEvent.VK_RIGHT)) {            		
+            		you.setLocation(you.getX() + 60, you.getY());
+            	}
             }
 
         }
