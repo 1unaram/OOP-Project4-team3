@@ -122,4 +122,28 @@ class ObjBlock extends Block {
 	public boolean checkReached() {
 		return true;
 	}
+	
+	public boolean checkMovable(int key) {
+		
+		switch(key) {
+		case KeyEvent.VK_UP :
+			if(this.getY() > 0) {
+				// 블록까지 밀어서 움직일 수 있는지 검증 필요
+				return true;
+			}
+			
+			break;
+		case KeyEvent.VK_DOWN :
+			
+			break;
+		case KeyEvent.VK_LEFT :
+			
+			break;
+		case KeyEvent.VK_RIGHT :
+			
+			break;
+		}
+		
+		return isFish;
+	}
 }

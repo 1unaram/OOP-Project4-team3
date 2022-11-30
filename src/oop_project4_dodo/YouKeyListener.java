@@ -5,9 +5,9 @@ import java.awt.event.KeyEvent;
 
 public class YouKeyListener extends KeyAdapter {
 	
-	Block you;
+	ObjBlock you;
 	
-	YouKeyListener(Block you) {
+	YouKeyListener(ObjBlock you) {
 		this.you = you;
 	}
 	
@@ -17,6 +17,10 @@ public class YouKeyListener extends KeyAdapter {
         
         // 상
         case KeyEvent.VK_UP:
+        	if(you.checkMovable(keyCode)) {
+        		you.setLocation(you.getX(), you.getY() - 60);
+        	}
+        	
             if(you.getY() > 0) {
             	if(you.checkPushable(KeyEvent.VK_UP)) {            		
             		you.setLocation(you.getX(), you.getY() - 60);
@@ -52,4 +56,5 @@ public class YouKeyListener extends KeyAdapter {
 
         }
     }
+ 
 }

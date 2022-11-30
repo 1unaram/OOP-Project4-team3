@@ -11,7 +11,7 @@ public class Stage1Panel extends JPanel {
 	
 	Container contentpane;
 	
-	Block dodo;
+	ObjBlock dodo;
 	ObjBlock fish;
 	WordBlock _dodo;
 	
@@ -34,7 +34,7 @@ public class Stage1Panel extends JPanel {
 	}
 	
 	public void initBlock() {
-		dodo = new Block("img/dodo.png");
+		dodo = new ObjBlock("img/dodo.png");
 		fish = new ObjBlock("img/fish.png");
 		_dodo = new WordBlock("img/_dodo.png");
 		
