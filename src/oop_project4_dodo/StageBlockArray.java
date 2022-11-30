@@ -5,7 +5,7 @@ public class StageBlockArray {
 	Block[][] array = new Block[11][20]; // y , x
 
 	
-	public void setPosition(Block b, int y, int x, String name) {
+	public void initPosition(Block b, int y, int x, String name) {
 		array[y][x] = b;
 		b.setText(name);
 		b.setPos(y, x);
@@ -18,5 +18,12 @@ public class StageBlockArray {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
+	
+	public void setNewPosition(Block b, int oldY, int oldX, int newY, int newX) {
+		array[oldY][oldX] = null;
+		array[newY][newX] = b;
+	}
+	
 }

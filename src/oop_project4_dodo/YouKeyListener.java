@@ -12,49 +12,52 @@ public class YouKeyListener extends KeyAdapter {
 	}
 	
     public void keyPressed(KeyEvent e) {
+    	
         int keyCode = e.getKeyCode();
+        
+        int currentX = you.getArrX();
+        int currentY = you.getArrY();
+        int weightX = 0;
+        int weightY = 0;
+        
+        int direction = -1;
+        
         switch (keyCode) {
-        
-        // 상
-        case KeyEvent.VK_UP:
-        	if(you.checkMovable(keyCode)) {
-        		you.setLocation(you.getX(), you.getY() - 60);
-        	}
-        	
-            if(you.getY() > 0) {
-            	if(you.checkPushable(KeyEvent.VK_UP)) {            		
-            		you.setLocation(you.getX(), you.getY() - 60);
-            	}
-            }
-            break;
-        
-        // 하
-        case KeyEvent.VK_DOWN:
-            if(you.getY() < 600) {
-            	if(you.checkPushable(KeyEvent.VK_DOWN)) {            		
-            		you.setLocation(you.getX(), you.getY() + 60);
-            	}
-            }
-            break;
-            
-        // 좌
-        case KeyEvent.VK_LEFT:
-            if(you.getX() > 0) {
-            	if(you.checkPushable(KeyEvent.VK_LEFT)) {            		
-            		you.setLocation(you.getX() - 60, you.getY());
-            	}
-            }
-            break;
-            
-        // 우
-        case KeyEvent.VK_RIGHT:
-            if(you.getX() < 1140) {
-            	if(you.checkPushable(KeyEvent.VK_RIGHT)) {            		
-            		you.setLocation(you.getX() + 60, you.getY());
-            	}
-            }
 
+        case KeyEvent.VK_UP:
+        	weightY = -1;
+        	direction = ConstClass.UP;
+            break;
+        case KeyEvent.VK_DOWN:
+	        weightY = 1;    
+	        direction = ConstClass.DOWN;
+            break;
+        case KeyEvent.VK_LEFT:
+        	weightX = -1;
+        	direction = ConstClass.LEFT;
+            break;
+        case KeyEvent.VK_RIGHT:
+        	weightX = 1;
+        	direction = ConstClass.RIGHT;
+        	break;
         }
+        
+        // 오른쪽에 있는 obj 움직이기
+    	you.pushBlock(you.stageBlockArr.array[currentY + weightY][currentX + weightX], direction);
+    	
+    	// You가 움직이기
+    	if(you.checkMovable(direction)) {
+    		
+    		// 블록 배열을 업데이트
+    		you.stageBlockArr.setNewPosition(you, currentY, currentX, currentY + weightY, currentX + weightX);
+    		
+    		// 오브젝트의 멤버 변수 변경
+    		you.setPos(you.getArrY() + weightY, you.getArrX() + weightX);
+    		
+    		// 오브젝트의 위치 다시 그리기
+    		you.setLocation(you.getX() + 60 * weightX, you.getY() + 60 * weightY);
+    	}
+        
     }
  
 }

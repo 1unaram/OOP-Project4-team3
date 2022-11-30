@@ -15,14 +15,6 @@ public class DodoMain {
 
 }
 
-class ConstantClass {
-	static int FRAME_WIDTH = 1260;
-	static int FRAME_HEIGHT = 800;
-	static int PANEL_WIDTH = 1200;
-	static int PANEL_HEIGHT = 660;
-	static int BANNER_HEIGHT = 80;
-}
-
 
 @SuppressWarnings("serial")
 class MainFrame extends JFrame{
@@ -30,7 +22,7 @@ class MainFrame extends JFrame{
 	
 	MainFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.setSize(ConstantClass.FRAME_WIDTH, ConstantClass.FRAME_HEIGHT);
+		this.setSize(ConstClass.FRAME_WIDTH, ConstClass.FRAME_HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		this.setResizable(false);
