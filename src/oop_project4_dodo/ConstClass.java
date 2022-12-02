@@ -6,7 +6,10 @@ public class ConstClass {
 	static final int PANEL_WIDTH = 1200;
 	static final int PANEL_HEIGHT = 660;
 	static final int BANNER_HEIGHT = 80;
-	
+
+	static final int ARRAY_X = 20;
+	static final int ARRAY_Y = 11;
+
 	static final int UP = 0;
 	static final int DOWN = 1;
 	static final int LEFT = 2;
