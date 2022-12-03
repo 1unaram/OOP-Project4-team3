@@ -33,6 +33,7 @@ public class Stage1Panel extends JPanel {
 
 		initBlock();
 		initBlockArr();
+		initWordBlockMemberVar();
 
 		ykl = new YouKeyListener(dodo);
 		contentpane.addKeyListener(ykl);
@@ -81,6 +82,17 @@ public class Stage1Panel extends JPanel {
 		stage1BlockArr.initPosition(_is2, Stage1BlockPos._is2[0], Stage1BlockPos._is2[1], "2");
 		stage1BlockArr.initPosition(_win, Stage1BlockPos._win[0], Stage1BlockPos._win[1], "w");
 		stage1BlockArr.printArray();
+
+	}
+
+	public void initWordBlockMemberVar() {
+
+		_dodo.setSubject();
+		_is1.setVerb();
+		_you.setComplement();
+		_fish.setSubject();
+		_is2.setVerb();
+		_win.setComplement();
 
 	}
 }

@@ -2,6 +2,7 @@ package oop_project4_dodo;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.text.rtf.RTFEditorKit;
 
 @SuppressWarnings("serial")
 public class Block extends JLabel {
@@ -42,11 +43,19 @@ public class Block extends JLabel {
 	// this를 움직인다.
 	public void moveBlock(int weightX, int weightY) {
 
+		// 블록의 속성에 따라 동작
+		// if(block == "win") {
+		// win();
+		// } else if(block == "defeat") {
+		// defeat();
+		// } else if(isYou != "you") {
+		// changeYou();
+		// }
+
 		int oldX = this.getArrX();
 		int oldY = this.getArrY();
 
-		stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX +
-				weightX);
+		stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
 
 		// 오브젝트의 멤버 변수 변경
 		this.setPos(this.getArrY() + weightY, this.getArrX() + weightX);
@@ -139,12 +148,126 @@ class WordBlock extends Block {
 	}
 
 	/* Method */
-	public void pushedBlock() {
+	// 글자 속성 설정
+	public void setSubject() {
+		this.isSubject = true;
+	}
+
+	public void setVerb() {
+		this.isVerb = true;
+	}
+
+	public void setComplement() {
+		this.isComplement = true;
+	}
+
+	public boolean isSubject() {
+		return this.isSubject;
+	}
+
+	public boolean isVerb() {
+		return this.isVerb;
+	}
+
+	public boolean isComplement() {
+		return this.isComplement;
+	}
+
+	// 문장 체크
+	public void checkSenstence() {
+
+		// 문장이 완성되었는지 체크
+		if (this.isSubject) {
+
+			System.out.println("Entered 1");
+
+			if (this.checkVerb(1, 0)) {
+				System.out.println("Entered 2");
+				return;
+			}
+
+			// 동 체크
+			if (this.checkVerb(1, 0) && this.checkComplement(2, 0)) {
+
+				System.out.println("Entered");
+
+				Block compBlock = stageBlockArr.array[this.getArrY()][this.getArrX() + 2];
+
+				// win 체크
+				if (compBlock.getText() == "w") {
+					for (Block[] b1 : stageBlockArr.array) {
+						for (Block b2 : b1) {
+							if (b2.getText() == this.getText().toUpperCase()) {
+								((ObjBlock) b2).setWin();
+								System.out.println(b2.getText() + "는 Win입니다.");
+							}
+						}
+					}
+				}
+			}
+
+			// 남 체크
+			if (this.checkVerb(0, 1) && this.checkComplement(0, 2)) {
+
+			}
+
+		} else if (isVerb) {
+
+		} else if (isComplement) {
+
+		}
 
 	}
 
-	public void checkSenstence() {
+	public boolean checkSubject(int weightX, int weightY) {
+		if (!this.checkNextFNW(weightX, weightY))
+			return false;
 
+		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+		if (!nextBlock.isSubject())
+			return false;
+		return true;
+	}
+
+	public boolean checkVerb(int weightX, int weightY) {
+		if (!this.checkNextFNW(weightX, weightY))
+			return false;
+
+		System.out.println("Entered 3");
+
+		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+		if (!nextBlock.isVerb())
+			return false;
+		return true;
+	}
+
+	public boolean checkComplement(int weightX, int weightY) {
+		if (!this.checkNextFNW(weightX, weightY))
+			return false;
+
+		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+		if (!nextBlock.isComplement())
+			return false;
+		return true;
+	}
+
+	public boolean checkNextFNW(int weightX, int weightY) {
+		// 다음 블록이 프레임 안에 있는지 체크
+		if (!this.checkNextInFrame(weightX, weightY))
+			return false;
+
+		// 다음 블록이 존재하는지 체크
+		if (!this.checkNextIsNull(weightX, weightY)) {
+			System.out.println(">" + stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].getText());
+			System.out.println("Enetered checkNextIsNull");
+			return false;
+		}
+
+		// 다음 블록이 이동 가능한지 검사
+		if (!(stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock))
+			return false;
+
+		return true;
 	}
 }
 
@@ -167,13 +290,20 @@ class ObjBlock extends Block {
 	}
 
 	/* Method */
-
-	public void win() {
-
-	}
-
 	public boolean checkReached() {
 		return true;
+	}
+
+	public void setYou() {
+		this.isYou = true;
+	}
+
+	public void setFish() {
+		this.isFish = true;
+	}
+
+	public void setWin() {
+		this.isWin = true;
 	}
 
 }
