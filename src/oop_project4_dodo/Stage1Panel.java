@@ -93,7 +93,7 @@ public class Stage1Panel extends JPanel {
 		_fish.setSubject();
 		_is2.setVerb();
 		_win.setComplement();
-
+		fish.setIsPushable(false);
 	}
 }
 

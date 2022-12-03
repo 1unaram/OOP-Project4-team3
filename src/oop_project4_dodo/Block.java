@@ -2,8 +2,6 @@ package oop_project4_dodo;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.event.SwingPropertyChangeSupport;
-import javax.swing.text.rtf.RTFEditorKit;
 
 @SuppressWarnings("serial")
 public class Block extends JLabel {
@@ -126,6 +124,11 @@ public class Block extends JLabel {
 		}
 
 		return true;
+	}
+
+	// (3) getter/setter
+	public void setIsPushable(boolean isPushable) {
+		this.isPushable = isPushable;
 	}
 
 }
