@@ -1,7 +1,5 @@
 package oop_project4_dodo;
 
-import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -10,7 +8,6 @@ public class Block extends JLabel {
 
 	/* Private member variable */
 	private boolean isPushable = true;
-	private boolean isMovable;
 
 	private int arrX;
 	private int arrY;
@@ -42,77 +39,14 @@ public class Block extends JLabel {
 	}
 
 	// (2) this가 b를 미는 메소드
-	public void pushBlock(Block b, int direction) {
-
-		// 다음 블록을 밀어야 하는지 검사
-		int currentX = this.getArrX();
-		int currentY = this.getArrY();
-
-		int weightX = 0;
-		int weightY = 0;
-
-		boolean isPushable = true;
-
-		switch (direction) {
-			case ConstClass.UP:
-				weightY = -1;
-				break;
-			case ConstClass.DOWN:
-				weightY = 1;
-				break;
-			case ConstClass.LEFT:
-				weightX = -1;
-				break;
-			case ConstClass.RIGHT:
-				weightX = 1;
-				break;
-			default:
-				isPushable = false;
-		}
-
-		// 방향키만 움직일 수 있도록 처리
-		if (isPushable) {
-			System.out.print(direction + ": ");
-			System.out.print(currentY + weightY);
-			System.out.print(" / ");
-			System.out.println(currentX + weightX);
-
-			// 다음 블록이 이동 가능한지 검사
-			System.out.println(stageBlockArr.array[currentY + weightY][currentX + weightX]);
-			if (stageBlockArr.array[currentY + weightY][currentX + weightX] != null) {
-				b.pushBlock(stageBlockArr.array[currentY + weightY][currentX + weightX], direction);
-				b.moveBlock(direction);
-			}
-		}
-
-	}
-
 	// this를 움직인다.
-	public void moveBlock(int direction) {
+	public void moveBlock(int weightX, int weightY) {
 
 		int oldX = this.getArrX();
 		int oldY = this.getArrY();
 
-		int weightX = 0;
-		int weightY = 0;
-
-		// 블록을 밀어야하는 방향 설정
-		switch (direction) {
-			case ConstClass.UP:
-				weightY = -1;
-				break;
-			case ConstClass.DOWN:
-				weightY = +1;
-				break;
-			case ConstClass.LEFT:
-				weightX = -1;
-				break;
-			case ConstClass.RIGHT:
-				weightX = 1;
-				break;
-		}
-
-		stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
+		stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX +
+				weightX);
 
 		// 오브젝트의 멤버 변수 변경
 		this.setPos(this.getArrY() + weightY, this.getArrX() + weightX);
@@ -121,24 +55,55 @@ public class Block extends JLabel {
 		this.setLocation(this.getX() + 60 * weightX, this.getY() + 60 * weightY);
 	}
 
-	// this가 해당 방향으로 움직일 수 있는지 체크
-	public boolean checkMovable(int weightX, int weightY) {
+	// this가 움직이는 메소드
+	public boolean moveProcess(int weightX, int weightY) {
 
-		boolean isMovable = false;
+		// 이동할 칸이 프레임 안에 존재하지 않는 경우
+		if (!this.checkNextInFrame(weightX, weightY))
+			return false;
 
-		// 다음 이동 시 프레임 안에 존재하는지 체크
-		if (checkInFrame(weightX, weightY)) {
-
-			// 다음 이동 시 블록이 존재하는지 체크
-			if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] == null) {
-				isMovable = true;
-			}
+		// 이동할 칸이 프레임 안에 존재하는 경우
+		// 다음 블록이 존재하지 않으면 this가 움직이기
+		if (this.checkNextIsNull(weightX, weightY)) {
+			this.moveBlock(weightX, weightY);
+			return true;
 		}
 
-		return isMovable;
+		// 이동할 칸이 프레임 안에 존재하는 경우
+		// 다음 블록이 존재하는 경우
+		// 다음 블록이 움직일 수 있는 경우
+		if (this.checkNextPushable(weightX, weightY)) {
+			// 다음 블록을 밀기
+			if (!stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].moveProcess(weightX,
+					weightY)) {
+				return false;
+			}
+			this.moveBlock(weightX, weightY);
+		}
+
+		return true;
 	}
 
-	public boolean checkInFrame(int weightX, int weightY) {
+	public boolean checkNextPushable(int weightX, int weightY) {
+		// 다음 블록이 이동 가능한지 검사
+		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() +
+				weightX].isPushable) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// 다음 블록이 없는 지 체크
+	public boolean checkNextIsNull(int weightX, int weightY) {
+		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] == null) {
+			return true;
+		}
+		return false;
+	}
+
+	// 다음 블록 이동 시 프레임 내에 있는지 체크
+	public boolean checkNextInFrame(int weightX, int weightY) {
 
 		// X 방향 체크
 		if (this.getArrX() + weightX < 0 || this.getArrX() + weightX > ConstClass.ARRAY_X - 1) {
@@ -162,7 +127,6 @@ class WordBlock extends Block {
 	private boolean isSubject;
 	private boolean isVerb;
 	private boolean isComplement;
-	private boolean isMovable = true;
 
 	/* Constructor */
 	WordBlock() {
@@ -182,10 +146,6 @@ class WordBlock extends Block {
 	public void checkSenstence() {
 
 	}
-
-	// public boolean checkMovable() {
-	// return isMovable;
-	// }
 }
 
 @SuppressWarnings("serial")
