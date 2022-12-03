@@ -2,7 +2,6 @@ package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.util.Arrays;
 
 import javax.swing.JPanel;
 
