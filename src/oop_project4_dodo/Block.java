@@ -2,6 +2,7 @@ package oop_project4_dodo;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.event.SwingPropertyChangeSupport;
 import javax.swing.text.rtf.RTFEditorKit;
 
 @SuppressWarnings("serial")
@@ -179,42 +180,94 @@ class WordBlock extends Block {
 		// 문장이 완성되었는지 체크
 		if (this.isSubject) {
 
-			System.out.println("Entered 1");
-
-			if (this.checkVerb(1, 0)) {
-				System.out.println("Entered 2");
-				return;
-			}
-
 			// 동 체크
-			if (this.checkVerb(1, 0) && this.checkComplement(2, 0)) {
+			checkComplementStatus(1, 0);
 
-				System.out.println("Entered");
+			// 남 체크
+			checkComplementStatus(0, 1);
 
-				Block compBlock = stageBlockArr.array[this.getArrY()][this.getArrX() + 2];
+		} else if (this.isVerb) {
+			// 동, 서 체크
+			checkVerbStatus(1, 0);
 
-				// win 체크
-				if (compBlock.getText() == "w") {
-					for (Block[] b1 : stageBlockArr.array) {
-						for (Block b2 : b1) {
-							if (b2.getText() == this.getText().toUpperCase()) {
-								((ObjBlock) b2).setWin();
-								System.out.println(b2.getText() + "는 Win입니다.");
-							}
+			// 남, 북 체크
+			checkVerbStatus(0, 1);
+		} else if (this.isComplement) {
+			// 서 체크
+			checkSubjectStatus(-1, 0);
+
+			// 북 체크
+			checkSubjectStatus(0, -1);
+		}
+
+	}
+
+	// 주어 체크
+	public void checkSubjectStatus(int weightX, int weightY) {
+
+		if (this.checkVerb(weightX, weightY) && this.checkSubject(weightX * 2, weightY * 2)) {
+			Block subBlock = stageBlockArr.array[this.getArrY() + weightY * 2][this.getArrX() + weightX * 2];
+
+			// win 체크
+			if (this.getText() == "w") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
+							((ObjBlock) b2).setWin();
+							System.out.println("win");
 						}
 					}
 				}
 			}
 
-			// 남 체크
-			if (this.checkVerb(0, 1) && this.checkComplement(0, 2)) {
+			// you 체크
+		}
 
+	}
+
+	// 동사 체크
+	public void checkVerbStatus(int weightX, int weightY) {
+
+		if (this.checkSubject(weightX * -1, weightY * -1) && this.checkComplement(weightX, weightY)) {
+			Block subBlock = stageBlockArr.array[this.getArrY() + weightY * -1][this.getArrX() + weightX * -1];
+			Block compBlock = stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+
+			// win 체크
+			if (compBlock.getText() == "w") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
+							((ObjBlock) b2).setWin();
+							System.out.println("win");
+						}
+					}
+				}
 			}
 
-		} else if (isVerb) {
+			// you 체크
+		}
 
-		} else if (isComplement) {
+	}
 
+	// 보어 체크
+	public void checkComplementStatus(int weightX, int weightY) {
+
+		if (this.checkVerb(weightX, weightY) && this.checkComplement(weightX * 2, weightY * 2)) {
+			Block compBlock = stageBlockArr.array[this.getArrY() + weightY * 2][this.getArrX() + weightX * 2];
+
+			// win 체크
+			if (compBlock.getText() == "w") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
+							((ObjBlock) b2).setWin();
+							System.out.println("win");
+						}
+					}
+				}
+			}
+
+			// you 체크
 		}
 
 	}
@@ -232,8 +285,6 @@ class WordBlock extends Block {
 	public boolean checkVerb(int weightX, int weightY) {
 		if (!this.checkNextFNW(weightX, weightY))
 			return false;
-
-		System.out.println("Entered 3");
 
 		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
 		if (!nextBlock.isVerb())
@@ -257,12 +308,9 @@ class WordBlock extends Block {
 			return false;
 
 		// 다음 블록이 존재하는지 체크
-		if (!this.checkNextIsNull(weightX, weightY)) {
-			System.out.println(">" + stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].getText());
-			System.out.println("Enetered checkNextIsNull");
+		if (this.checkNextIsNull(weightX, weightY)) {
 			return false;
 		}
-
 		// 다음 블록이 이동 가능한지 검사
 		if (!(stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock))
 			return false;
