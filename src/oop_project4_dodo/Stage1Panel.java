@@ -21,6 +21,7 @@ public class Stage1Panel extends JPanel {
 	WordBlock _win;
 
 	static StageBlockArray stage1BlockArr;
+	static ManageListener manageListener;
 
 	YouKeyListener ykl;
 
@@ -37,18 +38,20 @@ public class Stage1Panel extends JPanel {
 
 		ykl = new YouKeyListener(dodo);
 		contentpane.addKeyListener(ykl);
+
+		// manageListener.addYouKeyListener(ykl);
 	}
 
 	public void initBlock() {
 
-		dodo = new ObjBlock("img/dodo.png", stage1BlockArr);
-		fish = new ObjBlock("img/fish.png", stage1BlockArr);
-		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr);
-		_is1 = new WordBlock("img/_is.png", stage1BlockArr);
-		_you = new WordBlock("img/_you.png", stage1BlockArr);
-		_fish = new WordBlock("img/_fish.png", stage1BlockArr);
-		_is2 = new WordBlock("img/_is.png", stage1BlockArr);
-		_win = new WordBlock("img/_win.png", stage1BlockArr);
+		dodo = new ObjBlock("img/dodo.png", stage1BlockArr, manageListener);
+		fish = new ObjBlock("img/fish.png", stage1BlockArr, manageListener);
+		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr, manageListener);
+		_is1 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
+		_you = new WordBlock("img/_you.png", stage1BlockArr, manageListener);
+		_fish = new WordBlock("img/_fish.png", stage1BlockArr, manageListener);
+		_is2 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
+		_win = new WordBlock("img/_win.png", stage1BlockArr, manageListener);
 
 		dodo.setBounds(Stage1BlockPos.dodo[1] * 60, Stage1BlockPos.dodo[0] * 60, 60, 60);
 		fish.setBounds(Stage1BlockPos.fish[1] * 60, Stage1BlockPos.fish[0] * 60, 60, 60);

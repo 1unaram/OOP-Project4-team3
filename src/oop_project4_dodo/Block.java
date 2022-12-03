@@ -141,14 +141,17 @@ class WordBlock extends Block {
 	private boolean isVerb;
 	private boolean isComplement;
 
+	ManageListener manageListener;
+
 	/* Constructor */
 	WordBlock() {
 
 	}
 
-	WordBlock(String path, StageBlockArray stageBlockArr) {
+	WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
 		this.setIcon(new ImageIcon(path));
 		this.stageBlockArr = stageBlockArr;
+		this.manageListener = manageListener;
 	}
 
 	/* Method */
@@ -271,6 +274,16 @@ class WordBlock extends Block {
 			}
 
 			// you 체크
+			if (compBlock.getText() == "y") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
+							((ObjBlock) b2).setYou();
+							System.out.println("you");
+						}
+					}
+				}
+			}
 		}
 
 	}
@@ -327,17 +340,19 @@ class ObjBlock extends Block {
 
 	/* Private member variable */
 	private boolean isYou;
-	private boolean isFish;
 	private boolean isWin;
+
+	ManageListener manageListener;
 
 	/* Constructor */
 	ObjBlock() {
 
 	}
 
-	ObjBlock(String path, StageBlockArray stageBlockArr) {
+	ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
 		this.setIcon(new ImageIcon(path));
 		this.stageBlockArr = stageBlockArr;
+		this.manageListener = manageListener;
 	}
 
 	/* Method */
@@ -347,10 +362,13 @@ class ObjBlock extends Block {
 
 	public void setYou() {
 		this.isYou = true;
-	}
 
-	public void setFish() {
-		this.isFish = true;
+		for (YouKeyListener ykl : manageListener.youKeyListenerList) {
+			manageListener.contentpane.removeKeyListener(ykl);
+		}
+
+		manageListener.contentpane.add(this);
+		manageListener.addYouKeyListener(new YouKeyListener(this));
 	}
 
 	public void setWin() {
