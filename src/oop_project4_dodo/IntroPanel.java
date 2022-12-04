@@ -60,11 +60,11 @@ public class IntroPanel extends JPanel{
 				
 				if(cnt < 7) {
 					if(cnt < 3) {
-						dodo.setLocation(330, 180 + 60*i);
+						dodo.setLocation(270, 180 + 60*i);
 						i++;
 					}
 					else {
-						dodo.setLocation(330 + 60*j, 300);
+						dodo.setLocation(270 + 60*j, 300);
 						j++;
 					}
 					cnt++;
