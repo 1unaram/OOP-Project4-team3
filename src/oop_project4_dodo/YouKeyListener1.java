@@ -3,12 +3,16 @@ package oop_project4_dodo;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class YouKeyListener extends KeyAdapter {
+import javax.swing.JPanel;
+
+public class YouKeyListener1 extends KeyAdapter {
 
 	ObjBlock you;
+	Stage1Panel stagePanel;
 
-	YouKeyListener(ObjBlock you) {
+	YouKeyListener1(ObjBlock you, Stage1Panel stagePanel) {
 		this.you = you;
+		this.stagePanel = stagePanel;
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -32,6 +36,13 @@ public class YouKeyListener extends KeyAdapter {
 			case KeyEvent.VK_RIGHT:
 				weightX = 1;
 				break;
+			case 'R':
+				System.out.println("Retry");
+				// stagePanel.contentpane.remove(stagePanel);
+				// Stage1Panel newPanel = new Stage1Panel(stagePanel.contentpane);
+				// stagePanel.contentpane.add(newPanel);
+				// stagePanel.contentpane.removeKeyListener(this);
+				return;
 			default:
 				return;
 		}

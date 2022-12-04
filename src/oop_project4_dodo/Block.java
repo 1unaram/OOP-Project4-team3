@@ -391,18 +391,17 @@ class ObjBlock extends Block {
 	public void setYou() {
 		this.isYou = true;
 
-		for (YouKeyListener ykl : manageListener.youKeyListenerList) {
-			System.out.println(ykl);
+		for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
 			manageListener.contentpane.removeKeyListener(ykl);
 		}
 
-		YouKeyListener ykl = new YouKeyListener(this);
+		YouKeyListener1 ykl = new YouKeyListener1(this);
 
 		// 키 리스너를 실제 다는 동작
 		manageListener.contentpane.addKeyListener(ykl);
 
 		// 키 리스너 관리 대상에 들어간다
-		manageListener.addYouKeyListener(ykl);
+		manageListener.addYouKeyListener1(ykl);
 	}
 
 	public void setWin() {
