@@ -34,13 +34,13 @@ public class IntroPanel extends JPanel{
 
 	public void initIntro() {
 
-		dodo = new ObjBlock("img/dodo.png", BlockArr, null);
-		_is = new WordBlock("img/_is.png", BlockArr, null);
-		_win = new WordBlock("img/_win.png", BlockArr, null);
+		dodo = new ObjBlock("img/dodo.png", BlockArr, null, "Big");
+		_is = new WordBlock("img/_is.png", BlockArr, null, "Big");
+		_win = new WordBlock("img/_win.png", BlockArr, null, "Big");
 		
-		dodo.setBounds(330, 180, 60, 60);
-		_is.setBounds(570, 300, 60, 60);
-		_win.setBounds(630, 300, 60, 60);
+		dodo.setBounds(330, 180, 120, 120);
+		_is.setBounds(570, 300, 120, 120);
+		_win.setBounds(690, 300, 120, 120);
 		
 		this.add(dodo);
 		this.add(_is);

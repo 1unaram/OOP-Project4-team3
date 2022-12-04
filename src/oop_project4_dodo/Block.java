@@ -1,5 +1,7 @@
 package oop_project4_dodo;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -152,6 +154,19 @@ class WordBlock extends Block {
 		this.setIcon(new ImageIcon(path));
 		this.stageBlockArr = stageBlockArr;
 		this.manageListener = manageListener;
+	}
+
+	WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
+		
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage();
+		Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		ImageIcon chanIcon = new ImageIcon(changeImg);
+
+		this.setIcon(chanIcon);
+		this.stageBlockArr = stageBlockArr;
+		this.manageListener = manageListener;
+		
 	}
 
 	/* Method */
@@ -353,6 +368,19 @@ class ObjBlock extends Block {
 		this.setIcon(new ImageIcon(path));
 		this.stageBlockArr = stageBlockArr;
 		this.manageListener = manageListener;
+	}
+
+	ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
+		
+		ImageIcon icon = new ImageIcon(path);
+		Image img = icon.getImage();
+		Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+		ImageIcon chanIcon = new ImageIcon(changeImg);
+
+		this.setIcon(chanIcon);
+		this.stageBlockArr = stageBlockArr;
+		this.manageListener = manageListener;
+		
 	}
 
 	/* Method */
