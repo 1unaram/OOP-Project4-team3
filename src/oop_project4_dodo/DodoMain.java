@@ -37,8 +37,7 @@ class MainFrame extends JFrame{
 	}
 	
 	public void init() {
-		IntroPanel intro = new IntroPanel(contentpane);
-		contentpane.add(intro);
+		contentpane.add(new StartPanel(contentpane));
 	}
 }
 
