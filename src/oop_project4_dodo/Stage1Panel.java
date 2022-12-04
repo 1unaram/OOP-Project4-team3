@@ -3,6 +3,8 @@ package oop_project4_dodo;
 import java.awt.Color;
 import java.awt.Container;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -23,11 +25,10 @@ public class Stage1Panel extends JPanel {
 	static StageBlockArray stage1BlockArr;
 	static ManageListener manageListener;
 
-	YouKeyListener ykl;
-
 	Stage1Panel(Container cp) {
 		contentpane = cp;
 		stage1BlockArr = new StageBlockArray();
+		manageListener = new ManageListener(contentpane);
 
 		this.setBackground(Color.BLACK);
 		this.setBounds(20, ConstClass.BANNER_HEIGHT, ConstClass.PANEL_WIDTH, ConstClass.PANEL_HEIGHT);
@@ -35,11 +36,12 @@ public class Stage1Panel extends JPanel {
 		initBlock();
 		initBlockArr();
 		initWordBlockMemberVar();
+		initBanner();
 
-		ykl = new YouKeyListener(dodo);
-		contentpane.addKeyListener(ykl);
+		YouKeyListener dodoListener = new YouKeyListener(dodo);
+		contentpane.addKeyListener(dodoListener);
 
-		// manageListener.addYouKeyListener(ykl);
+		manageListener.addYouKeyListener(dodoListener);
 	}
 
 	public void initBlock() {
@@ -97,6 +99,12 @@ public class Stage1Panel extends JPanel {
 		_is2.setVerb();
 		_win.setComplement();
 		fish.setIsPushable(false);
+	}
+
+	public void initBanner() {
+		JLabel banner = new JLabel(new ImageIcon("img/stage1_banner.png"));
+		banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
+		contentpane.add(banner);
 	}
 }
 

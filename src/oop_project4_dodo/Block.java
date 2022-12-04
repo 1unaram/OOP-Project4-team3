@@ -157,7 +157,7 @@ class WordBlock extends Block {
 	}
 
 	WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
-		
+
 		ImageIcon icon = new ImageIcon(path);
 		Image img = icon.getImage();
 		Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
@@ -166,7 +166,7 @@ class WordBlock extends Block {
 		this.setIcon(chanIcon);
 		this.stageBlockArr = stageBlockArr;
 		this.manageListener = manageListener;
-		
+
 	}
 
 	/* Method */
@@ -371,7 +371,7 @@ class ObjBlock extends Block {
 	}
 
 	ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
-		
+
 		ImageIcon icon = new ImageIcon(path);
 		Image img = icon.getImage();
 		Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
@@ -380,7 +380,7 @@ class ObjBlock extends Block {
 		this.setIcon(chanIcon);
 		this.stageBlockArr = stageBlockArr;
 		this.manageListener = manageListener;
-		
+
 	}
 
 	/* Method */
@@ -392,11 +392,17 @@ class ObjBlock extends Block {
 		this.isYou = true;
 
 		for (YouKeyListener ykl : manageListener.youKeyListenerList) {
+			System.out.println(ykl);
 			manageListener.contentpane.removeKeyListener(ykl);
 		}
 
-		manageListener.contentpane.add(this);
-		manageListener.addYouKeyListener(new YouKeyListener(this));
+		YouKeyListener ykl = new YouKeyListener(this);
+
+		// 키 리스너를 실제 다는 동작
+		manageListener.contentpane.addKeyListener(ykl);
+
+		// 키 리스너 관리 대상에 들어간다
+		manageListener.addYouKeyListener(ykl);
 	}
 
 	public void setWin() {

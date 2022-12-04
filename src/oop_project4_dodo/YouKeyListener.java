@@ -37,10 +37,7 @@ public class YouKeyListener extends KeyAdapter {
 		}
 
 		// You가 움직이기
-		if (you.moveProcess(weightX, weightY)) {
-
-			// 블록이 움직였을 때만
-		}
+		you.moveProcess(weightX, weightY);
 
 		// sentence 완성 여부 확인 & 멤버변수 set 해주기
 		if (you.checkNextInFrame(weightX, weightY)) {
