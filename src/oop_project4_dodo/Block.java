@@ -86,8 +86,6 @@ public class Block extends JLabel {
 		if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
 			ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
 			if(((ObjBlock)this).isYou() && nextBlock.isWin()) {
-					System.out.println("nextStage");
-					
 					MainFrame.ms.nextStage();
 			}
 		}
@@ -101,14 +99,6 @@ public class Block extends JLabel {
 				return false;
 			}
 			this.moveBlock(weightX, weightY);
-
-			// sentence 완성 여부 확인 & 멤버변수 set 해주기
-			// if (this.checkNextInFrame(weightX, weightY)) {
-			// 	if (this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
-			// 		((WordBlock) this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX])
-			// 				.checkSenstence();
-			// 	}
-			// }
 
 			// Check Unset
 			this.checkUnset();
@@ -355,165 +345,6 @@ class WordBlock extends Block {
 		return false;
 	}
 
-
-	// 문장 체크
-	public void checkSenstence() {
-
-		// 문장이 완성되었는지 체크
-		if (this.isSubject) {
-
-			// 동 체크
-			checkComplementStatus(1, 0);
-
-			// 남 체크
-			checkComplementStatus(0, 1);
-
-		} else if (this.isVerb) {
-			// 동, 서 체크
-			checkVerbStatus(1, 0);
-
-			// 남, 북 체크
-			checkVerbStatus(0, 1);
-		} else if (this.isComplement) {
-			// 서 체크
-			checkSubjectStatus(-1, 0);
-
-			// 북 체크
-			checkSubjectStatus(0, -1);
-		}
-
-	}
-
-	// 주어 체크
-	public void checkSubjectStatus(int weightX, int weightY) {
-
-		if (this.checkVerb(weightX, weightY) && this.checkSubject(weightX * 2, weightY * 2)) {
-			Block subBlock = stageBlockArr.array[this.getArrY() + weightY * 2][this.getArrX() + weightX * 2];
-
-			// win 체크
-			if (this.getText() == "w") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin(true);
-							System.out.println("win");
-						}
-					}
-				}
-			}
-
-			// you 체크
-			if (this.getText() == "y") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou(true);
-							System.out.println("you");
-						}
-					}
-				}
-			}
-		}
-
-	}
-
-	// 동사 체크
-	public void checkVerbStatus(int weightX, int weightY) {
-
-		if (this.checkSubject(weightX * -1, weightY * -1) && this.checkComplement(weightX, weightY)) {
-			Block subBlock = stageBlockArr.array[this.getArrY() + weightY * -1][this.getArrX() + weightX * -1];
-			Block compBlock = stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-
-			// win 체크
-			if (compBlock.getText() == "w") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin(true);
-							System.out.println("win");
-						}
-					}
-				}
-			}
-
-			// you 체크
-			if (compBlock.getText() == "y") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou(true);
-							System.out.println("you");
-						}
-					}
-				}
-			}
-		}
-
-	}
-
-	// 보어 체크
-	public void checkComplementStatus(int weightX, int weightY) {
-
-		if (this.checkVerb(weightX, weightY) && this.checkComplement(weightX * 2, weightY * 2)) {
-			Block compBlock = stageBlockArr.array[this.getArrY() + weightY * 2][this.getArrX() + weightX * 2];
-
-			// win 체크
-			if (compBlock.getText() == "w") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin(true);
-							System.out.println("win");
-						}
-					}
-				}
-			}
-
-			// you 체크
-			if (compBlock.getText() == "y") {
-				for (Block[] b1 : stageBlockArr.array) {
-					for (Block b2 : b1) {
-						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou(true);
-							System.out.println("you");
-						}
-					}
-				}
-			}
-		}
-
-	}
-
-	public boolean checkSubject(int weightX, int weightY) {
-		if (!this.checkNextFNW(weightX, weightY))
-			return false;
-
-		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-		if (!nextBlock.isSubject())
-			return false;
-		return true;
-	}
-
-	public boolean checkVerb(int weightX, int weightY) {
-		if (!this.checkNextFNW(weightX, weightY))
-			return false;
-
-		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-		if (!nextBlock.isVerb())
-			return false;
-		return true;
-	}
-
-	public boolean checkComplement(int weightX, int weightY) {
-		if (!this.checkNextFNW(weightX, weightY))
-			return false;
-
-		WordBlock nextBlock = (WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-		if (!nextBlock.isComplement())
-			return false;
-		return true;
-	}
-
 	public boolean checkNextFNW(int weightX, int weightY) {
 		// 다음 블록이 프레임 안에 있는지 체크
 		if (!this.checkNextInFrame(weightX, weightY))
@@ -565,9 +396,6 @@ class ObjBlock extends Block {
 	}
 
 	/* Method */
-	public boolean checkReached() {
-		return true;
-	}
 
 	public void setYou(boolean flag) {
 		this.isYou = flag;
