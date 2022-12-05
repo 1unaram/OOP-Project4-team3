@@ -73,7 +73,18 @@ public class Block extends JLabel {
 		// 이동할 칸이 프레임 안에 존재하는 경우
 		// 다음 블록이 존재하는 경우
 		// 다음 블록이 움직일 수 있는 경우
+		
+		// Set Next Stage
+		if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
+			ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+			if(((ObjBlock)this).isYou() && nextBlock.isWin()) {
+					System.out.println("nextStage");
+			}
+		}
+					
+					
 		if (this.checkNextPushable(weightX, weightY)) {
+			
 			// 다음 블록을 밀기
 			if (!stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].moveProcess(weightX,
 					weightY)) {
@@ -89,7 +100,9 @@ public class Block extends JLabel {
 				}
 			}
 
-			// Set Next Stage
+			
+			
+			
 
 			return true;
 		}
@@ -429,6 +442,18 @@ class ObjBlock extends Block {
 
 	public void setWin() {
 		this.isWin = true;
+	}
+	
+	public boolean isWin() {
+		return this.isWin;
+	}
+	
+	public boolean isYou() {
+		return this.isYou;
+	}
+	
+	public void setisYou(boolean b) {
+		this.isYou = b;
 	}
 
 }
