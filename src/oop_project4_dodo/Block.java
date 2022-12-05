@@ -234,6 +234,16 @@ class WordBlock extends Block {
 			}
 
 			// you 체크
+			if (this.getText() == "y") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
+							((ObjBlock) b2).setYou();
+							System.out.println("you");
+						}
+					}
+				}
+			}
 		}
 
 	}
@@ -258,6 +268,16 @@ class WordBlock extends Block {
 			}
 
 			// you 체크
+			if (compBlock.getText() == "y") {
+				for (Block[] b1 : stageBlockArr.array) {
+					for (Block b2 : b1) {
+						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
+							((ObjBlock) b2).setYou();
+							System.out.println("you");
+						}
+					}
+				}
+			}
 		}
 
 	}
