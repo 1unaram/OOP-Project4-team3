@@ -47,16 +47,6 @@ public class YouKeyListener1 extends KeyAdapter {
 
 		// You가 움직이기
 		you.moveProcess(weightX, weightY);
-
-		// sentence 완성 여부 확인 & 멤버변수 set 해주기
-		if (you.checkNextInFrame(weightX, weightY)) {
-			if (you.stageBlockArr.array[you.getArrY() + weightY][you.getArrX() + weightX] instanceof WordBlock) {
-				((WordBlock) you.stageBlockArr.array[you.getArrY() + weightY][you.getArrX() + weightX])
-						.checkSenstence();
-			}
-		} else {
-			return;
-		}
 	}
 
 }

@@ -80,6 +80,15 @@ public class Block extends JLabel {
 				return false;
 			}
 			this.moveBlock(weightX, weightY);
+
+			// sentence 완성 여부 확인 & 멤버변수 set 해주기
+			if (this.checkNextInFrame(weightX, weightY)) {
+				if (this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
+					((WordBlock) this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX])
+							.checkSenstence();
+				}
+			}
+
 			return true;
 		}
 
