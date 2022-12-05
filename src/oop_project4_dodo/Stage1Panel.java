@@ -99,6 +99,8 @@ public class Stage1Panel extends JPanel {
 		_is2.setVerb();
 		_win.setComplement();
 		fish.setIsPushable(false);
+		
+		dodo.setisYou(true);
 	}
 
 	public void initBanner() {
