@@ -36,9 +36,15 @@ public class ManageStage {
                 contentpane.repaint();
                 break;
             case 2:
-            break;
+                this.resetContentpane();
+                contentpane.add(new Stage2Panel(contentpane));
+                contentpane.repaint();
+                break;
             case 3:
-            break;
+                this.resetContentpane();
+                contentpane.add(new Stage2Panel(contentpane));
+                contentpane.repaint();
+                break;
         }
     }
     
