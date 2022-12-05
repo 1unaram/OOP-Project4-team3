@@ -82,12 +82,16 @@ public class Block extends JLabel {
 			this.moveBlock(weightX, weightY);
 
 			// sentence 완성 여부 확인 & 멤버변수 set 해주기
-			if (this.checkNextInFrame(weightX, weightY)) {
-				if (this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
-					((WordBlock) this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX])
-							.checkSenstence();
-				}
-			}
+			// if (this.checkNextInFrame(weightX, weightY)) {
+			// 	if (this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
+			// 		((WordBlock) this.stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX])
+			// 				.checkSenstence();
+			// 	}
+			// }
+
+			// Check Unset
+			this.checkUnset();
+
 
 			// Set Next Stage
 
@@ -134,6 +138,109 @@ public class Block extends JLabel {
 	// (3) getter/setter
 	public void setIsPushable(boolean isPushable) {
 		this.isPushable = isPushable;
+	}
+
+	// (4) Check Unset
+	public void checkUnset() {
+
+		this.unsetAllObject();
+		
+		// 모든 객체에 대해서 점검
+		for(Block[] b1 : stageBlockArr.array) {
+			for(Block b2 : b1) {
+				if(b2 instanceof WordBlock) {
+
+
+					// Type Casting
+					WordBlock subBlock = (WordBlock) b2;
+					
+					// 해당 객체가 주어일 경우
+					if(subBlock.isSubject()) {
+
+						// 동쪽 +1 블록이 동사일 경우
+						if(subBlock.checkNextFNW(1, 0) && subBlock.isWeightVerb(1, 0)) {
+							
+								// 동쪽 +2 블록이 보어일 경우
+								if(subBlock.checkNextFNW(2, 0) && subBlock.isWeightComplement(2, 0)) {
+
+									// dodo 세팅
+									if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
+										System.out.println(subBlock.getText());
+										// win 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
+											Stage1Panel.dodo.setWin(true);
+										
+										// you 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
+											Stage1Panel.dodo.setYou(true);
+									} 
+									// fish 세팅
+									else if(Stage1Panel.fish.getText().equals(subBlock.getText().toUpperCase())) {
+										System.out.println(subBlock.getText());
+										// win 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
+											Stage1Panel.fish.setWin(true);
+										
+										// you 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
+											Stage1Panel.fish.setYou(true);
+									}
+								}
+						}
+
+						// 남쪽 +1 블록이 동사일 경우
+						else if(subBlock.checkNextFNW(0, 1) && subBlock.isWeightVerb(0, 1)) {
+							
+							// 남쪽 +2 블록이 보어일 경우
+							if(subBlock.checkNextFNW(0, 2) && subBlock.isWeightComplement(0, 2)) {
+
+								// dodo 세팅
+								if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
+									// win 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
+										Stage1Panel.dodo.setWin(true);
+									
+									// you 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
+										Stage1Panel.dodo.setYou(true);
+								} 
+								// fish 세팅
+								else if(Stage1Panel.fish.getText().equals(subBlock.getText().toUpperCase())) {
+									// win 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
+										Stage1Panel.fish.setWin(true);
+									
+									// you 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
+										Stage1Panel.fish.setYou(true);
+								}
+							}
+					}
+
+					}
+
+
+				}
+			}
+		}
+
+	}
+
+	// (5) Unset All Object
+	public void unsetAllObject(){
+
+		// dodo
+		Stage1Panel.dodo.setYou(false);
+		Stage1Panel.dodo.setWin(false);
+		
+		// fish
+		Stage1Panel.fish.setYou(false);
+		Stage1Panel.fish.setWin(false);
+	}
+
+	// (6) Get Weight Block
+	public Block getWeightBlock(int weightX, int weightY) {
+		return stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
 	}
 
 }
@@ -198,6 +305,29 @@ class WordBlock extends Block {
 		return this.isComplement;
 	}
 
+	// weightX, weightY의 블록에 대해 체크
+	public boolean isWeightSubject(int weightX, int weightY) {
+		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
+			return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isSubject();
+		}
+		return false;
+	}
+
+	public boolean isWeightVerb(int weightX, int weightY) {
+		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
+			return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isVerb();
+		}
+		return false;
+	}
+
+	public boolean isWeightComplement(int weightX, int weightY) {
+		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
+			return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isComplement();
+		}
+		return false;
+	}
+
+
 	// 문장 체크
 	public void checkSenstence() {
 
@@ -237,7 +367,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin();
+							((ObjBlock) b2).setWin(true);
 							System.out.println("win");
 						}
 					}
@@ -249,7 +379,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou();
+							((ObjBlock) b2).setYou(true);
 							System.out.println("you");
 						}
 					}
@@ -271,7 +401,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin();
+							((ObjBlock) b2).setWin(true);
 							System.out.println("win");
 						}
 					}
@@ -283,7 +413,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(subBlock.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou();
+							((ObjBlock) b2).setYou(true);
 							System.out.println("you");
 						}
 					}
@@ -304,7 +434,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
-							((ObjBlock) b2).setWin();
+							((ObjBlock) b2).setWin(true);
 							System.out.println("win");
 						}
 					}
@@ -316,7 +446,7 @@ class WordBlock extends Block {
 				for (Block[] b1 : stageBlockArr.array) {
 					for (Block b2 : b1) {
 						if (b2 != null && b2.getText().equals(this.getText().toUpperCase())) {
-							((ObjBlock) b2).setYou();
+							((ObjBlock) b2).setYou(true);
 							System.out.println("you");
 						}
 					}
@@ -365,7 +495,7 @@ class WordBlock extends Block {
 		if (this.checkNextIsNull(weightX, weightY)) {
 			return false;
 		}
-		// 다음 블록이 이동 가능한지 검사
+		// 다음 블록이 WordBlock인지 체크
 		if (!(stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock))
 			return false;
 
@@ -411,24 +541,26 @@ class ObjBlock extends Block {
 		return true;
 	}
 
-	public void setYou() {
-		this.isYou = true;
+	public void setYou(boolean flag) {
+		this.isYou = flag;
 
-		for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
-			manageListener.contentpane.removeKeyListener(ykl);
+		if(flag) {
+			for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
+				manageListener.contentpane.removeKeyListener(ykl);
+			}
+	
+			YouKeyListener1 ykl = new YouKeyListener1(this);
+	
+			// 키 리스너를 실제 다는 동작
+			manageListener.contentpane.addKeyListener(ykl);
+	
+			// 키 리스너 관리 대상에 들어간다
+			manageListener.addYouKeyListener1(ykl);
 		}
-
-		YouKeyListener1 ykl = new YouKeyListener1(this);
-
-		// 키 리스너를 실제 다는 동작
-		manageListener.contentpane.addKeyListener(ykl);
-
-		// 키 리스너 관리 대상에 들어간다
-		manageListener.addYouKeyListener1(ykl);
 	}
 
-	public void setWin() {
-		this.isWin = true;
+	public void setWin(boolean flag) {
+		this.isWin = flag;
 	}
 
 }

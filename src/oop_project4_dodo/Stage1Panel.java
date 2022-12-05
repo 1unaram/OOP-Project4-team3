@@ -12,8 +12,8 @@ public class Stage1Panel extends JPanel {
 
 	Container contentpane;
 
-	ObjBlock dodo;
-	ObjBlock fish;
+	static ObjBlock dodo;
+	static ObjBlock fish;
 
 	WordBlock _dodo;
 	WordBlock _you;
@@ -101,11 +101,13 @@ public class Stage1Panel extends JPanel {
 		fish.setIsPushable(false);
 	}
 
+	// 배너 추가
 	public void initBanner() {
 		JLabel banner = new JLabel(new ImageIcon("img/stage1_banner.png"));
 		banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
 		contentpane.add(banner);
 	}
+
 }
 
 class Stage1BlockPos {
