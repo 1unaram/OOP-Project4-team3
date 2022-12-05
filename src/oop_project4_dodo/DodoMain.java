@@ -18,6 +18,8 @@ public class DodoMain {
 @SuppressWarnings("serial")
 class MainFrame extends JFrame {
 	Container contentpane = getContentPane();
+	
+	static ManageStage ms;
 
 	MainFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -32,7 +34,10 @@ class MainFrame extends JFrame {
 		contentpane.requestFocus();
 		contentpane.setFocusable(true);
 
+		ms = new ManageStage(contentpane);
+
 		init();
+		
 
 		contentpane.revalidate();
 		contentpane.repaint();

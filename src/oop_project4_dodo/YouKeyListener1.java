@@ -3,7 +3,6 @@ package oop_project4_dodo;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JPanel;
 
 public class YouKeyListener1 extends KeyAdapter {
 
@@ -35,11 +34,7 @@ public class YouKeyListener1 extends KeyAdapter {
 				weightX = 1;
 				break;
 			case 'R':
-				System.out.println("Retry");
-				// stagePanel.contentpane.remove(stagePanel);
-				// Stage1Panel newPanel = new Stage1Panel(stagePanel.contentpane);
-				// stagePanel.contentpane.add(newPanel);
-				// stagePanel.contentpane.removeKeyListener(this);
+				MainFrame.ms.resetStage();
 				return;
 			default:
 				return;

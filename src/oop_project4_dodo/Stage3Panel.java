@@ -1,5 +1,7 @@
 package oop_project4_dodo;
 
-public class Stage3Panel {
+import javax.swing.JPanel;
+
+public class Stage3Panel extends JPanel{
 
 }

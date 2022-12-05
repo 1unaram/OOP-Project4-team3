@@ -55,6 +55,8 @@ public class Stage1Panel extends JPanel {
 		_is2 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
 		_win = new WordBlock("img/_win.png", stage1BlockArr, manageListener);
 
+		setAllObjects();
+		
 		dodo.setBounds(Stage1BlockPos.dodo[1] * 60, Stage1BlockPos.dodo[0] * 60, 60, 60);
 		fish.setBounds(Stage1BlockPos.fish[1] * 60, Stage1BlockPos.fish[0] * 60, 60, 60);
 		_dodo.setBounds(Stage1BlockPos._dodo[1] * 60, Stage1BlockPos._dodo[0] * 60, 60, 60);
@@ -110,6 +112,16 @@ public class Stage1Panel extends JPanel {
 		contentpane.add(banner);
 	}
 
+	public void setAllObjects() {
+		dodo.setObjects(this);
+		fish.setObjects(this);
+		_dodo.setObjects(this);
+		_is1.setObjects(this);
+		_you.setObjects(this);
+		_fish.setObjects(this);
+		_is2.setObjects(this);
+		_win.setObjects(this);
+	}
 }
 
 class Stage1BlockPos {

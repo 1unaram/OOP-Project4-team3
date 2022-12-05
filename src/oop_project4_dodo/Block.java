@@ -4,6 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Block extends JLabel {
@@ -15,6 +16,13 @@ public class Block extends JLabel {
 	private int arrY;
 
 	StageBlockArray stageBlockArr;
+
+	Stage1Panel stage1Panel = null;
+	Stage2Panel stage2Panel = null;
+	Stage3Panel stage3Panel = null;
+
+	ObjBlock dodo;
+	ObjBlock fish;
 
 	/* Constructor */
 	Block() {
@@ -79,6 +87,8 @@ public class Block extends JLabel {
 			ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
 			if(((ObjBlock)this).isYou() && nextBlock.isWin()) {
 					System.out.println("nextStage");
+					
+					MainFrame.ms.nextStage();
 			}
 		}
 					
@@ -102,11 +112,6 @@ public class Block extends JLabel {
 
 			// Check Unset
 			this.checkUnset();
-
-
-			
-			
-			
 
 			return true;
 		}
@@ -177,24 +182,24 @@ public class Block extends JLabel {
 								if(subBlock.checkNextFNW(2, 0) && subBlock.isWeightComplement(2, 0)) {
 
 									// dodo 세팅
-									if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
+									if(this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
 										// win 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
-											Stage1Panel.dodo.setWin(true);
+											this.dodo.setWin(true);
 										
 										// you 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
-											Stage1Panel.dodo.setYou(true);
+											this.dodo.setYou(true);
 									} 
 									// fish 세팅
-									else if(Stage1Panel.fish.getText().equals(subBlock.getText().toUpperCase())) {
+									else if(this.fish.getText().equals(subBlock.getText().toUpperCase())) {
 										// win 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
-											Stage1Panel.fish.setWin(true);
+											this.fish.setWin(true);
 										
 										// you 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
-											Stage1Panel.fish.setYou(true);
+											this.fish.setYou(true);
 									}
 								}
 						}
@@ -205,24 +210,24 @@ public class Block extends JLabel {
 							// 남쪽 +2 블록이 보어일 경우
 							if(subBlock.checkNextFNW(0, 2) && subBlock.isWeightComplement(0, 2)) {
 								// dodo 세팅
-								if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
+								if(this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
 									// win 세팅
 									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
-										Stage1Panel.dodo.setWin(true);
+										this.dodo.setWin(true);
 									
 									// you 세팅
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
-										Stage1Panel.dodo.setYou(true);
+										this.dodo.setYou(true);
 								} 
 								// fish 세팅
-								else if(Stage1Panel.fish.getText().equals(subBlock.getText().toUpperCase())) {
+								else if(this.fish.getText().equals(subBlock.getText().toUpperCase())) {
 									// win 세팅
 									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
-										Stage1Panel.fish.setWin(true);
+										this.fish.setWin(true);
 									
 									// you 세팅
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
-										Stage1Panel.fish.setYou(true);
+										this.fish.setYou(true);
 								}
 							}
 					}
@@ -240,12 +245,12 @@ public class Block extends JLabel {
 	public void unsetAllObject(){
 
 		// dodo
-		Stage1Panel.dodo.setYou(false);
-		Stage1Panel.dodo.setWin(false);
+		dodo.setYou(false);
+		dodo.setWin(false);
 		
 		// fish
-		Stage1Panel.fish.setYou(false);
-		Stage1Panel.fish.setWin(false);
+		fish.setYou(false);
+		fish.setWin(false);
 	}
 
 	// (6) Get Weight Block
@@ -253,6 +258,20 @@ public class Block extends JLabel {
 		return stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
 	}
 
+
+	// (7) Set dodo, fish
+	public void setObjects(JPanel stagePanel) {
+		// JPanel 설정
+		if(stagePanel instanceof Stage1Panel) {
+			this.stage1Panel = (Stage1Panel) stagePanel;
+			this.dodo = Stage1Panel.dodo;
+			this.fish = Stage1Panel.fish;
+		} else if(stagePanel instanceof Stage2Panel) {
+			this.stage2Panel = (Stage2Panel) stagePanel;
+		} else if(stagePanel instanceof Stage3Panel) {
+			this.stage3Panel = (Stage3Panel) stagePanel;
+		}
+	}
 }
 
 @SuppressWarnings("serial")
@@ -286,7 +305,6 @@ class WordBlock extends Block {
 		this.setIcon(chanIcon);
 		this.stageBlockArr = stageBlockArr;
 		this.manageListener = manageListener;
-
 	}
 
 	/* Method */

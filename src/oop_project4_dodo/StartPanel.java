@@ -25,12 +25,7 @@ public class StartPanel extends JPanel {
 
 	StartPanel(Container cp) {
 		contentpane = cp;
-
-		// JLabel start = new JLabel(">> Press Enter to Start <<");
-		// start.setForeground(Color.WHITE);
-		// start.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 50));
-		// start.setBounds(0, 300, ConstClass.FRAME_WIDTH, 50);
-		// start.setHorizontalAlignment(JLabel.CENTER);
+		
 		JLabel start = new JLabel(new ImageIcon("img/intro.png"));
 		start.setBounds(0, 40, ConstClass.FRAME_WIDTH, ConstClass.FRAME_HEIGHT);
 
