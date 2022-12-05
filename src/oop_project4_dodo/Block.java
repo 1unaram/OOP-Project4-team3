@@ -89,6 +89,8 @@ public class Block extends JLabel {
 				}
 			}
 
+			// Set Next Stage
+
 			return true;
 		}
 
