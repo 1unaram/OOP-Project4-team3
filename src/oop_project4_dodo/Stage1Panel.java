@@ -38,7 +38,7 @@ public class Stage1Panel extends JPanel {
 		initWordBlockMemberVar();
 		initBanner();
 
-		YouKeyListener1 dodoListener = new YouKeyListener1(dodo, this);
+		YouKeyListener1 dodoListener = new YouKeyListener1(dodo);
 		contentpane.addKeyListener(dodoListener);
 
 		manageListener.addYouKeyListener1(dodoListener);

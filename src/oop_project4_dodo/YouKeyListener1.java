@@ -8,11 +8,9 @@ import javax.swing.JPanel;
 public class YouKeyListener1 extends KeyAdapter {
 
 	ObjBlock you;
-	Stage1Panel stagePanel;
 
-	YouKeyListener1(ObjBlock you, Stage1Panel stagePanel) {
+	YouKeyListener1(ObjBlock you) {
 		this.you = you;
-		this.stagePanel = stagePanel;
 	}
 
 	public void keyPressed(KeyEvent e) {

@@ -42,16 +42,7 @@ public class Block extends JLabel {
 
 	// (2) this가 b를 미는 메소드
 	// this를 움직인다.
-	public void moveBlock(int weightX, int weightY) {
-
-		// 블록의 속성에 따라 동작
-		// if(block == "win") {
-		// win();
-		// } else if(block == "defeat") {
-		// defeat();
-		// } else if(isYou != "you") {
-		// changeYou();
-		// }
+	public void moveBlock(int weightX, int weightY) {	
 
 		int oldX = this.getArrX();
 		int oldY = this.getArrY();
@@ -89,9 +80,10 @@ public class Block extends JLabel {
 				return false;
 			}
 			this.moveBlock(weightX, weightY);
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	public boolean checkNextPushable(int weightX, int weightY) {
