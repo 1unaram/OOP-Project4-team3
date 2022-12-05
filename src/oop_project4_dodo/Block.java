@@ -178,7 +178,6 @@ public class Block extends JLabel {
 
 									// dodo 세팅
 									if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
-										System.out.println(subBlock.getText());
 										// win 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
 											Stage1Panel.dodo.setWin(true);
@@ -189,7 +188,6 @@ public class Block extends JLabel {
 									} 
 									// fish 세팅
 									else if(Stage1Panel.fish.getText().equals(subBlock.getText().toUpperCase())) {
-										System.out.println(subBlock.getText());
 										// win 세팅
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
 											Stage1Panel.fish.setWin(true);
@@ -206,7 +204,6 @@ public class Block extends JLabel {
 							
 							// 남쪽 +2 블록이 보어일 경우
 							if(subBlock.checkNextFNW(0, 2) && subBlock.isWeightComplement(0, 2)) {
-
 								// dodo 세팅
 								if(Stage1Panel.dodo.getText().equals(subBlock.getText().toUpperCase())) {
 									// win 세팅
@@ -557,10 +554,11 @@ class ObjBlock extends Block {
 	public void setYou(boolean flag) {
 		this.isYou = flag;
 
+		for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
+			manageListener.contentpane.removeKeyListener(ykl);
+		}
+
 		if(flag) {
-			for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
-				manageListener.contentpane.removeKeyListener(ykl);
-			}
 	
 			YouKeyListener1 ykl = new YouKeyListener1(this);
 	
