@@ -21,9 +21,9 @@ public class ManageStage {
                 contentpane.repaint();
                 break;
             case 2:
-            break;
+            	break;
             case 3:
-            break;
+            	break;
         }
         stageNum++;
     }
