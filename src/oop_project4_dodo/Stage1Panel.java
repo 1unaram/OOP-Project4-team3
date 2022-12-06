@@ -46,8 +46,8 @@ public class Stage1Panel extends JPanel {
 
 	public void initBlock() {
 
-		dodo = new ObjBlock("img/dodo.png", stage1BlockArr, manageListener);
-		fish = new ObjBlock("img/fish.png", stage1BlockArr, manageListener);
+		dodo = new ObjBlock("img/dodo_right.png", stage1BlockArr, manageListener);
+		fish = new ObjBlock("img/fish_right.png", stage1BlockArr, manageListener);
 		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr, manageListener);
 		_is1 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
 		_you = new WordBlock("img/_you.png", stage1BlockArr, manageListener);
@@ -56,7 +56,7 @@ public class Stage1Panel extends JPanel {
 		_win = new WordBlock("img/_win.png", stage1BlockArr, manageListener);
 
 		setAllObjects();
-		
+
 		dodo.setBounds(Stage1BlockPos.dodo[1] * 60, Stage1BlockPos.dodo[0] * 60, 60, 60);
 		fish.setBounds(Stage1BlockPos.fish[1] * 60, Stage1BlockPos.fish[0] * 60, 60, 60);
 		_dodo.setBounds(Stage1BlockPos._dodo[1] * 60, Stage1BlockPos._dodo[0] * 60, 60, 60);
@@ -101,7 +101,7 @@ public class Stage1Panel extends JPanel {
 		_is2.setVerb();
 		_win.setComplement();
 		fish.setIsPushable(false);
-		
+
 		dodo.setisYou(true);
 	}
 

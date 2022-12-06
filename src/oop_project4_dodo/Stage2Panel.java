@@ -31,7 +31,6 @@ public class Stage2Panel extends JPanel {
 	static ObjBlock water14;
 	static ObjBlock water15;
 	static ObjBlock water16;
-	
 
 	WordBlock _dodo;
 	WordBlock _you;
@@ -65,8 +64,8 @@ public class Stage2Panel extends JPanel {
 
 	public void initBlock() {
 
-		dodo = new ObjBlock("img/dodo.png", stage2BlockArr, manageListener);
-		fish = new ObjBlock("img/fish.png", stage2BlockArr, manageListener);
+		dodo = new ObjBlock("img/dodo_rightight.png", stage2BlockArr, manageListener);
+		fish = new ObjBlock("img/fish_right.png", stage2BlockArr, manageListener);
 		toy = new ObjBlock("img/toy.png", stage2BlockArr, manageListener);
 		water1 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
 		water2 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
@@ -84,7 +83,7 @@ public class Stage2Panel extends JPanel {
 		water14 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
 		water15 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
 		water16 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
-		
+
 		_dodo = new WordBlock("img/_dodo.png", stage2BlockArr, manageListener);
 		_is1 = new WordBlock("img/_is.png", stage2BlockArr, manageListener);
 		_you = new WordBlock("img/_you.png", stage2BlockArr, manageListener);
@@ -94,7 +93,7 @@ public class Stage2Panel extends JPanel {
 		_toy = new WordBlock("img/_toy.png", stage2BlockArr, manageListener);
 
 		setAllObjects();
-		
+
 		dodo.setBounds(Stage2BlockPos.dodo[1] * 60, Stage2BlockPos.dodo[0] * 60, 60, 60);
 		fish.setBounds(Stage2BlockPos.fish[1] * 60, Stage2BlockPos.fish[0] * 60, 60, 60);
 		toy.setBounds(Stage2BlockPos.toy[1] * 60, Stage2BlockPos.toy[0] * 60, 60, 60);
@@ -114,7 +113,7 @@ public class Stage2Panel extends JPanel {
 		water14.setBounds(Stage2BlockPos.water14[1] * 60, Stage2BlockPos.water14[0] * 60, 60, 60);
 		water15.setBounds(Stage2BlockPos.water15[1] * 60, Stage2BlockPos.water15[0] * 60, 60, 60);
 		water16.setBounds(Stage2BlockPos.water16[1] * 60, Stage2BlockPos.water16[0] * 60, 60, 60);
-		
+
 		_dodo.setBounds(Stage2BlockPos._dodo[1] * 60, Stage2BlockPos._dodo[0] * 60, 60, 60);
 		_is1.setBounds(Stage2BlockPos._is1[1] * 60, Stage2BlockPos._is1[0] * 60, 60, 60);
 		_you.setBounds(Stage2BlockPos._you[1] * 60, Stage2BlockPos._you[0] * 60, 60, 60);
@@ -122,7 +121,6 @@ public class Stage2Panel extends JPanel {
 		_is2.setBounds(Stage2BlockPos._is2[1] * 60, Stage2BlockPos._is2[0] * 60, 60, 60);
 		_win.setBounds(Stage2BlockPos._win[1] * 60, Stage2BlockPos._win[0] * 60, 60, 60);
 		_toy.setBounds(Stage2BlockPos._toy[1] * 60, Stage2BlockPos._toy[0] * 60, 60, 60);
-		
 
 		this.add(dodo);
 		this.add(fish);
@@ -144,7 +142,6 @@ public class Stage2Panel extends JPanel {
 		this.add(water15);
 		this.add(water16);
 
-		
 		this.add(_dodo);
 		this.add(_is1);
 		this.add(_you);
@@ -177,7 +174,7 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(water14, Stage2BlockPos.water14[0], Stage2BlockPos.water14[1], "W14");
 		stage2BlockArr.initPosition(water15, Stage2BlockPos.water15[0], Stage2BlockPos.water15[1], "W15");
 		stage2BlockArr.initPosition(water16, Stage2BlockPos.water16[0], Stage2BlockPos.water16[1], "W16");
-		
+
 		stage2BlockArr.initPosition(_dodo, Stage2BlockPos._dodo[0], Stage2BlockPos._dodo[1], "d");
 		stage2BlockArr.initPosition(_is1, Stage2BlockPos._is1[0], Stage2BlockPos._is1[1], "1");
 		stage2BlockArr.initPosition(_you, Stage2BlockPos._you[0], Stage2BlockPos._you[1], "y");
@@ -216,7 +213,7 @@ public class Stage2Panel extends JPanel {
 		water14.setIsPushable(false);
 		water15.setIsPushable(false);
 		water16.setIsPushable(false);
-		
+
 		dodo.setisYou(true);
 	}
 
@@ -247,7 +244,7 @@ public class Stage2Panel extends JPanel {
 		water14.setObjects(this);
 		water15.setObjects(this);
 		water16.setObjects(this);
-		
+
 		_dodo.setObjects(this);
 		_is1.setObjects(this);
 		_you.setObjects(this);
@@ -279,8 +276,7 @@ class Stage2BlockPos {
 	static int[] water14 = { 5, 17 };
 	static int[] water15 = { 4, 17 };
 	static int[] water16 = { 3, 17 };
-	
-	
+
 	static int[] _dodo = { 3, 5 };
 	static int[] _is1 = { 3, 6 };
 	static int[] _you = { 3, 7 };
