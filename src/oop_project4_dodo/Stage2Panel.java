@@ -280,6 +280,7 @@ class Stage2BlockPos {
 	static int[] water15 = { 4, 17 };
 	static int[] water16 = { 3, 17 };
 	
+	
 	static int[] _dodo = { 3, 5 };
 	static int[] _is1 = { 3, 6 };
 	static int[] _you = { 3, 7 };
