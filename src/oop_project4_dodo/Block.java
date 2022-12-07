@@ -91,13 +91,15 @@ public class Block extends JLabel {
 			}
 		}
 		
-		// Set Water Die
-		/* if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
-			ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-			if(((ObjBlock)this).isYou() && 물인지 체크) {
-					MainFrame.ms.resetStage();
+		/*if(stage3Panel != null) {
+			if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
+				ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+				if(((ObjBlock)this).isYou() && nextBlock.isDefeat()) {
+						MainFrame.ms.resetStage();
+				}
 			}
 		}*/
+
 					
 					
 		if (this.checkNextPushable(weightX, weightY)) {
@@ -473,7 +475,10 @@ class ObjBlock extends Block {
 	}
 	
 	/*public boolean isDefeat() {
-		//배열 위치 검사
+		for(int i=0; i<water.length < i++) {
+			if (this.getlocation == water[i].getlocation) return true;
+			else return false;
+		}
 	}*/
 	
 	public void setisYou(boolean b) {

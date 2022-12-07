@@ -80,7 +80,7 @@ public class Stage3Panel extends JPanel{
       fish.setBounds(Stage3BlockPos.fish[1] * 60, Stage3BlockPos.fish[0] * 60, 60, 60);
       toy.setBounds(Stage3BlockPos.toy[1] * 60, Stage3BlockPos.toy[0] * 60, 60, 60);
       for(int i=0; i<water.length; i++) {
-         water[i].setBounds(Stage3BlockPos.water[i][1] * 60, Stage3BlockPos.water[i][0] * 60, 60, 60);   
+         water[i].setBounds(Stage3BlockPos.water[i][1] * 60, Stage3BlockPos.water[i][0] * 60, 60, 60);
       }
       
       _dodo.setBounds(Stage3BlockPos._dodo[1] * 60, Stage3BlockPos._dodo[0] * 60, 60, 60);
@@ -126,8 +126,9 @@ public class Stage3Panel extends JPanel{
       stage3BlockArr.initPosition(fish, Stage3BlockPos.fish[0], Stage3BlockPos.fish[1], "F");
       stage3BlockArr.initPosition(toy, Stage3BlockPos.toy[0], Stage3BlockPos.toy[1], "T");
       for(int i=0; i<water.length; i++) {
-         String W = "W" + (char)(i+1);
+    	  String W = "W" + Integer.toString(i+1);
          stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1], W);
+         
       }
 
       stage3BlockArr.initPosition(_dodo, Stage3BlockPos._dodo[0], Stage3BlockPos._dodo[1], "d");
@@ -163,7 +164,11 @@ public class Stage3Panel extends JPanel{
       
       fish.setIsPushable(false);
       dodo.setisYou(true);
-      //water.setIsPushable(false);
+      
+      for(int i=0; i<water.length; i++) {
+    	  water[i].setIsPushable(false);
+    	  
+       }
    }
 
    // 배너 추가
