@@ -152,7 +152,7 @@ public class Stage2Panel extends JPanel {
 
 	}
 
-	// Block ¹è¿­ ÃÊ±âÈ­
+	// Block ï¿½è¿­ ï¿½Ê±ï¿½È­
 	public void initBlockArr() {
 
 		stage2BlockArr.initPosition(dodo, Stage2BlockPos.dodo[0], Stage2BlockPos.dodo[1], "D");
@@ -217,7 +217,7 @@ public class Stage2Panel extends JPanel {
 		dodo.setisYou(true);
 	}
 
-	// ¹è³Ê Ãß°¡
+	// ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 	public void initBanner() {
 		JLabel banner = new JLabel(new ImageIcon("img/stage2_banner.png"));
 		banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
