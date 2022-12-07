@@ -24,11 +24,11 @@ public class YouKeyListener1 extends KeyAdapter {
 
 			case KeyEvent.VK_UP:
 				weightY = -1;
-				// this.reverseYou(0);
+				 this.reverseYou(0);
 				break;
 			case KeyEvent.VK_DOWN:
 				weightY = 1;
-				// this.reverseYou(1);
+				 this.reverseYou(1);
 				break;
 			case KeyEvent.VK_LEFT:
 				weightX = -1;
@@ -70,14 +70,14 @@ public class YouKeyListener1 extends KeyAdapter {
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_left.png"));
 				} else if (you.getText().equals("F")) {
-					// you.setIcon(new ImageIcon("img/fish_left.png"));
+					 you.setIcon(new ImageIcon("img/fish_left.png"));
 				}
 				break;
 			case 3:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_right.png"));
 				} else if (you.getText().equals("F")) {
-					you.setIcon(new ImageIcon("img/fish_reft.png"));
+					you.setIcon(new ImageIcon("img/fish_right.png"));
 				}
 		}
 
