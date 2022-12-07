@@ -21,6 +21,9 @@ public class ManageStage {
                 contentpane.repaint();
                 break;
             case 2:
+            	this.resetContentpane();
+            	contentpane.add(new Stage3Panel(contentpane));
+            	contentpane.repaint();
             	break;
             case 3:
             	break;
