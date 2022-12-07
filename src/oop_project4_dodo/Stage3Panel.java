@@ -203,21 +203,21 @@ class Stage3BlockPos {
    // y , x
    static int[] dodo = { 4, 9 };
    static int[] fish = { 3, 16 };
-   static int[] toy = { 7, 12 };
+   static int[] toy = { 6, 13 };
    static int[][] water = { { 2, 11 }, { 2, 12 }, { 2, 13 }, { 2, 14 }, { 2, 15 }, { 2, 16 }, { 2, 17 }, { 3, 11 },
          { 4, 11 }, { 5, 11 }, { 6, 11 },
          { 7, 11 }, { 8, 11 }, { 8, 12 }, { 8, 13 }, { 8, 14 }, { 8, 15 }, { 8, 16 }, { 8, 17 }, { 7, 17 }, { 6, 17 },
          { 5, 17 }, { 4, 17 }, { 3, 17 } };
-   static int[] _dodo = { 2, 5 };
-   static int[] _is1 = { 2, 6 };
-   static int[] _you = { 2, 7 };
+   static int[] _dodo = { 2, 2 };
+   static int[] _is1 = { 2, 3 };
+   static int[] _you = { 2, 4 };
    static int[] _toy = { 5, 5 };
    static int[] _is2 = { 5, 6 };
    static int[] _win = { 5, 7 };
-   static int[] _fish = { 7, 5 };
-   static int[] _is3 = { 8, 6 };
-   static int[] _move = { 8, 7 };
-   static int[] _water = { 0, 15 };
-   static int[] _is4 = { 0, 16 };
-   static int[] _defeat = { 0, 17 };
+   static int[] _fish = { 7, 3 };
+   static int[] _is3 = { 8, 4 };
+   static int[] _move = { 8, 5 };
+   static int[] _water = { 0, 14 };
+   static int[] _is4 = { 0, 15 };
+   static int[] _defeat = { 0, 16 };
 }
