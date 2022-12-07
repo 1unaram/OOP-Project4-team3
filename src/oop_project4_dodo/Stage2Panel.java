@@ -12,12 +12,11 @@ public class Stage2Panel extends JPanel {
 
 	Container contentpane;
 
+	ObjBlock[] water = new ObjBlock[16];
 	static ObjBlock dodo;
 	static ObjBlock fish;
 	static ObjBlock toy;
 	
-	ObjBlock[] water = new ObjBlock[16];
-
 	WordBlock _dodo;
 	WordBlock _you;
 	WordBlock _is1;
@@ -44,7 +43,6 @@ public class Stage2Panel extends JPanel {
 
 		YouKeyListener1 dodoListener = new YouKeyListener1(dodo);
 		contentpane.addKeyListener(dodoListener);
-
 		manageListener.addYouKeyListener1(dodoListener);
 	}
 
@@ -73,7 +71,6 @@ public class Stage2Panel extends JPanel {
 	    for(int i=0; i<water.length; i++) {
 	          water[i].setBounds(Stage2BlockPos.water[i][1] * 60, Stage2BlockPos.water[i][0] * 60, 60, 60);
 	    }
-
 		_dodo.setBounds(Stage2BlockPos._dodo[1] * 60, Stage2BlockPos._dodo[0] * 60, 60, 60);
 		_is1.setBounds(Stage2BlockPos._is1[1] * 60, Stage2BlockPos._is1[0] * 60, 60, 60);
 		_you.setBounds(Stage2BlockPos._you[1] * 60, Stage2BlockPos._you[0] * 60, 60, 60);
@@ -88,7 +85,6 @@ public class Stage2Panel extends JPanel {
 	    for(int i=0; i<water.length; i++) {
 	          this.add(water[i]);
 	    }
-
 		this.add(_dodo);
 		this.add(_is1);
 		this.add(_you);
