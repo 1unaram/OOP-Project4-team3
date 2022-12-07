@@ -5,14 +5,21 @@ import java.awt.Container;
 
 public class ManageListener {
 
-    ArrayList<YouKeyListener1> YouKeyListener1List = new ArrayList<YouKeyListener1>();
-    Container contentpane;
+    static ArrayList<YouKeyListener> YouKeyListenerList = new ArrayList<YouKeyListener>();
+    static Container contentpane;
 
     ManageListener(Container contentpane) {
-        this.contentpane = contentpane;
+        ManageListener.contentpane = contentpane;
     }
 
-    public void addYouKeyListener1(YouKeyListener1 ykl) {
-        YouKeyListener1List.add(ykl);
+    static public void addYouKeyListener(YouKeyListener ykl) {
+        YouKeyListenerList.add(ykl);
     }
+
+    static public void removeAllListener() {
+        for (YouKeyListener ykl : YouKeyListenerList) {
+            contentpane.removeKeyListener(ykl);
+        }
+    }
+
 }

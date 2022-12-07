@@ -61,34 +61,33 @@ public class Block extends JLabel {
 
       stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
 
-      // Changing the object's member variable 
+      // Changing the object's member variable
       this.setPos(this.getArrY() + weightY, this.getArrX() + weightX);
 
-      // Redraw the location of the object 
+      // Redraw the location of the object
       this.setLocation(this.getX() + 60 * weightX, this.getY() + 60 * weightY);
+
+      // stageBlockArr.printArray();
    }
 
    // Method : this move
    public boolean moveProcess(int weightX, int weightY) {
 
-	   // The space to move does not exist in the frame
-	   if (!this.checkNextInFrame(weightX, weightY))
-	      return false;
+      // The space to move does not exist in the frame
+      if (!this.checkNextInFrame(weightX, weightY))
+         return false;
 
-	      
-	   // The space to move exists in the frame
-	   // next block does not exists -> this move
-	      
-	   if (this.checkNextIsNull(weightX, weightY)) {
-	      this.moveBlock(weightX, weightY);
-	      return true;
-	   }
-	      
-	      
-	  // The space to move exists in the frame
-	  // next block exists
-	  // next block can move
+      // The space to move exists in the frame
+      // next block does not exists -> this move
 
+      if (this.checkNextIsNull(weightX, weightY)) {
+         this.moveBlock(weightX, weightY);
+         return true;
+      }
+
+      // The space to move exists in the frame
+      // next block exists
+      // next block can move
 
       // Set Next Stage
       if (this instanceof ObjBlock
@@ -98,21 +97,21 @@ public class Block extends JLabel {
             MainFrame.ms.nextStage();
          }
       }
-      
-      //stage3 : water_reset Stage
-      if(stage3Panel != null) {
-      if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
-         ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-         if(((ObjBlock)this).isYou() && nextBlock.isDefeat()) {
+
+      // stage3 : water_reset Stage
+      if (stage3Panel != null) {
+         if (this instanceof ObjBlock
+               && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
+            ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+            if (((ObjBlock) this).isYou() && nextBlock.isDefeat()) {
                MainFrame.ms.resetStage();
+            }
          }
       }
-   }
-
 
       if (this.checkNextPushable(weightX, weightY)) {
 
-    	// push next block 
+         // push next block
          if (!stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].moveProcess(weightX,
                weightY)) {
             return false;
@@ -129,7 +128,7 @@ public class Block extends JLabel {
    }
 
    public boolean checkNextPushable(int weightX, int weightY) {
-	  // Check if the next block is movable
+      // Check if the next block is movable
       if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].isPushable) {
          return true;
       } else {
@@ -148,7 +147,7 @@ public class Block extends JLabel {
    // Check the next block moving in the frame
    public boolean checkNextInFrame(int weightX, int weightY) {
 
-	  // check_X
+      // check_X
       if (this.getArrX() + weightX < 0 || this.getArrX() + weightX > ConstClass.ARRAY_X - 1) {
          return false;
       }
@@ -207,7 +206,7 @@ public class Block extends JLabel {
                            // you setting
                            if (subBlock.getWeightBlock(2, 0).getText().equals("y"))
                               this.fish.setYou(true);
-                           
+
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
                               this.fish.setMove(true);
                         }
@@ -248,7 +247,7 @@ public class Block extends JLabel {
                            // you setting
                            if (subBlock.getWeightBlock(0, 2).getText().equals("y"))
                               this.fish.setYou(true);
-                           
+
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
                               this.fish.setMove(true);
                         }
@@ -285,7 +284,7 @@ public class Block extends JLabel {
       fish.setYou(false);
       fish.setWin(false);
       fish.setMove(false);
-      
+
       // toy
       if (stage2Panel != null) {
          toy.setYou(false);
@@ -302,7 +301,7 @@ public class Block extends JLabel {
 
    // (7) Set dodo, fish, toy
    public void setObjects(JPanel stagePanel) {
-      // JPanel  꽕 젙
+      // JPanel 꽕 젙
       if (stagePanel instanceof Stage1Panel) {
          this.stage1Panel = (Stage1Panel) stagePanel;
          this.dodo = Stage1Panel.dodo;
@@ -318,8 +317,8 @@ public class Block extends JLabel {
          this.fish = Stage3Panel.fish;
          this.toy = Stage3Panel.toy;
          this.water = Stage3Panel.water;
-         for(int i=0; i<this.water.length; i++) {
-        	 this.water[i].setWater(true);
+         for (int i = 0; i < this.water.length; i++) {
+            this.water[i].setWater(true);
          }
       }
    }
@@ -360,7 +359,7 @@ class WordBlock extends Block {
    }
 
    /* Method */
-   //Set Character Properties
+   // Set Character Properties
    public void setSubject() {
       this.isSubject = true;
    }
@@ -408,7 +407,7 @@ class WordBlock extends Block {
    }
 
    public boolean checkNextFNW(int weightX, int weightY) {
-	  // Check if the next block is in the frame
+      // Check if the next block is in the frame
       if (!this.checkNextInFrame(weightX, weightY))
          return false;
 
@@ -434,7 +433,7 @@ class ObjBlock extends Block {
    private boolean isWater = false;
 
    ManageListener manageListener;
-   
+
    Timer timer = null;
 
    /* Constructor */
@@ -466,17 +465,17 @@ class ObjBlock extends Block {
    public void setYou(boolean flag) {
       this.isYou = flag;
 
-      for (YouKeyListener1 ykl : manageListener.YouKeyListener1List) {
-         manageListener.contentpane.removeKeyListener(ykl);
+      for (YouKeyListener ykl : ManageListener.YouKeyListenerList) {
+         ManageListener.contentpane.removeKeyListener(ykl);
       }
 
       if (flag) {
 
-         YouKeyListener1 ykl = new YouKeyListener1(this);
+         YouKeyListener ykl = new YouKeyListener(this);
 
-         manageListener.contentpane.addKeyListener(ykl);
+         ManageListener.contentpane.addKeyListener(ykl);
 
-         manageListener.addYouKeyListener1(ykl);
+         ManageListener.addYouKeyListener(ykl);
       }
    }
 
@@ -493,12 +492,13 @@ class ObjBlock extends Block {
    }
 
    public boolean isDefeat() {
-	   return this.isWater;
+      return this.isWater;
    }
 
    public void setWater(boolean b) {
-	   this.isWater = b;
+      this.isWater = b;
    }
+
    public void setisYou(boolean b) {
       this.isYou = b;
    }
@@ -506,65 +506,59 @@ class ObjBlock extends Block {
    public boolean isMove() {
       return this.isMove;
    }
-   
+
    public void setMove(boolean flag) {
       this.isMove = flag;
-      
+
       ImageIcon icon_left = new ImageIcon("img/fish_left.png");
       Image img_left = icon_left.getImage();
       Image changeImg_left = img_left.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
       ImageIcon changeIcon_left = new ImageIcon(changeImg_left);
-      
+
       ImageIcon icon_right = new ImageIcon("img/fish_right.png");
       Image img_right = icon_right.getImage();
       Image changeImg_right = img_right.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
       ImageIcon changeIcon_right = new ImageIcon(changeImg_right);
-      
-      
-      if(stage3Panel != null) {
-         if(flag) {
-                fish.timer = new Timer();
-                TimerTask task = new TimerTask() {
 
-                   int cnt = 0;
-             
-                   @Override
-                   public void run() {
+      if (stage3Panel != null) {
+         if (flag) {
+            fish.timer = new Timer();
+            TimerTask task = new TimerTask() {
 
-                      int weightX = 0;
-                      int weightY = 0;
-                      
-                      if (cnt % 4 == 0) {
-                         weightX = -1;
-                         fish.setIcon(changeIcon_left);
-                         fish.moveBlock(weightX, weightY);
-                      } 
-                      else if (cnt % 4 == 1) {
-                         weightY = 1;
-                         fish.moveBlock(weightX, weightY);
-                      } 
-                      else if (cnt % 4 == 2) {
-                         weightX = 1;
-                         fish.setIcon(changeIcon_right);
-                         fish.moveBlock(weightX, weightY);
-                      } 
-                      else if (cnt % 4 == 3) {
-                         weightY = -1;
-                         fish.moveBlock(weightX, weightY);
-                      } 
-                      cnt++;
-                   }
-                
-                };
-                fish.timer.schedule(task, 0, 500);
-             }
-             else {
-                 if(fish.timer != null)
-                    fish.timer.cancel();
-             }
-          }
-      
+               int cnt = 0;
+
+               @Override
+               public void run() {
+
+                  int weightX = 0;
+                  int weightY = 0;
+
+                  if (cnt % 4 == 0) {
+                     weightX = -1;
+                     fish.setIcon(changeIcon_left);
+                     fish.moveBlock(weightX, weightY);
+                  } else if (cnt % 4 == 1) {
+                     weightY = 1;
+                     fish.moveBlock(weightX, weightY);
+                  } else if (cnt % 4 == 2) {
+                     weightX = 1;
+                     fish.setIcon(changeIcon_right);
+                     fish.moveBlock(weightX, weightY);
+                  } else if (cnt % 4 == 3) {
+                     weightY = -1;
+                     fish.moveBlock(weightX, weightY);
+                  }
+                  cnt++;
+               }
+
+            };
+            fish.timer.schedule(task, 0, 500);
+         } else {
+            if (fish.timer != null)
+               fish.timer.cancel();
+         }
       }
-   
-   
+
+   }
+
 }

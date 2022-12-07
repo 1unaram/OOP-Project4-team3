@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Stage3Panel extends JPanel{
+public class Stage3Panel extends JPanel {
    Container contentpane;
-   
+
    static ObjBlock dodo;
    static ObjBlock fish;
    static ObjBlock toy;
@@ -28,7 +28,7 @@ public class Stage3Panel extends JPanel{
    WordBlock _water;
    WordBlock _is4;
    WordBlock _defeat;
-   
+
    static StageBlockArray stage3BlockArr;
    static ManageListener manageListener;
 
@@ -45,10 +45,10 @@ public class Stage3Panel extends JPanel{
       initWordBlockMemberVar();
       initBanner();
 
-      YouKeyListener1 dodoListener = new YouKeyListener1(dodo);
+      YouKeyListener dodoListener = new YouKeyListener(dodo);
       contentpane.addKeyListener(dodoListener);
 
-      manageListener.addYouKeyListener1(dodoListener);
+      manageListener.addYouKeyListener(dodoListener);
    }
 
    public void initBlock() {
@@ -57,7 +57,7 @@ public class Stage3Panel extends JPanel{
       fish = new ObjBlock("img/fish_right.png", stage3BlockArr, manageListener);
       toy = new ObjBlock("img/toy.png", stage3BlockArr, manageListener);
       water = new ObjBlock[24];
-      for(int i=0; i<water.length; i++) {
+      for (int i = 0; i < water.length; i++) {
          water[i] = new ObjBlock("img/water.png", stage3BlockArr, manageListener);
       }
 
@@ -75,15 +75,14 @@ public class Stage3Panel extends JPanel{
       _defeat = new WordBlock("img/_defeat.png", stage3BlockArr, manageListener);
 
       setAllObjects();
-      
-      
+
       dodo.setBounds(Stage3BlockPos.dodo[1] * 60, Stage3BlockPos.dodo[0] * 60, 60, 60);
       fish.setBounds(Stage3BlockPos.fish[1] * 60, Stage3BlockPos.fish[0] * 60, 60, 60);
       toy.setBounds(Stage3BlockPos.toy[1] * 60, Stage3BlockPos.toy[0] * 60, 60, 60);
-      for(int i=0; i<water.length; i++) {
+      for (int i = 0; i < water.length; i++) {
          water[i].setBounds(Stage3BlockPos.water[i][1] * 60, Stage3BlockPos.water[i][0] * 60, 60, 60);
       }
-      
+
       _dodo.setBounds(Stage3BlockPos._dodo[1] * 60, Stage3BlockPos._dodo[0] * 60, 60, 60);
       _is1.setBounds(Stage3BlockPos._is1[1] * 60, Stage3BlockPos._is1[0] * 60, 60, 60);
       _you.setBounds(Stage3BlockPos._you[1] * 60, Stage3BlockPos._you[0] * 60, 60, 60);
@@ -96,15 +95,14 @@ public class Stage3Panel extends JPanel{
       _water.setBounds(Stage3BlockPos._water[1] * 60, Stage3BlockPos._water[0] * 60, 60, 60);
       _is4.setBounds(Stage3BlockPos._is4[1] * 60, Stage3BlockPos._is4[0] * 60, 60, 60);
       _defeat.setBounds(Stage3BlockPos._defeat[1] * 60, Stage3BlockPos._defeat[0] * 60, 60, 60);
-      
 
       this.add(dodo);
       this.add(fish);
       this.add(toy);
-      for(int i=0; i<water.length; i++) {
+      for (int i = 0; i < water.length; i++) {
          this.add(water[i]);
       }
-   
+
       this.add(_dodo);
       this.add(_is1);
       this.add(_you);
@@ -126,10 +124,10 @@ public class Stage3Panel extends JPanel{
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
       stage3BlockArr.initPosition(fish, Stage3BlockPos.fish[0], Stage3BlockPos.fish[1], "F");
       stage3BlockArr.initPosition(toy, Stage3BlockPos.toy[0], Stage3BlockPos.toy[1], "T");
-      for(int i=0; i<water.length; i++) {
-    	  String W = "W" + Integer.toString(i+1);
+      for (int i = 0; i < water.length; i++) {
+         String W = "W" + Integer.toString(i + 1);
          stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1], W);
-         
+
       }
 
       stage3BlockArr.initPosition(_dodo, Stage3BlockPos._dodo[0], Stage3BlockPos._dodo[1], "d");
@@ -162,14 +160,14 @@ public class Stage3Panel extends JPanel{
       _water.setSubject();
       _is4.setVerb();
       _defeat.setComplement();
-      
+
       fish.setIsPushable(false);
       dodo.setisYou(true);
-      
-      for(int i=0; i<water.length; i++) {
-    	  water[i].setIsPushable(false);
-    	  
-       }
+
+      for (int i = 0; i < water.length; i++) {
+         water[i].setIsPushable(false);
+
+      }
    }
 
    // 배너 추가
@@ -183,7 +181,7 @@ public class Stage3Panel extends JPanel{
       dodo.setObjects(this);
       fish.setObjects(this);
       toy.setObjects(this);
-      for(int i=0; i<water.length; i++) {
+      for (int i = 0; i < water.length; i++) {
          water[i].setObjects(this);
       }
       _dodo.setObjects(this);
@@ -206,8 +204,10 @@ class Stage3BlockPos {
    static int[] dodo = { 4, 9 };
    static int[] fish = { 3, 16 };
    static int[] toy = { 7, 12 };
-   static int[][] water = {{ 2, 11 }, { 2, 12 }, { 2, 13 }, { 2, 14 }, { 2, 15 }, { 2, 16 }, { 2, 17 }, { 3, 11 }, { 4, 11 }, { 5, 11 }, { 6, 11 }, 
-         { 7, 11 }, { 8, 11 }, { 8, 12 }, { 8, 13 }, { 8, 14 }, { 8, 15 }, { 8, 16 }, { 8, 17 }, { 7, 17 }, { 6, 17 }, { 5, 17 }, { 4, 17 }, { 3, 17 }};
+   static int[][] water = { { 2, 11 }, { 2, 12 }, { 2, 13 }, { 2, 14 }, { 2, 15 }, { 2, 16 }, { 2, 17 }, { 3, 11 },
+         { 4, 11 }, { 5, 11 }, { 6, 11 },
+         { 7, 11 }, { 8, 11 }, { 8, 12 }, { 8, 13 }, { 8, 14 }, { 8, 15 }, { 8, 16 }, { 8, 17 }, { 7, 17 }, { 6, 17 },
+         { 5, 17 }, { 4, 17 }, { 3, 17 } };
    static int[] _dodo = { 2, 5 };
    static int[] _is1 = { 2, 6 };
    static int[] _you = { 2, 7 };

@@ -2,6 +2,8 @@ package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -18,7 +20,7 @@ public class DodoMain {
 @SuppressWarnings("serial")
 class MainFrame extends JFrame {
 	Container contentpane = getContentPane();
-	
+
 	static ManageStage ms;
 
 	MainFrame() {
@@ -36,8 +38,8 @@ class MainFrame extends JFrame {
 
 		ms = new ManageStage(contentpane);
 
+		iconinit();
 		init();
-		
 
 		contentpane.revalidate();
 		contentpane.repaint();
@@ -45,5 +47,11 @@ class MainFrame extends JFrame {
 
 	public void init() {
 		contentpane.add(new StartPanel(contentpane));
+	}
+
+	public void iconinit() {
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image img = toolkit.getImage("img/dodo-icon.png");
+		this.setIconImage(img);
 	}
 }
