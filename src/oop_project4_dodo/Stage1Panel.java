@@ -81,7 +81,11 @@ public class Stage1Panel extends JPanel {
 		setAllObjects();
 	}
 
+<<<<<<< HEAD
 	// Initialize Block Array
+=======
+	// Block 諛곗뿴 珥덇린�솕
+>>>>>>> 8d63a403dc660e8017f0e58c382de891fd7deb60
 	public void initBlockArr() {
 		stage1BlockArr.initPosition(dodo, Stage1BlockPos.dodo[0], Stage1BlockPos.dodo[1], "D");
 		stage1BlockArr.initPosition(fish, Stage1BlockPos.fish[0], Stage1BlockPos.fish[1], "F");
@@ -132,10 +136,10 @@ class Stage1BlockPos {
 	// y , x
 	static int[] dodo = { 4, 10 };
 	static int[] fish = { 5, 13 };
-	static int[] _dodo = { 3, 5 };
-	static int[] _is1 = { 3, 6 };
-	static int[] _you = { 3, 7 };
-	static int[] _fish = { 6, 5 };
-	static int[] _is2 = { 5, 6 };
-	static int[] _win = { 5, 7 };
+	static int[] _dodo = { 2, 4 };
+	static int[] _is1 = { 2, 5 };
+	static int[] _you = { 2, 6 };
+	static int[] _fish = { 6, 6 };
+	static int[] _is2 = { 5, 7 };
+	static int[] _win = { 5, 8 };
 }
