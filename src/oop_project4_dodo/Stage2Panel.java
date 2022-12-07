@@ -196,7 +196,7 @@ public class Stage2Panel extends JPanel {
 		_is2.setVerb();
 		_win.setComplement();
 		fish.setIsPushable(false);
-		toy.setIsPushable(true);
+		toy.setIsPushable(false);
 		water1.setIsPushable(false);
 		water2.setIsPushable(false);
 		water3.setIsPushable(false);
