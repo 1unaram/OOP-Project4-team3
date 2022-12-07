@@ -38,6 +38,9 @@ public class YouKeyListener1 extends KeyAdapter {
 				weightX = 1;
 				this.reverseYou(3);
 				break;
+			case KeyEvent.VK_ESCAPE:
+				System.exit(0);
+				break;
 			case 'R':
 				MainFrame.ms.resetStage();
 				return;
