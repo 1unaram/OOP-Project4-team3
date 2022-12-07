@@ -14,17 +14,19 @@ public class StartPanel extends JPanel {
 
 	Container contentpane;
 	KeyAdapter enterKey = new KeyAdapter() {
+
+		// Press Enter to start game
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
 				initIntro();
 			}
 		}
 	};
 
+	/* Constructor */
 	StartPanel(Container cp) {
 		contentpane = cp;
-		
+
 		JLabel start = new JLabel(new ImageIcon("img/intro.png"));
 		start.setBounds(0, 40, ConstClass.FRAME_WIDTH, ConstClass.FRAME_HEIGHT);
 
@@ -34,11 +36,11 @@ public class StartPanel extends JPanel {
 		this.setLayout(null);
 
 		contentpane.addKeyListener(enterKey);
-
 	}
 
+	/* Method */
+	// Initialize Intro Panel
 	public void initIntro() {
-
 		this.removeAll();
 		contentpane.removeKeyListener(enterKey);
 		contentpane.removeAll();

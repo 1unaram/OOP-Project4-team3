@@ -9,13 +9,16 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Stage3Panel extends JPanel {
-   Container contentpane;
 
+   /* Local Variables */
    static ObjBlock dodo;
    static ObjBlock fish;
    static ObjBlock toy;
-
    static ObjBlock[] water;
+   static StageBlockArray stage3BlockArr;
+   static ManageListener manageListener;
+
+   Container contentpane;
 
    WordBlock _dodo;
    WordBlock _is1;
@@ -30,9 +33,7 @@ public class Stage3Panel extends JPanel {
    WordBlock _is4;
    WordBlock _defeat;
 
-   static StageBlockArray stage3BlockArr;
-   static ManageListener manageListener;
-
+   /* Constructor */
    Stage3Panel(Container cp) {
       contentpane = cp;
       stage3BlockArr = new StageBlockArray();
@@ -49,11 +50,12 @@ public class Stage3Panel extends JPanel {
       YouKeyListener dodoListener = new YouKeyListener(dodo);
       contentpane.addKeyListener(dodoListener);
 
-      manageListener.addYouKeyListener(dodoListener);
+      ManageListener.addYouKeyListener(dodoListener);
    }
 
+   // Initialize Block
    public void initBlock() {
-
+      // Create Block
       dodo = new ObjBlock("img/dodo_right.png", stage3BlockArr, manageListener);
       fish = new ObjBlock("img/fish_right.png", stage3BlockArr, manageListener);
       toy = new ObjBlock("img/toy.png", stage3BlockArr, manageListener);
@@ -61,7 +63,6 @@ public class Stage3Panel extends JPanel {
       for (int i = 0; i < water.length; i++) {
          water[i] = new ObjBlock("img/water.png", stage3BlockArr, manageListener);
       }
-
       _dodo = new WordBlock("img/_dodo.png", stage3BlockArr, manageListener);
       _is1 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
       _you = new WordBlock("img/_you.png", stage3BlockArr, manageListener);
@@ -75,15 +76,13 @@ public class Stage3Panel extends JPanel {
       _is4 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
       _defeat = new WordBlock("img/_defeat.png", stage3BlockArr, manageListener);
 
-      setAllObjects();
-
+      // Set Block Position
       dodo.setBounds(Stage3BlockPos.dodo[1] * 60, Stage3BlockPos.dodo[0] * 60, 60, 60);
       fish.setBounds(Stage3BlockPos.fish[1] * 60, Stage3BlockPos.fish[0] * 60, 60, 60);
       toy.setBounds(Stage3BlockPos.toy[1] * 60, Stage3BlockPos.toy[0] * 60, 60, 60);
       for (int i = 0; i < water.length; i++) {
          water[i].setBounds(Stage3BlockPos.water[i][1] * 60, Stage3BlockPos.water[i][0] * 60, 60, 60);
       }
-
       _dodo.setBounds(Stage3BlockPos._dodo[1] * 60, Stage3BlockPos._dodo[0] * 60, 60, 60);
       _is1.setBounds(Stage3BlockPos._is1[1] * 60, Stage3BlockPos._is1[0] * 60, 60, 60);
       _you.setBounds(Stage3BlockPos._you[1] * 60, Stage3BlockPos._you[0] * 60, 60, 60);
@@ -97,13 +96,13 @@ public class Stage3Panel extends JPanel {
       _is4.setBounds(Stage3BlockPos._is4[1] * 60, Stage3BlockPos._is4[0] * 60, 60, 60);
       _defeat.setBounds(Stage3BlockPos._defeat[1] * 60, Stage3BlockPos._defeat[0] * 60, 60, 60);
 
+      // Add Block to Panel
       this.add(dodo);
       this.add(fish);
       this.add(toy);
       for (int i = 0; i < water.length; i++) {
          this.add(water[i]);
       }
-
       this.add(_dodo);
       this.add(_is1);
       this.add(_you);
@@ -117,20 +116,18 @@ public class Stage3Panel extends JPanel {
       this.add(_is4);
       this.add(_defeat);
 
+      setAllObjects();
    }
 
-   // Block �迭 �ʱ�ȭ
+   // Initialize Block Array
    public void initBlockArr() {
-
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
       stage3BlockArr.initPosition(fish, Stage3BlockPos.fish[0], Stage3BlockPos.fish[1], "F");
       stage3BlockArr.initPosition(toy, Stage3BlockPos.toy[0], Stage3BlockPos.toy[1], "T");
       for (int i = 0; i < water.length; i++) {
-         String W = "W" + Integer.toString(i + 1);
-         stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1], W);
-
+         stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1],
+               "W" + Integer.toString(i + 1));
       }
-
       stage3BlockArr.initPosition(_dodo, Stage3BlockPos._dodo[0], Stage3BlockPos._dodo[1], "d");
       stage3BlockArr.initPosition(_is1, Stage3BlockPos._is1[0], Stage3BlockPos._is1[1], "1");
       stage3BlockArr.initPosition(_you, Stage3BlockPos._you[0], Stage3BlockPos._you[1], "y");

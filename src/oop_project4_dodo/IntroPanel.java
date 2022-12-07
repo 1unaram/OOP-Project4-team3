@@ -20,6 +20,7 @@ public class IntroPanel extends JPanel {
 
 	static StageBlockArray BlockArr;
 
+	/* Constructor */
 	IntroPanel(Container cp) {
 		contentpane = cp;
 		BlockArr = new StageBlockArray();
@@ -30,9 +31,10 @@ public class IntroPanel extends JPanel {
 
 		initIntro();
 		playIntro();
-
 	}
 
+	/* Method */
+	// Initialize Intro Panel
 	public void initIntro() {
 
 		dodo = new ObjBlock("img/dodo_right.png", BlockArr, null, "Big");
@@ -49,20 +51,9 @@ public class IntroPanel extends JPanel {
 
 	}
 
+	// Play Intro Animation
 	public void playIntro() {
 		Timer t1 = new Timer();
-
-		// ImageIcon icon_down = new ImageIcon("img/dodo_down.png");
-		// Image img_down = icon_down.getImage();
-		// Image changeImg_down = img_down.getScaledInstance(120, 120,
-		// Image.SCALE_SMOOTH);
-		// ImageIcon changeIcon_down = new ImageIcon(changeImg_down);
-
-		// ImageIcon icon_right = new ImageIcon("img/dodo_right.png");
-		// Image img_right = icon_right.getImage();
-		// Image changeImg_right = img_right.getScaledInstance(120, 120,
-		// Image.SCALE_SMOOTH);
-		// ImageIcon changeIcon_right = new ImageIcon(changeImg_right);
 
 		TimerTask task1 = new TimerTask() {
 
@@ -73,11 +64,9 @@ public class IntroPanel extends JPanel {
 
 				if (cnt < 7) {
 					if (cnt < 3) {
-						// dodo.setIcon(changeIcon_down);
 						dodo.setLocation(270, 180 + 60 * i);
 						i++;
 					} else {
-						// dodo.setIcon(changeIcon_right);
 						dodo.setLocation(270 + 60 * j, 300);
 						j++;
 					}
@@ -92,14 +81,13 @@ public class IntroPanel extends JPanel {
 		t1.schedule(task1, 0, 500);
 	}
 
+	// Initialize Stage1 Panel
 	public void initStage1() {
-
 		this.removeAll();
 		contentpane.removeAll();
 		contentpane.repaint();
 		contentpane.add(new Stage1Panel(contentpane));
 		contentpane.repaint();
-
 	}
 
 }
