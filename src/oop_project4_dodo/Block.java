@@ -26,6 +26,7 @@ public class Block extends JLabel {
    ObjBlock dodo;
    ObjBlock fish;
    ObjBlock toy;
+   ObjBlock[] water;
 
    /* Constructor */
    Block() {
@@ -97,6 +98,17 @@ public class Block extends JLabel {
             MainFrame.ms.nextStage();
          }
       }
+      
+      //stage3 : water_reset Stage
+      if(stage3Panel != null) {
+      if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
+         ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+         if(((ObjBlock)this).isYou() && nextBlock.isDefeat()) {
+               MainFrame.ms.resetStage();
+         }
+      }
+   }
+
 
       if (this.checkNextPushable(weightX, weightY)) {
 
@@ -188,7 +200,7 @@ public class Block extends JLabel {
                         }
                         // fish setting
                         else if (this.fish.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win 세팅
+                           // win setting
                            if (subBlock.getWeightBlock(2, 0).getText().equals("w"))
                               this.fish.setWin(true);
 
@@ -201,7 +213,7 @@ public class Block extends JLabel {
                         }
                         // toy setting
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win 세팅
+                           // win setting
                            if (subBlock.getWeightBlock(2, 0).getText().equals("w"))
                               this.toy.setWin(true);
 
@@ -305,6 +317,10 @@ public class Block extends JLabel {
          this.dodo = Stage3Panel.dodo;
          this.fish = Stage3Panel.fish;
          this.toy = Stage3Panel.toy;
+         this.water = Stage3Panel.water;
+         for(int i=0; i<this.water.length; i++) {
+        	 this.water[i].setWater(true);
+         }
       }
    }
 
@@ -415,6 +431,7 @@ class ObjBlock extends Block {
    private boolean isYou;
    private boolean isWin;
    private boolean isMove;
+   private boolean isWater = false;
 
    ManageListener manageListener;
    
@@ -475,6 +492,13 @@ class ObjBlock extends Block {
       return this.isYou;
    }
 
+   public boolean isDefeat() {
+	   return this.isWater;
+   }
+
+   public void setWater(boolean b) {
+	   this.isWater = b;
+   }
    public void setisYou(boolean b) {
       this.isYou = b;
    }
@@ -539,6 +563,7 @@ class ObjBlock extends Block {
                     fish.timer.cancel();
              }
           }
+      
       }
    
    

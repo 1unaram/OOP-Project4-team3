@@ -14,7 +14,7 @@ public class Stage3Panel extends JPanel{
    static ObjBlock fish;
    static ObjBlock toy;
 
-   ObjBlock[] water = new ObjBlock[24];
+   static ObjBlock[] water;
 
    WordBlock _dodo;
    WordBlock _is1;
@@ -56,6 +56,7 @@ public class Stage3Panel extends JPanel{
       dodo = new ObjBlock("img/dodo_right.png", stage3BlockArr, manageListener);
       fish = new ObjBlock("img/fish_right.png", stage3BlockArr, manageListener);
       toy = new ObjBlock("img/toy.png", stage3BlockArr, manageListener);
+      water = new ObjBlock[24];
       for(int i=0; i<water.length; i++) {
          water[i] = new ObjBlock("img/water.png", stage3BlockArr, manageListener);
       }
