@@ -13,17 +13,13 @@ class WordBlock extends Block {
     private boolean isVerb;
     private boolean isComplement;
 
-    // public
-    ManageListener manageListener;
-
     /* Constructor */
-    WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
+    WordBlock(String path, StageBlockArray stageBlockArr) {
         this.setIcon(new ImageIcon(path));
         this.stageBlockArr = stageBlockArr;
-        this.manageListener = manageListener;
     }
 
-    WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
+    WordBlock(String path, StageBlockArray stageBlockArr, String str) {
 
         ImageIcon icon = new ImageIcon(path);
         Image img = icon.getImage();
@@ -32,7 +28,6 @@ class WordBlock extends Block {
 
         this.setIcon(chanIcon);
         this.stageBlockArr = stageBlockArr;
-        this.manageListener = manageListener;
     }
 
     /* Method */
@@ -61,7 +56,7 @@ class WordBlock extends Block {
         return this.isComplement;
     }
 
-    // check weightX, weightY
+    // Check weightX, weightY
     public boolean isWeightSubject(int weightX, int weightY) {
         if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
             return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isSubject();
@@ -83,6 +78,7 @@ class WordBlock extends Block {
         return false;
     }
 
+    // Check if Block is valid
     public boolean checkNextFNW(int weightX, int weightY) {
         // Check if the next block is in the frame
         if (!this.checkNextInFrame(weightX, weightY))

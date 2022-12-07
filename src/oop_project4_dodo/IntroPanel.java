@@ -2,11 +2,9 @@ package oop_project4_dodo;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Image;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -36,10 +34,9 @@ public class IntroPanel extends JPanel {
 	/* Method */
 	// Initialize Intro Panel
 	public void initIntro() {
-
-		dodo = new ObjBlock("img/dodo_right.png", BlockArr, null, "Big");
-		_is = new WordBlock("img/_is.png", BlockArr, null, "Big");
-		_you = new WordBlock("img/_you.png", BlockArr, null, "Big");
+		dodo = new ObjBlock("img/dodo_right.png", BlockArr, "Big");
+		_is = new WordBlock("img/_is.png", BlockArr, "Big");
+		_you = new WordBlock("img/_you.png", BlockArr, "Big");
 
 		dodo.setBounds(330, 180, 120, 120);
 		_is.setBounds(570, 300, 120, 120);

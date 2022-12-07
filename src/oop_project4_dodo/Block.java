@@ -1,9 +1,5 @@
 package oop_project4_dodo;
 
-import java.awt.Image;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

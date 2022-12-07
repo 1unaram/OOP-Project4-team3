@@ -49,14 +49,14 @@ public class Stage1Panel extends JPanel {
 	// Initialize Block
 	public void initBlock() {
 		// Create Block
-		dodo = new ObjBlock("img/dodo_right.png", stage1BlockArr, manageListener);
-		fish = new ObjBlock("img/fish_right.png", stage1BlockArr, manageListener);
-		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr, manageListener);
-		_is1 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
-		_you = new WordBlock("img/_you.png", stage1BlockArr, manageListener);
-		_fish = new WordBlock("img/_fish.png", stage1BlockArr, manageListener);
-		_is2 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
-		_win = new WordBlock("img/_win.png", stage1BlockArr, manageListener);
+		dodo = new ObjBlock("img/dodo_right.png", stage1BlockArr);
+		fish = new ObjBlock("img/fish_right.png", stage1BlockArr);
+		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr);
+		_is1 = new WordBlock("img/_is.png", stage1BlockArr);
+		_you = new WordBlock("img/_you.png", stage1BlockArr);
+		_fish = new WordBlock("img/_fish.png", stage1BlockArr);
+		_is2 = new WordBlock("img/_is.png", stage1BlockArr);
+		_win = new WordBlock("img/_win.png", stage1BlockArr);
 
 		// Set Block Position
 		dodo.setBounds(Stage1BlockPos.dodo[1] * 60, Stage1BlockPos.dodo[0] * 60, 60, 60);

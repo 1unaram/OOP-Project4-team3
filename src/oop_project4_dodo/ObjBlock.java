@@ -10,24 +10,22 @@ import javax.swing.ImageIcon;
 class ObjBlock extends Block {
 
     /* Private Member Variables */
+    // private
     private boolean isYou;
     private boolean isWin;
     private boolean isMove;
     private boolean isWater = false;
 
-    ManageListener manageListener;
-
+    // public
     Timer timer = null;
 
     /* Constructor */
-    ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
+    ObjBlock(String path, StageBlockArray stageBlockArr) {
         this.setIcon(new ImageIcon(path));
         this.stageBlockArr = stageBlockArr;
-        this.manageListener = manageListener;
     }
 
-    ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
-
+    ObjBlock(String path, StageBlockArray stageBlockArr, String str) {
         ImageIcon icon = new ImageIcon(path);
         Image img = icon.getImage();
         Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
@@ -35,24 +33,20 @@ class ObjBlock extends Block {
 
         this.setIcon(chanIcon);
         this.stageBlockArr = stageBlockArr;
-        this.manageListener = manageListener;
     }
 
     /* Method */
-
+    // Set Character Properties
     public void setYou(boolean flag) {
         this.isYou = flag;
 
+        // Change KeyListener for You
         for (YouKeyListener ykl : ManageListener.YouKeyListenerList) {
             ManageListener.contentpane.removeKeyListener(ykl);
         }
-
         if (flag) {
-
             YouKeyListener ykl = new YouKeyListener(this);
-
             ManageListener.contentpane.addKeyListener(ykl);
-
             ManageListener.addYouKeyListener(ykl);
         }
     }
@@ -65,24 +59,12 @@ class ObjBlock extends Block {
         return this.isWin;
     }
 
-    public boolean isYou() {
-        return this.isYou;
-    }
-
-    public boolean isDefeat() {
-        return this.isWater;
-    }
-
-    public void setWater(boolean b) {
-        this.isWater = b;
-    }
-
     public void setisYou(boolean b) {
         this.isYou = b;
     }
 
-    public boolean isMove() {
-        return this.isMove;
+    public boolean isYou() {
+        return this.isYou;
     }
 
     public void setMove(boolean flag) {
@@ -139,4 +121,15 @@ class ObjBlock extends Block {
 
     }
 
+    public boolean isMove() {
+        return this.isMove;
+    }
+
+    public void setWater(boolean b) {
+        this.isWater = b;
+    }
+
+    public boolean isDefeat() {
+        return this.isWater;
+    }
 }

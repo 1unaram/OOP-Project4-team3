@@ -56,25 +56,25 @@ public class Stage3Panel extends JPanel {
    // Initialize Block
    public void initBlock() {
       // Create Block
-      dodo = new ObjBlock("img/dodo_right.png", stage3BlockArr, manageListener);
-      fish = new ObjBlock("img/fish_right.png", stage3BlockArr, manageListener);
-      toy = new ObjBlock("img/toy.png", stage3BlockArr, manageListener);
+      dodo = new ObjBlock("img/dodo_right.png", stage3BlockArr);
+      fish = new ObjBlock("img/fish_right.png", stage3BlockArr);
+      toy = new ObjBlock("img/toy.png", stage3BlockArr);
       water = new ObjBlock[24];
       for (int i = 0; i < water.length; i++) {
-         water[i] = new ObjBlock("img/water.png", stage3BlockArr, manageListener);
+         water[i] = new ObjBlock("img/water.png", stage3BlockArr);
       }
-      _dodo = new WordBlock("img/_dodo.png", stage3BlockArr, manageListener);
-      _is1 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
-      _you = new WordBlock("img/_you.png", stage3BlockArr, manageListener);
-      _toy = new WordBlock("img/_toy.png", stage3BlockArr, manageListener);
-      _is2 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
-      _win = new WordBlock("img/_win.png", stage3BlockArr, manageListener);
-      _fish = new WordBlock("img/_fish.png", stage3BlockArr, manageListener);
-      _is3 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
-      _move = new WordBlock("img/_move.png", stage3BlockArr, manageListener);
-      _water = new WordBlock("img/_water.png", stage3BlockArr, manageListener);
-      _is4 = new WordBlock("img/_is.png", stage3BlockArr, manageListener);
-      _defeat = new WordBlock("img/_defeat.png", stage3BlockArr, manageListener);
+      _dodo = new WordBlock("img/_dodo.png", stage3BlockArr);
+      _is1 = new WordBlock("img/_is.png", stage3BlockArr);
+      _you = new WordBlock("img/_you.png", stage3BlockArr);
+      _toy = new WordBlock("img/_toy.png", stage3BlockArr);
+      _is2 = new WordBlock("img/_is.png", stage3BlockArr);
+      _win = new WordBlock("img/_win.png", stage3BlockArr);
+      _fish = new WordBlock("img/_fish.png", stage3BlockArr);
+      _is3 = new WordBlock("img/_is.png", stage3BlockArr);
+      _move = new WordBlock("img/_move.png", stage3BlockArr);
+      _water = new WordBlock("img/_water.png", stage3BlockArr);
+      _is4 = new WordBlock("img/_is.png", stage3BlockArr);
+      _defeat = new WordBlock("img/_defeat.png", stage3BlockArr);
 
       // Set Block Position
       dodo.setBounds(Stage3BlockPos.dodo[1] * 60, Stage3BlockPos.dodo[0] * 60, 60, 60);
