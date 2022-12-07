@@ -7,21 +7,23 @@ import javax.swing.ImageIcon;
 
 public class YouKeyListener extends KeyAdapter {
 
+	/* Member Variables */
 	ObjBlock you;
 
+	/* Constructor */
 	YouKeyListener(ObjBlock you) {
 		this.you = you;
 	}
 
+	/* Methods */
+	// Manage Key Event
 	public void keyPressed(KeyEvent e) {
 
 		int keyCode = e.getKeyCode();
-
 		int weightX = 0;
 		int weightY = 0;
 
 		switch (keyCode) {
-
 			case KeyEvent.VK_UP:
 				weightY = -1;
 				this.reverseYou(0);
@@ -39,22 +41,25 @@ public class YouKeyListener extends KeyAdapter {
 				this.reverseYou(3);
 				break;
 			case KeyEvent.VK_ESCAPE:
+				// Exit Game
 				System.exit(0);
 				break;
 			case 'R':
+				// Reset Stage
 				MainFrame.ms.resetStage();
 				return;
 			default:
 				return;
 		}
 
-		// You가 움직이기
+		// Move You
 		you.moveProcess(weightX, weightY);
 	}
 
+	// Reverse You's Image
 	public void reverseYou(int direction) {
-		// 상하좌우 : 0123
 		switch (direction) {
+			// Up
 			case 0:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_up.png"));
@@ -62,6 +67,7 @@ public class YouKeyListener extends KeyAdapter {
 					you.setIcon(new ImageIcon("img/fish_right.png"));
 				}
 				break;
+			// Down
 			case 1:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_down.png"));
@@ -69,6 +75,7 @@ public class YouKeyListener extends KeyAdapter {
 					you.setIcon(new ImageIcon("img/fish_right.png"));
 				}
 				break;
+			// Left
 			case 2:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_left.png"));
@@ -76,6 +83,7 @@ public class YouKeyListener extends KeyAdapter {
 					you.setIcon(new ImageIcon("img/fish_left.png"));
 				}
 				break;
+			// Right
 			case 3:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_right.png"));
@@ -83,7 +91,6 @@ public class YouKeyListener extends KeyAdapter {
 					you.setIcon(new ImageIcon("img/fish_right.png"));
 				}
 		}
-
 	}
 
 }

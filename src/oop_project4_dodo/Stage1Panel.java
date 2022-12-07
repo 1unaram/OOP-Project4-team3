@@ -10,10 +10,13 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Stage1Panel extends JPanel {
 
-	Container contentpane;
-
+	/* Member Variables */
 	static ObjBlock dodo;
 	static ObjBlock fish;
+	static StageBlockArray stage1BlockArr;
+	static ManageListener manageListener;
+
+	Container contentpane;
 
 	WordBlock _dodo;
 	WordBlock _you;
@@ -22,9 +25,7 @@ public class Stage1Panel extends JPanel {
 	WordBlock _is2;
 	WordBlock _win;
 
-	static StageBlockArray stage1BlockArr;
-	static ManageListener manageListener;
-
+	/* Constructor */
 	Stage1Panel(Container cp) {
 		contentpane = cp;
 		stage1BlockArr = new StageBlockArray();
@@ -38,25 +39,26 @@ public class Stage1Panel extends JPanel {
 		initWordBlockMemberVar();
 		initBanner();
 
+		// Add initial listener
 		YouKeyListener dodoListener = new YouKeyListener(dodo);
 		contentpane.addKeyListener(dodoListener);
-
-		manageListener.addYouKeyListener(dodoListener);
+		ManageListener.addYouKeyListener(dodoListener);
 	}
 
+	/* Method */
+	// Initialize Block
 	public void initBlock() {
+		// Create Block
+		dodo = new ObjBlock("img/dodo_right.png", stage1BlockArr);
+		fish = new ObjBlock("img/fish_right.png", stage1BlockArr);
+		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr);
+		_is1 = new WordBlock("img/_is.png", stage1BlockArr);
+		_you = new WordBlock("img/_you.png", stage1BlockArr);
+		_fish = new WordBlock("img/_fish.png", stage1BlockArr);
+		_is2 = new WordBlock("img/_is.png", stage1BlockArr);
+		_win = new WordBlock("img/_win.png", stage1BlockArr);
 
-		dodo = new ObjBlock("img/dodo_right.png", stage1BlockArr, manageListener);
-		fish = new ObjBlock("img/fish_right.png", stage1BlockArr, manageListener);
-		_dodo = new WordBlock("img/_dodo.png", stage1BlockArr, manageListener);
-		_is1 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
-		_you = new WordBlock("img/_you.png", stage1BlockArr, manageListener);
-		_fish = new WordBlock("img/_fish.png", stage1BlockArr, manageListener);
-		_is2 = new WordBlock("img/_is.png", stage1BlockArr, manageListener);
-		_win = new WordBlock("img/_win.png", stage1BlockArr, manageListener);
-
-		setAllObjects();
-
+		// Set Block Position
 		dodo.setBounds(Stage1BlockPos.dodo[1] * 60, Stage1BlockPos.dodo[0] * 60, 60, 60);
 		fish.setBounds(Stage1BlockPos.fish[1] * 60, Stage1BlockPos.fish[0] * 60, 60, 60);
 		_dodo.setBounds(Stage1BlockPos._dodo[1] * 60, Stage1BlockPos._dodo[0] * 60, 60, 60);
@@ -66,6 +68,7 @@ public class Stage1Panel extends JPanel {
 		_is2.setBounds(Stage1BlockPos._is2[1] * 60, Stage1BlockPos._is2[0] * 60, 60, 60);
 		_win.setBounds(Stage1BlockPos._win[1] * 60, Stage1BlockPos._win[0] * 60, 60, 60);
 
+		// Add Block to Panel
 		this.add(dodo);
 		this.add(fish);
 		this.add(_dodo);
@@ -75,11 +78,11 @@ public class Stage1Panel extends JPanel {
 		this.add(_is2);
 		this.add(_win);
 
+		setAllObjects();
 	}
 
-	// Block 諛곗뿴 珥덇린�솕
+	// Initialize Block Array
 	public void initBlockArr() {
-
 		stage1BlockArr.initPosition(dodo, Stage1BlockPos.dodo[0], Stage1BlockPos.dodo[1], "D");
 		stage1BlockArr.initPosition(fish, Stage1BlockPos.fish[0], Stage1BlockPos.fish[1], "F");
 		stage1BlockArr.initPosition(_dodo, Stage1BlockPos._dodo[0], Stage1BlockPos._dodo[1], "d");
@@ -88,30 +91,31 @@ public class Stage1Panel extends JPanel {
 		stage1BlockArr.initPosition(_fish, Stage1BlockPos._fish[0], Stage1BlockPos._fish[1], "f");
 		stage1BlockArr.initPosition(_is2, Stage1BlockPos._is2[0], Stage1BlockPos._is2[1], "2");
 		stage1BlockArr.initPosition(_win, Stage1BlockPos._win[0], Stage1BlockPos._win[1], "w");
-
-		// stage1BlockArr.printArray();
 	}
 
+	// Initialize WordBlock Member Variables
 	public void initWordBlockMemberVar() {
+		// Set Object Block
+		dodo.setisYou(true);
+		fish.setIsPushable(false);
 
+		// Set Word Block
 		_dodo.setSubject();
 		_is1.setVerb();
 		_you.setComplement();
 		_fish.setSubject();
 		_is2.setVerb();
 		_win.setComplement();
-		fish.setIsPushable(false);
-
-		dodo.setisYou(true);
 	}
 
-	// 諛곕꼫 異붽�
+	// Initialize Banner
 	public void initBanner() {
 		JLabel banner = new JLabel(new ImageIcon("img/stage1_banner.png"));
 		banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
 		contentpane.add(banner);
 	}
 
+	// Pass panel to all blocks
 	public void setAllObjects() {
 		dodo.setObjects(this);
 		fish.setObjects(this);
@@ -128,6 +132,7 @@ class Stage1BlockPos {
 	// y , x
 	static int[] dodo = { 3, 10 };
 	static int[] fish = { 4, 13 };
+
 	static int[] _dodo = { 2, 4 };
 	static int[] _is1 = { 2, 5 };
 	static int[] _you = { 2, 6 };

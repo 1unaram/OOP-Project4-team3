@@ -23,6 +23,7 @@ class MainFrame extends JFrame {
 
 	static ManageStage ms;
 
+	/* Constructor */
 	MainFrame() {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setSize(ConstClass.FRAME_WIDTH, ConstClass.FRAME_HEIGHT);
@@ -38,18 +39,21 @@ class MainFrame extends JFrame {
 
 		ms = new ManageStage(contentpane);
 
-		iconinit();
-		init();
+		initIcon();
+		initStartPanel();
 
 		contentpane.revalidate();
 		contentpane.repaint();
 	}
 
-	public void init() {
+	/* Method */
+	// Initialize Start Panel
+	public void initStartPanel() {
 		contentpane.add(new StartPanel(contentpane));
 	}
 
-	public void iconinit() {
+	// Initialize Icon
+	public void initIcon() {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image img = toolkit.getImage("img/dodo-icon.png");
 		this.setIconImage(img);
