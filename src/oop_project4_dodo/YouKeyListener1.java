@@ -70,14 +70,14 @@ public class YouKeyListener1 extends KeyAdapter {
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_left.png"));
 				} else if (you.getText().equals("F")) {
-					// you.setIcon(new ImageIcon("img/fish_left.png"));
+					you.setIcon(new ImageIcon("img/fish_left.png"));
 				}
 				break;
 			case 3:
 				if (you.getText().equals("D")) {
 					you.setIcon(new ImageIcon("img/dodo_right.png"));
 				} else if (you.getText().equals("F")) {
-					you.setIcon(new ImageIcon("img/fish_reft.png"));
+					you.setIcon(new ImageIcon("img/fish_right.png"));
 				}
 		}
 
