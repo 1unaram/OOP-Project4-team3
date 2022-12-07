@@ -119,7 +119,7 @@ public class Stage3Panel extends JPanel {
 
    }
 
-   // Block �迭 �ʱ�ȭ
+   // Block  迭  ʱ ȭ
    public void initBlockArr() {
 
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
@@ -172,7 +172,7 @@ public class Stage3Panel extends JPanel {
       }
    }
 
-   // ��� �߰�
+   //      ߰ 
    public void initBanner() {
       JLabel banner = new JLabel(new ImageIcon("img/stage3_banner.png"));
       banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
@@ -210,16 +210,15 @@ class Stage3BlockPos {
          { 4, 11 }, { 5, 11 }, { 6, 11 },
          { 7, 11 }, { 8, 11 }, { 8, 12 }, { 8, 13 }, { 8, 14 }, { 8, 15 }, { 8, 16 }, { 8, 17 }, { 7, 17 }, { 6, 17 },
          { 5, 17 }, { 4, 17 }, { 3, 17 } };
-   static int[] _dodo = { 2, 2 };
-   static int[] _is1 = { 2, 3 };
-   static int[] _you = { 2, 4 };
-   static int[] _toy = { 5, 5 };
-   static int[] _is2 = { 5, 6 };
-   static int[] _win = { 5, 7 };
-
+   static int[] _dodo = { 1, 2 };
+   static int[] _is1 = { 1, 3 };
+   static int[] _you = { 1, 4 };
+   static int[] _toy = { 4, 5 };
+   static int[] _is2 = { 4, 6 };
+   static int[] _win = { 4, 7 };
    static int[] _fish = { 7, 3 };
-   static int[] _is3 = { 8, 4 };
-   static int[] _move = { 8, 5 };
+   static int[] _is3 = { 7, 4 };
+   static int[] _move = { 7, 5 };
    static int[] _water = { 0, 14 };
    static int[] _is4 = { 0, 15 };
    static int[] _defeat = { 0, 16 };

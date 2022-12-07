@@ -126,12 +126,12 @@ public class Stage1Panel extends JPanel {
 
 class Stage1BlockPos {
 	// y , x
-	static int[] dodo = { 4, 10 };
-	static int[] fish = { 5, 13 };
+	static int[] dodo = { 3, 10 };
+	static int[] fish = { 4, 13 };
 	static int[] _dodo = { 2, 4 };
 	static int[] _is1 = { 2, 5 };
 	static int[] _you = { 2, 6 };
-	static int[] _fish = { 6, 6 };
-	static int[] _is2 = { 5, 7 };
-	static int[] _win = { 5, 8 };
+	static int[] _fish = { 6, 7 };
+	static int[] _is2 = { 5, 8 };
+	static int[] _win = { 5, 9 };
 }
