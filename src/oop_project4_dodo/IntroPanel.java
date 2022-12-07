@@ -16,7 +16,7 @@ public class IntroPanel extends JPanel {
 
 	ObjBlock dodo;
 	WordBlock _is;
-	WordBlock _win;
+	WordBlock _you;
 
 	static StageBlockArray BlockArr;
 
@@ -37,15 +37,15 @@ public class IntroPanel extends JPanel {
 
 		dodo = new ObjBlock("img/dodo_right.png", BlockArr, null, "Big");
 		_is = new WordBlock("img/_is.png", BlockArr, null, "Big");
-		_win = new WordBlock("img/_you.png", BlockArr, null, "Big");
+		_you = new WordBlock("img/_you.png", BlockArr, null, "Big");
 
 		dodo.setBounds(330, 180, 120, 120);
 		_is.setBounds(570, 300, 120, 120);
-		_win.setBounds(690, 300, 120, 120);
+		_you.setBounds(690, 300, 120, 120);
 
 		this.add(dodo);
 		this.add(_is);
-		this.add(_win);
+		this.add(_you);
 
 	}
 
