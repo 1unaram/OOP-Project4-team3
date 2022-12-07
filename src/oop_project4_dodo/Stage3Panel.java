@@ -13,33 +13,31 @@ public class Stage3Panel extends JPanel{
    static ObjBlock dodo;
    static ObjBlock fish;
    static ObjBlock toy;
-   static ObjBlock water1;
-   static ObjBlock water2;
-   static ObjBlock water3;
-   static ObjBlock water4;
-   static ObjBlock water5;
-   static ObjBlock water6;
-   static ObjBlock water7;
-   static ObjBlock water8;
-   static ObjBlock water9;
-   static ObjBlock water10;
-   static ObjBlock water11;
-   static ObjBlock water12;
-   static ObjBlock water13;
-   static ObjBlock water14;
-   static ObjBlock water15;
-   static ObjBlock water16;
-   static ObjBlock water17;
-   static ObjBlock water18;
-   static ObjBlock water19;
-   static ObjBlock water20;
-   static ObjBlock water21;
-   static ObjBlock water22;
-   static ObjBlock water23;
-   static ObjBlock water24;
 
-   
-
+   ObjBlock water1;
+   ObjBlock water2;
+   ObjBlock water3;
+   ObjBlock water4;
+   ObjBlock water5;
+   ObjBlock water6;
+   ObjBlock water7;
+   ObjBlock water8;
+   ObjBlock water9;
+   ObjBlock water10;
+   ObjBlock water11;
+   ObjBlock water12;
+   ObjBlock water13;
+   ObjBlock water14;
+   ObjBlock water15;
+   ObjBlock water16;
+   ObjBlock water17;
+   ObjBlock water18;
+   ObjBlock water19;
+   ObjBlock water20;
+   ObjBlock water21;
+   ObjBlock water22;
+   ObjBlock water23;
+   ObjBlock water24;
 
    WordBlock _dodo;
    WordBlock _is1;
@@ -53,6 +51,7 @@ public class Stage3Panel extends JPanel{
    WordBlock _water;
    WordBlock _is4;
    WordBlock _defeat;
+   
    static StageBlockArray stage3BlockArr;
    static ManageListener manageListener;
 
