@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Stage3Panel extends JPanel {
    Container contentpane;
 
@@ -118,7 +119,7 @@ public class Stage3Panel extends JPanel {
 
    }
 
-   // Block ¹è¿­ ÃÊ±âÈ­
+   // Block ï¿½è¿­ ï¿½Ê±ï¿½È­
    public void initBlockArr() {
 
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
@@ -163,6 +164,7 @@ public class Stage3Panel extends JPanel {
 
       fish.setIsPushable(false);
       dodo.setisYou(true);
+      fish.setMove(true);
 
       for (int i = 0; i < water.length; i++) {
          water[i].setIsPushable(false);
@@ -170,7 +172,7 @@ public class Stage3Panel extends JPanel {
       }
    }
 
-   // ¹è³Ê Ãß°¡
+   // ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
    public void initBanner() {
       JLabel banner = new JLabel(new ImageIcon("img/stage3_banner.png"));
       banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
@@ -214,6 +216,7 @@ class Stage3BlockPos {
    static int[] _toy = { 5, 5 };
    static int[] _is2 = { 5, 6 };
    static int[] _win = { 5, 7 };
+
    static int[] _fish = { 7, 3 };
    static int[] _is3 = { 8, 4 };
    static int[] _move = { 8, 5 };
