@@ -119,6 +119,7 @@ public class Stage3Panel extends JPanel {
       setAllObjects();
    }
 
+
    // Initialize Block Array
    public void initBlockArr() {
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
@@ -164,6 +165,7 @@ public class Stage3Panel extends JPanel {
          water[i].setIsPushable(false);
       }
    }
+
 
    // Initialize Banner
    public void initBanner() {
