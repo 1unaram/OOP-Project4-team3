@@ -23,6 +23,7 @@ public class Block extends JLabel {
 
 	ObjBlock dodo;
 	ObjBlock fish;
+	ObjBlock toy;
 
 	/* Constructor */
 	Block() {
@@ -148,6 +149,7 @@ public class Block extends JLabel {
 		this.isPushable = isPushable;
 	}
 
+
 	// (4) Check Unset
 	public void checkUnset() {
 
@@ -191,6 +193,16 @@ public class Block extends JLabel {
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
 											this.fish.setYou(true);
 									}
+									// toy 세팅																
+									else if(this.toy.getText().equals(subBlock.getText().toUpperCase())) {
+										// win 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
+											this.toy.setWin(true);
+										
+										// you 세팅
+										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
+											this.toy.setYou(true);
+									}
 								}
 						}
 
@@ -219,6 +231,16 @@ public class Block extends JLabel {
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
 										this.fish.setYou(true);
 								}
+								// toy 세팅 															
+								else if(this.toy.getText().equals(subBlock.getText().toUpperCase())) {
+									// win 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
+										this.toy.setWin(true);
+									
+									// you 세팅
+									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
+										this.toy.setYou(true);
+								} 
 							}
 					}
 
@@ -237,10 +259,17 @@ public class Block extends JLabel {
 		// dodo
 		dodo.setYou(false);
 		dodo.setWin(false);
-		
+
 		// fish
 		fish.setYou(false);
 		fish.setWin(false);
+	
+		// toy
+		if(stage2Panel != null) {
+			toy.setYou(false);								
+			toy.setWin(false);
+		}
+	
 	}
 
 	// (6) Get Weight Block
@@ -258,10 +287,14 @@ public class Block extends JLabel {
 			this.fish = Stage1Panel.fish;
 		} else if(stagePanel instanceof Stage2Panel) {
 			this.stage2Panel = (Stage2Panel) stagePanel;
+			this.dodo = Stage2Panel.dodo;
+			this.fish = Stage2Panel.fish;
+			this.toy = Stage2Panel.toy;
 		} else if(stagePanel instanceof Stage3Panel) {
 			this.stage3Panel = (Stage3Panel) stagePanel;
 		}
 	}
+
 }
 
 @SuppressWarnings("serial")
