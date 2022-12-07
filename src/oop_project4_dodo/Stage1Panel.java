@@ -77,7 +77,7 @@ public class Stage1Panel extends JPanel {
 
 	}
 
-	// Block 배열 초기화
+	// Block 諛곗뿴 珥덇린�솕
 	public void initBlockArr() {
 
 		stage1BlockArr.initPosition(dodo, Stage1BlockPos.dodo[0], Stage1BlockPos.dodo[1], "D");
@@ -105,7 +105,7 @@ public class Stage1Panel extends JPanel {
 		dodo.setisYou(true);
 	}
 
-	// 배너 추가
+	// 諛곕꼫 異붽�
 	public void initBanner() {
 		JLabel banner = new JLabel(new ImageIcon("img/stage1_banner.png"));
 		banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
@@ -128,10 +128,10 @@ class Stage1BlockPos {
 	// y , x
 	static int[] dodo = { 4, 10 };
 	static int[] fish = { 5, 13 };
-	static int[] _dodo = { 3, 5 };
-	static int[] _is1 = { 3, 6 };
-	static int[] _you = { 3, 7 };
-	static int[] _fish = { 6, 5 };
-	static int[] _is2 = { 5, 6 };
-	static int[] _win = { 5, 7 };
+	static int[] _dodo = { 2, 4 };
+	static int[] _is1 = { 2, 5 };
+	static int[] _you = { 2, 6 };
+	static int[] _fish = { 6, 6 };
+	static int[] _is2 = { 5, 7 };
+	static int[] _win = { 5, 8 };
 }
