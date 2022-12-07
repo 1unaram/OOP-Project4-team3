@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Stage3Panel extends JPanel {
 
-   /* Local Variables */
+   /* Member Variables */
    static ObjBlock dodo;
    static ObjBlock fish;
    static ObjBlock toy;
@@ -140,12 +140,10 @@ public class Stage3Panel extends JPanel {
       stage3BlockArr.initPosition(_water, Stage3BlockPos._water[0], Stage3BlockPos._water[1], "a");
       stage3BlockArr.initPosition(_is4, Stage3BlockPos._is4[0], Stage3BlockPos._is4[1], "4");
       stage3BlockArr.initPosition(_defeat, Stage3BlockPos._defeat[0], Stage3BlockPos._defeat[1], "d");
-
-      // stage3BlockArr.printArray();
    }
 
+   // Initialize WordBlock Member Variables
    public void initWordBlockMemberVar() {
-
       _dodo.setSubject();
       _is1.setVerb();
       _you.setComplement();
@@ -159,23 +157,22 @@ public class Stage3Panel extends JPanel {
       _is4.setVerb();
       _defeat.setComplement();
 
-      fish.setIsPushable(false);
       dodo.setisYou(true);
+      fish.setIsPushable(false);
       fish.setMove(true);
-
       for (int i = 0; i < water.length; i++) {
          water[i].setIsPushable(false);
-
       }
    }
 
-   // ��� �߰�
+   // Initialize Banner
    public void initBanner() {
       JLabel banner = new JLabel(new ImageIcon("img/stage3_banner.png"));
       banner.setBounds(0, 0, ConstClass.PANEL_WIDTH, ConstClass.BANNER_HEIGHT);
       contentpane.add(banner);
    }
 
+   // Pass panel to all blocks
    public void setAllObjects() {
       dodo.setObjects(this);
       fish.setObjects(this);
@@ -207,16 +204,16 @@ class Stage3BlockPos {
          { 4, 11 }, { 5, 11 }, { 6, 11 },
          { 7, 11 }, { 8, 11 }, { 8, 12 }, { 8, 13 }, { 8, 14 }, { 8, 15 }, { 8, 16 }, { 8, 17 }, { 7, 17 }, { 6, 17 },
          { 5, 17 }, { 4, 17 }, { 3, 17 } };
-   static int[] _dodo = { 2, 2 };
-   static int[] _is1 = { 2, 3 };
-   static int[] _you = { 2, 4 };
-   static int[] _toy = { 5, 5 };
-   static int[] _is2 = { 5, 6 };
-   static int[] _win = { 5, 7 };
 
+   static int[] _dodo = { 1, 2 };
+   static int[] _is1 = { 1, 3 };
+   static int[] _you = { 1, 4 };
+   static int[] _toy = { 4, 5 };
+   static int[] _is2 = { 4, 6 };
+   static int[] _win = { 4, 7 };
    static int[] _fish = { 7, 3 };
-   static int[] _is3 = { 8, 4 };
-   static int[] _move = { 8, 5 };
+   static int[] _is3 = { 7, 4 };
+   static int[] _move = { 7, 5 };
    static int[] _water = { 0, 14 };
    static int[] _is4 = { 0, 15 };
    static int[] _defeat = { 0, 16 };

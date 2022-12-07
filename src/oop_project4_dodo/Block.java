@@ -11,12 +11,14 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Block extends JLabel {
 
-   /* Private member variable */
+   /* Member Variables */
+   // private
+   private String name;
    private boolean isPushable = true;
-
    private int arrX;
    private int arrY;
 
+   // public
    StageBlockArray stageBlockArr;
 
    Stage1Panel stage1Panel = null;
@@ -30,6 +32,7 @@ public class Block extends JLabel {
 
    /* Constructor */
    Block() {
+
    }
 
    Block(String path) {
@@ -37,13 +40,7 @@ public class Block extends JLabel {
    }
 
    /* Method */
-
-   // (1) Position Method
-   public void setPos(int y, int x) {
-      this.arrY = y;
-      this.arrX = x;
-   }
-
+   // (1) Getter, Setter
    public int getArrX() {
       return this.arrX;
    }
@@ -52,44 +49,58 @@ public class Block extends JLabel {
       return this.arrY;
    }
 
-   // (2) this push b
-   // this move
-   public void moveBlock(int weightX, int weightY) {
+   public void setText(String name) {
+      this.name = name;
+   }
 
+   public String getText() {
+      return this.name;
+   }
+
+   public void setIsPushable(boolean isPushable) {
+      this.isPushable = isPushable;
+   }
+
+   public Block getWeightBlock(int weightX, int weightY) {
+      return stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+   }
+
+   // (2) Position Method
+   public void setPos(int y, int x) {
+      this.arrY = y;
+      this.arrX = x;
+   }
+
+   // (3) this push next block
+   // Set block position to be moved
+   public void moveBlock(int weightX, int weightY) {
       int oldX = this.getArrX();
       int oldY = this.getArrY();
 
-      stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
+      this.stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
 
-      // Changing the object's member variable
+      // Change the object's member variable
       this.setPos(this.getArrY() + weightY, this.getArrX() + weightX);
 
       // Redraw the location of the object
       this.setLocation(this.getX() + 60 * weightX, this.getY() + 60 * weightY);
-
-      // stageBlockArr.printArray();
    }
 
-   // Method : this move
+   // (4) Check whether the next block is moveable and move
    public boolean moveProcess(int weightX, int weightY) {
-
-      // The space to move does not exist in the frame
+      // Check block is in frame
       if (!this.checkNextInFrame(weightX, weightY))
          return false;
 
-      // The space to move exists in the frame
       // next block does not exists -> this move
-
       if (this.checkNextIsNull(weightX, weightY)) {
          this.moveBlock(weightX, weightY);
          return true;
       }
 
-      // The space to move exists in the frame
-      // next block exists
-      // next block can move
+      // Now, next block can move
 
-      // Set Next Stage
+      // a. Set Next Stage
       if (this instanceof ObjBlock
             && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
          ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
@@ -98,7 +109,7 @@ public class Block extends JLabel {
          }
       }
 
-      // stage3 : water_reset Stage
+      // b. stage3 : water_reset Stage
       if (stage3Panel != null) {
          if (this instanceof ObjBlock
                && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
@@ -109,8 +120,8 @@ public class Block extends JLabel {
          }
       }
 
+      // c. Check next block is pushable - recursive
       if (this.checkNextPushable(weightX, weightY)) {
-
          // push next block
          if (!stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].moveProcess(weightX,
                weightY)) {
@@ -118,7 +129,7 @@ public class Block extends JLabel {
          }
          this.moveBlock(weightX, weightY);
 
-         // Check Unset
+         // Check Unset and Set
          this.checkUnset();
 
          return true;
@@ -127,6 +138,7 @@ public class Block extends JLabel {
       return false;
    }
 
+   // (5) Check Next Block is Pushable
    public boolean checkNextPushable(int weightX, int weightY) {
       // Check if the next block is movable
       if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].isPushable) {
@@ -136,7 +148,7 @@ public class Block extends JLabel {
       }
    }
 
-   // Check next block exists
+   // (6) Check Next Block exists
    public boolean checkNextIsNull(int weightX, int weightY) {
       if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] == null) {
          return true;
@@ -144,14 +156,12 @@ public class Block extends JLabel {
       return false;
    }
 
-   // Check the next block moving in the frame
+   // (7) Check the next block is in the frame
    public boolean checkNextInFrame(int weightX, int weightY) {
-
       // check_X
       if (this.getArrX() + weightX < 0 || this.getArrX() + weightX > ConstClass.ARRAY_X - 1) {
          return false;
       }
-
       // check_Y
       if (this.getArrY() + weightY < 0 || this.getArrY() + weightY > ConstClass.ARRAY_Y - 1) {
          return false;
@@ -160,17 +170,12 @@ public class Block extends JLabel {
       return true;
    }
 
-   // (3) getter/setter
-   public void setIsPushable(boolean isPushable) {
-      this.isPushable = isPushable;
-   }
-
-   // (4) Check Unset
+   // (8) Check Unset and Set
    public void checkUnset() {
-
+      // First, unset all object
       this.unsetAllObject();
 
-      // 모든 객체에 대해서 점검
+      // Second, check and set all object
       for (Block[] b1 : stageBlockArr.array) {
          for (Block b2 : b1) {
             if (b2 instanceof WordBlock) {
@@ -181,83 +186,85 @@ public class Block extends JLabel {
                // the object is a subject
                if (subBlock.isSubject()) {
 
-                  // 동쪽 +1 블록이 동사일 경우
+                  // 1. Right+1 is a verb
                   if (subBlock.checkNextFNW(1, 0) && subBlock.isWeightVerb(1, 0)) {
 
-                     // 동쪽 +2 블록이 보어일 경우
+                     // 1-A. Right+2 is a complement
                      if (subBlock.checkNextFNW(2, 0) && subBlock.isWeightComplement(2, 0)) {
 
-                        // dodo setting
+                        // 1-A-a. Set dodo
                         if (this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(2, 0).getText().equals("w"))
                               this.dodo.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(2, 0).getText().equals("y"))
                               this.dodo.setYou(true);
                         }
-                        // fish setting
+                        // 1-A-b. Set fish
                         else if (this.fish.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(2, 0).getText().equals("w"))
                               this.fish.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(2, 0).getText().equals("y"))
                               this.fish.setYou(true);
 
+                           // Set move
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
                               this.fish.setMove(true);
                         }
-                        // toy setting
+                        // 1-A-c. Set toy
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(2, 0).getText().equals("w"))
                               this.toy.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(2, 0).getText().equals("y"))
                               this.toy.setYou(true);
                         }
                      }
                   }
 
-                  // 남쪽 +1 블록이 동사일 경우
+                  // 2. Down+1 is a verb
                   else if (subBlock.checkNextFNW(0, 1) && subBlock.isWeightVerb(0, 1)) {
 
-                     // 남쪽 +2 블록이 보어일 경우
+                     // 2-A. Down+2 is a complement
                      if (subBlock.checkNextFNW(0, 2) && subBlock.isWeightComplement(0, 2)) {
-                        // dodo setting
+                        // 2-A-a. Set dodo
                         if (this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(0, 2).getText().equals("w"))
                               this.dodo.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(0, 2).getText().equals("y"))
                               this.dodo.setYou(true);
                         }
-                        // fish setting
+                        // 2-A-b. Set fish
                         else if (this.fish.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(0, 2).getText().equals("w"))
                               this.fish.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(0, 2).getText().equals("y"))
                               this.fish.setYou(true);
 
+                           // Set move
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
                               this.fish.setMove(true);
                         }
-                        // toy setting
+                        // 2-A-c. Set toy
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
-                           // win setting
+                           // Set win
                            if (subBlock.getWeightBlock(0, 2).getText().equals("w"))
                               this.toy.setWin(true);
 
-                           // you setting
+                           // Set you
                            if (subBlock.getWeightBlock(0, 2).getText().equals("y"))
                               this.toy.setYou(true);
                         }
@@ -267,14 +274,14 @@ public class Block extends JLabel {
                }
 
             }
+            // inner loop break
          }
+         // outer loop break
       }
-
    }
 
-   // (5) Unset All Object8
+   // (9) Unset All Objects
    public void unsetAllObject() {
-
       // dodo
       dodo.setYou(false);
       dodo.setWin(false);
@@ -291,17 +298,11 @@ public class Block extends JLabel {
          toy.setWin(false);
          toy.setMove(false);
       }
-
    }
 
-   // (6) Get Weight Block
-   public Block getWeightBlock(int weightX, int weightY) {
-      return stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
-   }
-
-   // (7) Set dodo, fish, toy
+   // (10) Set dodo, fish, toy
    public void setObjects(JPanel stagePanel) {
-      // JPanel 꽕 젙
+      // Distinction of stage
       if (stagePanel instanceof Stage1Panel) {
          this.stage1Panel = (Stage1Panel) stagePanel;
          this.dodo = Stage1Panel.dodo;
@@ -321,244 +322,6 @@ public class Block extends JLabel {
             this.water[i].setWater(true);
          }
       }
-   }
-
-}
-
-@SuppressWarnings("serial")
-class WordBlock extends Block {
-
-   /* Private member variable */
-   private boolean isSubject;
-   private boolean isVerb;
-   private boolean isComplement;
-
-   ManageListener manageListener;
-
-   /* Constructor */
-   WordBlock() {
-
-   }
-
-   WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
-      this.setIcon(new ImageIcon(path));
-      this.stageBlockArr = stageBlockArr;
-      this.manageListener = manageListener;
-   }
-
-   WordBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
-
-      ImageIcon icon = new ImageIcon(path);
-      Image img = icon.getImage();
-      Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-      ImageIcon chanIcon = new ImageIcon(changeImg);
-
-      this.setIcon(chanIcon);
-      this.stageBlockArr = stageBlockArr;
-      this.manageListener = manageListener;
-   }
-
-   /* Method */
-   // Set Character Properties
-   public void setSubject() {
-      this.isSubject = true;
-   }
-
-   public void setVerb() {
-      this.isVerb = true;
-   }
-
-   public void setComplement() {
-      this.isComplement = true;
-   }
-
-   public boolean isSubject() {
-      return this.isSubject;
-   }
-
-   public boolean isVerb() {
-      return this.isVerb;
-   }
-
-   public boolean isComplement() {
-      return this.isComplement;
-   }
-
-   // check weightX, weightY
-   public boolean isWeightSubject(int weightX, int weightY) {
-      if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
-         return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isSubject();
-      }
-      return false;
-   }
-
-   public boolean isWeightVerb(int weightX, int weightY) {
-      if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
-         return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isVerb();
-      }
-      return false;
-   }
-
-   public boolean isWeightComplement(int weightX, int weightY) {
-      if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
-         return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isComplement();
-      }
-      return false;
-   }
-
-   public boolean checkNextFNW(int weightX, int weightY) {
-      // Check if the next block is in the frame
-      if (!this.checkNextInFrame(weightX, weightY))
-         return false;
-
-      // Check if the next block exists
-      if (this.checkNextIsNull(weightX, weightY)) {
-         return false;
-      }
-      // Check if the next block is WordBlock
-      if (!(stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock))
-         return false;
-
-      return true;
-   }
-}
-
-@SuppressWarnings("serial")
-class ObjBlock extends Block {
-
-   /* Private member variable */
-   private boolean isYou;
-   private boolean isWin;
-   private boolean isMove;
-   private boolean isWater = false;
-
-   ManageListener manageListener;
-
-   Timer timer = null;
-
-   /* Constructor */
-   ObjBlock() {
-
-   }
-
-   ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener) {
-      this.setIcon(new ImageIcon(path));
-      this.stageBlockArr = stageBlockArr;
-      this.manageListener = manageListener;
-   }
-
-   ObjBlock(String path, StageBlockArray stageBlockArr, ManageListener manageListener, String str) {
-
-      ImageIcon icon = new ImageIcon(path);
-      Image img = icon.getImage();
-      Image changeImg = img.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-      ImageIcon chanIcon = new ImageIcon(changeImg);
-
-      this.setIcon(chanIcon);
-      this.stageBlockArr = stageBlockArr;
-      this.manageListener = manageListener;
-
-   }
-
-   /* Method */
-
-   public void setYou(boolean flag) {
-      this.isYou = flag;
-
-      for (YouKeyListener ykl : ManageListener.YouKeyListenerList) {
-         ManageListener.contentpane.removeKeyListener(ykl);
-      }
-
-      if (flag) {
-
-         YouKeyListener ykl = new YouKeyListener(this);
-
-         ManageListener.contentpane.addKeyListener(ykl);
-
-         ManageListener.addYouKeyListener(ykl);
-      }
-   }
-
-   public void setWin(boolean flag) {
-      this.isWin = flag;
-   }
-
-   public boolean isWin() {
-      return this.isWin;
-   }
-
-   public boolean isYou() {
-      return this.isYou;
-   }
-
-   public boolean isDefeat() {
-      return this.isWater;
-   }
-
-   public void setWater(boolean b) {
-      this.isWater = b;
-   }
-
-   public void setisYou(boolean b) {
-      this.isYou = b;
-   }
-
-   public boolean isMove() {
-      return this.isMove;
-   }
-
-   public void setMove(boolean flag) {
-      this.isMove = flag;
-
-      ImageIcon icon_left = new ImageIcon("img/fish_left.png");
-      Image img_left = icon_left.getImage();
-      Image changeImg_left = img_left.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-      ImageIcon changeIcon_left = new ImageIcon(changeImg_left);
-
-      ImageIcon icon_right = new ImageIcon("img/fish_right.png");
-      Image img_right = icon_right.getImage();
-      Image changeImg_right = img_right.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-      ImageIcon changeIcon_right = new ImageIcon(changeImg_right);
-
-      if (stage3Panel != null) {
-         if (flag) {
-            fish.timer = new Timer();
-            TimerTask task = new TimerTask() {
-
-               int cnt = 0;
-
-               @Override
-               public void run() {
-
-                  int weightX = 0;
-                  int weightY = 0;
-
-                  if (cnt % 4 == 0) {
-                     weightX = -1;
-                     fish.setIcon(changeIcon_left);
-                     fish.moveBlock(weightX, weightY);
-                  } else if (cnt % 4 == 1) {
-                     weightY = 1;
-                     fish.moveBlock(weightX, weightY);
-                  } else if (cnt % 4 == 2) {
-                     weightX = 1;
-                     fish.setIcon(changeIcon_right);
-                     fish.moveBlock(weightX, weightY);
-                  } else if (cnt % 4 == 3) {
-                     weightY = -1;
-                     fish.moveBlock(weightX, weightY);
-                  }
-                  cnt++;
-               }
-
-            };
-            fish.timer.schedule(task, 0, 500);
-         } else {
-            if (fish.timer != null)
-               fish.timer.cancel();
-         }
-      }
-
    }
 
 }

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Stage2Panel extends JPanel {
 
-	/* Member Variable */
+	/* Member Variables */
 	static ObjBlock dodo;
 	static ObjBlock fish;
 	static ObjBlock toy;
@@ -117,7 +117,7 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(_toy, Stage2BlockPos._toy[0], Stage2BlockPos._toy[1], "t");
 	}
 
-	// Initialize WordBlock Member Variable
+	// Initialize WordBlock Member Variables
 	public void initWordBlockMemberVar() {
 		// Set Object Block
 		dodo.setisYou(true);
@@ -170,6 +170,7 @@ class Stage2BlockPos {
 	static int[] toy = { 5, 14 };
 	static int[][] water = { { 2, 13 }, { 2, 14 }, { 2, 15 }, { 2, 16 }, { 2, 17 }, { 3, 13 }, { 4, 13 }, { 5, 13 },
 			{ 6, 13 }, { 6, 14 }, { 6, 15 }, { 6, 16 }, { 6, 17 }, { 5, 17 }, { 4, 17 }, { 3, 17 } };
+
 	static int[] _dodo = { 2, 3 };
 	static int[] _is1 = { 2, 4 };
 	static int[] _you = { 2, 5 };

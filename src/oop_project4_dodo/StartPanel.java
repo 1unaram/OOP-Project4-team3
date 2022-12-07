@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class StartPanel extends JPanel {
 
+	/* Member Variables */
 	Container contentpane;
 	KeyAdapter enterKey = new KeyAdapter() {
-
 		// Press Enter to start game
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {

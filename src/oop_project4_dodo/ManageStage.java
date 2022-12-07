@@ -4,16 +4,19 @@ import java.awt.Container;
 
 public class ManageStage {
 
+    /* Member Variables */
     int stageNum;
     Container contentpane;
 
+    /* Constructor */
     ManageStage(Container contentpane) {
         stageNum = 1;
         this.contentpane = contentpane;
     }
 
+    /* Method */
+    // Change Next Stage
     public void nextStage() {
-
         switch (stageNum) {
             case 1:
                 this.resetContentpane();
@@ -34,6 +37,7 @@ public class ManageStage {
         stageNum++;
     }
 
+    // Change Previous Stage
     public void resetStage() {
         switch (stageNum) {
             case 1:
@@ -54,10 +58,9 @@ public class ManageStage {
         }
     }
 
+    // Reset Contentpane and Listener
     public void resetContentpane() {
-
         ManageListener.removeAllListener();
-
         contentpane.removeAll();
         contentpane.repaint();
     }
