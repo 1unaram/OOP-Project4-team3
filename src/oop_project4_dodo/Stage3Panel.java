@@ -162,8 +162,8 @@ public class Stage3Panel extends JPanel{
       _defeat.setComplement();
       
       fish.setIsPushable(false);
-      
       dodo.setisYou(true);
+      //water.setIsPushable(false);
    }
 
    // 배너 추가
