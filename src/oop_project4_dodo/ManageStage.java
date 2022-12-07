@@ -26,6 +26,9 @@ public class ManageStage {
             	contentpane.repaint();
             	break;
             case 3:
+            	this.resetContentpane();
+            	contentpane.add(new EndPanel(contentpane));
+            	contentpane.repaint();
             	break;
         }
         stageNum++;
@@ -45,7 +48,7 @@ public class ManageStage {
                 break;
             case 3:
                 this.resetContentpane();
-                contentpane.add(new Stage2Panel(contentpane));
+                contentpane.add(new Stage3Panel(contentpane));
                 contentpane.repaint();
                 break;
         }

@@ -35,7 +35,7 @@ public class Block extends JLabel {
 
 	/* Method */
 
-	// (1) Position 관련 메소드
+	// (1) Position 愿��젴 硫붿냼�뱶
 	public void setPos(int y, int x) {
 		this.arrY = y;
 		this.arrX = x;
@@ -49,8 +49,8 @@ public class Block extends JLabel {
 		return this.arrY;
 	}
 
-	// (2) this가 b를 미는 메소드
-	// this를 움직인다.
+	// (2) this媛� b瑜� 誘몃뒗 硫붿냼�뱶
+	// this瑜� ��吏곸씤�떎.
 	public void moveBlock(int weightX, int weightY) {	
 
 		int oldX = this.getArrX();
@@ -58,30 +58,30 @@ public class Block extends JLabel {
 
 		stageBlockArr.setNewPosition(this, oldY, oldX, oldY + weightY, oldX + weightX);
 
-		// 오브젝트의 멤버 변수 변경
+		// �삤釉뚯젥�듃�쓽 硫ㅻ쾭 蹂��닔 蹂�寃�
 		this.setPos(this.getArrY() + weightY, this.getArrX() + weightX);
 
-		// 오브젝트의 위치 다시 그리기
+		// �삤釉뚯젥�듃�쓽 �쐞移� �떎�떆 洹몃━湲�
 		this.setLocation(this.getX() + 60 * weightX, this.getY() + 60 * weightY);
 	}
 
-	// this가 움직이는 메소드
+	// this媛� ��吏곸씠�뒗 硫붿냼�뱶
 	public boolean moveProcess(int weightX, int weightY) {
 
-		// 이동할 칸이 프레임 안에 존재하지 않는 경우
+		// �씠�룞�븷 移몄씠 �봽�젅�엫 �븞�뿉 議댁옱�븯吏� �븡�뒗 寃쎌슦
 		if (!this.checkNextInFrame(weightX, weightY))
 			return false;
 
-		// 이동할 칸이 프레임 안에 존재하는 경우
-		// 다음 블록이 존재하지 않으면 this가 움직이기
+		// �씠�룞�븷 移몄씠 �봽�젅�엫 �븞�뿉 議댁옱�븯�뒗 寃쎌슦
+		// �떎�쓬 釉붾줉�씠 議댁옱�븯吏� �븡�쑝硫� this媛� ��吏곸씠湲�
 		if (this.checkNextIsNull(weightX, weightY)) {
 			this.moveBlock(weightX, weightY);
 			return true;
 		}
 
-		// 이동할 칸이 프레임 안에 존재하는 경우
-		// 다음 블록이 존재하는 경우
-		// 다음 블록이 움직일 수 있는 경우
+		// �씠�룞�븷 移몄씠 �봽�젅�엫 �븞�뿉 議댁옱�븯�뒗 寃쎌슦
+		// �떎�쓬 釉붾줉�씠 議댁옱�븯�뒗 寃쎌슦
+		// �떎�쓬 釉붾줉�씠 ��吏곸씪 �닔 �엳�뒗 寃쎌슦
 		
 		// Set Next Stage
 		if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
@@ -90,11 +90,19 @@ public class Block extends JLabel {
 					MainFrame.ms.nextStage();
 			}
 		}
+		
+		// Set Water Die
+		/* if(this instanceof ObjBlock && stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof ObjBlock) {
+			ObjBlock nextBlock = (ObjBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX];
+			if(((ObjBlock)this).isYou() && 물인지 체크) {
+					MainFrame.ms.resetStage();
+			}
+		}*/
 					
 					
 		if (this.checkNextPushable(weightX, weightY)) {
 			
-			// 다음 블록을 밀기
+			// �떎�쓬 釉붾줉�쓣 諛�湲�
 			if (!stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX].moveProcess(weightX,
 					weightY)) {
 				return false;
@@ -111,7 +119,7 @@ public class Block extends JLabel {
 	}
 
 	public boolean checkNextPushable(int weightX, int weightY) {
-		// 다음 블록이 이동 가능한지 검사
+		// �떎�쓬 釉붾줉�씠 �씠�룞 媛��뒫�븳吏� 寃��궗
 		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() +
 				weightX].isPushable) {
 			return true;
@@ -120,7 +128,7 @@ public class Block extends JLabel {
 		}
 	}
 
-	// 다음 블록이 없는 지 체크
+	// �떎�쓬 釉붾줉�씠 �뾾�뒗 吏� 泥댄겕
 	public boolean checkNextIsNull(int weightX, int weightY) {
 		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] == null) {
 			return true;
@@ -128,15 +136,15 @@ public class Block extends JLabel {
 		return false;
 	}
 
-	// 다음 블록 이동 시 프레임 내에 있는지 체크
+	// �떎�쓬 釉붾줉 �씠�룞 �떆 �봽�젅�엫 �궡�뿉 �엳�뒗吏� 泥댄겕
 	public boolean checkNextInFrame(int weightX, int weightY) {
 
-		// X 방향 체크
+		// X 諛⑺뼢 泥댄겕
 		if (this.getArrX() + weightX < 0 || this.getArrX() + weightX > ConstClass.ARRAY_X - 1) {
 			return false;
 		}
 
-		// Y 방향 체크
+		// Y 諛⑺뼢 泥댄겕
 		if (this.getArrY() + weightY < 0 || this.getArrY() + weightY > ConstClass.ARRAY_Y - 1) {
 			return false;
 		}
@@ -155,7 +163,7 @@ public class Block extends JLabel {
 
 		this.unsetAllObject();
 		
-		// 모든 객체에 대해서 점검
+		// 紐⑤뱺 媛앹껜�뿉 ���빐�꽌 �젏寃�
 		for(Block[] b1 : stageBlockArr.array) {
 			for(Block b2 : b1) {
 				if(b2 instanceof WordBlock) {
@@ -164,80 +172,80 @@ public class Block extends JLabel {
 					// Type Casting
 					WordBlock subBlock = (WordBlock) b2;
 					
-					// 해당 객체가 주어일 경우
+					// �빐�떦 媛앹껜媛� 二쇱뼱�씪 寃쎌슦
 					if(subBlock.isSubject()) {
 
-						// 동쪽 +1 블록이 동사일 경우
+						// �룞履� +1 釉붾줉�씠 �룞�궗�씪 寃쎌슦
 						if(subBlock.checkNextFNW(1, 0) && subBlock.isWeightVerb(1, 0)) {
 							
-								// 동쪽 +2 블록이 보어일 경우
+								// �룞履� +2 釉붾줉�씠 蹂댁뼱�씪 寃쎌슦
 								if(subBlock.checkNextFNW(2, 0) && subBlock.isWeightComplement(2, 0)) {
 
-									// dodo 세팅
+									// dodo �꽭�똿
 									if(this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
-										// win 세팅
+										// win �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
 											this.dodo.setWin(true);
 										
-										// you 세팅
+										// you �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
 											this.dodo.setYou(true);
 									} 
-									// fish 세팅
+									// fish �꽭�똿
 									else if(this.fish.getText().equals(subBlock.getText().toUpperCase())) {
-										// win 세팅
+										// win �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
 											this.fish.setWin(true);
 										
-										// you 세팅
+										// you �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
 											this.fish.setYou(true);
 									}
-									// toy 세팅																
+									// toy �꽭�똿																
 									else if(this.toy.getText().equals(subBlock.getText().toUpperCase())) {
-										// win 세팅
+										// win �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("w"))
 											this.toy.setWin(true);
 										
-										// you 세팅
+										// you �꽭�똿
 										if(subBlock.getWeightBlock(2, 0).getText().equals("y"))
 											this.toy.setYou(true);
 									}
 								}
 						}
 
-						// 남쪽 +1 블록이 동사일 경우
+						// �궓履� +1 釉붾줉�씠 �룞�궗�씪 寃쎌슦
 						else if(subBlock.checkNextFNW(0, 1) && subBlock.isWeightVerb(0, 1)) {
 							
-							// 남쪽 +2 블록이 보어일 경우
+							// �궓履� +2 釉붾줉�씠 蹂댁뼱�씪 寃쎌슦
 							if(subBlock.checkNextFNW(0, 2) && subBlock.isWeightComplement(0, 2)) {
-								// dodo 세팅
+								// dodo �꽭�똿
 								if(this.dodo.getText().equals(subBlock.getText().toUpperCase())) {
-									// win 세팅
+									// win �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
 										this.dodo.setWin(true);
 									
-									// you 세팅
+									// you �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
 										this.dodo.setYou(true);
 								} 
-								// fish 세팅
+								// fish �꽭�똿
 								else if(this.fish.getText().equals(subBlock.getText().toUpperCase())) {
-									// win 세팅
+									// win �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
 										this.fish.setWin(true);
 									
-									// you 세팅
+									// you �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
 										this.fish.setYou(true);
 								}
-								// toy 세팅 															
+								// toy �꽭�똿 															
 								else if(this.toy.getText().equals(subBlock.getText().toUpperCase())) {
-									// win 세팅
+									// win �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("w"))
 										this.toy.setWin(true);
 									
-									// you 세팅
+									// you �꽭�똿
 									if(subBlock.getWeightBlock(0, 2).getText().equals("y"))
 										this.toy.setYou(true);
 								} 
@@ -280,7 +288,7 @@ public class Block extends JLabel {
 
 	// (7) Set dodo, fish
 	public void setObjects(JPanel stagePanel) {
-		// JPanel 설정
+		// JPanel �꽕�젙
 		if(stagePanel instanceof Stage1Panel) {
 			this.stage1Panel = (Stage1Panel) stagePanel;
 			this.dodo = Stage1Panel.dodo;
@@ -292,6 +300,9 @@ public class Block extends JLabel {
 			this.toy = Stage2Panel.toy;
 		} else if(stagePanel instanceof Stage3Panel) {
 			this.stage3Panel = (Stage3Panel) stagePanel;
+			this.dodo = Stage3Panel.dodo;
+			this.fish = Stage3Panel.fish;
+			this.toy = Stage3Panel.toy;
 		}
 	}
 
@@ -331,7 +342,7 @@ class WordBlock extends Block {
 	}
 
 	/* Method */
-	// 글자 속성 설정
+	// 湲��옄 �냽�꽦 �꽕�젙
 	public void setSubject() {
 		this.isSubject = true;
 	}
@@ -356,7 +367,7 @@ class WordBlock extends Block {
 		return this.isComplement;
 	}
 
-	// weightX, weightY의 블록에 대해 체크
+	// weightX, weightY�쓽 釉붾줉�뿉 ���빐 泥댄겕
 	public boolean isWeightSubject(int weightX, int weightY) {
 		if (stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock) {
 			return ((WordBlock) stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX]).isSubject();
@@ -379,15 +390,15 @@ class WordBlock extends Block {
 	}
 
 	public boolean checkNextFNW(int weightX, int weightY) {
-		// 다음 블록이 프레임 안에 있는지 체크
+		// �떎�쓬 釉붾줉�씠 �봽�젅�엫 �븞�뿉 �엳�뒗吏� 泥댄겕
 		if (!this.checkNextInFrame(weightX, weightY))
 			return false;
 
-		// 다음 블록이 존재하는지 체크
+		// �떎�쓬 釉붾줉�씠 議댁옱�븯�뒗吏� 泥댄겕
 		if (this.checkNextIsNull(weightX, weightY)) {
 			return false;
 		}
-		// 다음 블록이 WordBlock인지 체크
+		// �떎�쓬 釉붾줉�씠 WordBlock�씤吏� 泥댄겕
 		if (!(stageBlockArr.array[this.getArrY() + weightY][this.getArrX() + weightX] instanceof WordBlock))
 			return false;
 
@@ -441,10 +452,10 @@ class ObjBlock extends Block {
 	
 			YouKeyListener1 ykl = new YouKeyListener1(this);
 	
-			// 키 리스너를 실제 다는 동작
+			// �궎 由ъ뒪�꼫瑜� �떎�젣 �떎�뒗 �룞�옉
 			manageListener.contentpane.addKeyListener(ykl);
 	
-			// 키 리스너 관리 대상에 들어간다
+			// �궎 由ъ뒪�꼫 愿�由� ���긽�뿉 �뱾�뼱媛꾨떎
 			manageListener.addYouKeyListener1(ykl);
 		}
 	}
@@ -460,6 +471,10 @@ class ObjBlock extends Block {
 	public boolean isYou() {
 		return this.isYou;
 	}
+	
+	/*public boolean isDefeat() {
+		//배열 위치 검사
+	}*/
 	
 	public void setisYou(boolean b) {
 		this.isYou = b;

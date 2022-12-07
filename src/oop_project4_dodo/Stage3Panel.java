@@ -273,6 +273,7 @@ public class Stage3Panel extends JPanel{
       fish.setIsPushable(false);
       
       dodo.setisYou(true);
+      //water1.setIsDefeat(true);
    }
 
    // 배너 추가
@@ -354,16 +355,16 @@ class Stage3BlockPos {
    static int[] water22 = { 5, 17 };
    static int[] water23 = { 4, 17 };
    static int[] water24 = { 3, 17 };
-   static int[] _dodo = { 2, 5 };
-   static int[] _is1 = { 2, 6 };
-   static int[] _you = { 2, 7 };
-   static int[] _toy = { 5, 5 };
-   static int[] _is2 = { 5, 6 };
-   static int[] _win = { 5, 7 };
-   static int[] _fish = { 8, 5 };
-   static int[] _is3 = { 8, 6 };
-   static int[] _move = { 8, 7 };
-   static int[] _water = { 0, 15 };
-   static int[] _is4 = { 0, 16 };
-   static int[] _defeat = { 0, 17 };
+   static int[] _dodo = { 1, 5 };
+   static int[] _is1 = { 1, 6 };
+   static int[] _you = { 1, 7 };
+   static int[] _toy = { 4, 5 };
+   static int[] _is2 = { 4, 6 };
+   static int[] _win = { 4, 7 };
+   static int[] _fish = { 7, 5 };
+   static int[] _is3 = { 7, 6 };
+   static int[] _move = { 7, 7 };
+   static int[] _water = { 9, 0 };
+   static int[] _is4 = { 9, 1 };
+   static int[] _defeat = { 9, 2};
 }
