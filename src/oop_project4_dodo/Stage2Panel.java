@@ -64,7 +64,7 @@ public class Stage2Panel extends JPanel {
 
 	public void initBlock() {
 
-		dodo = new ObjBlock("img/dodo_rightight.png", stage2BlockArr, manageListener);
+		dodo = new ObjBlock("img/dodo_right.png", stage2BlockArr, manageListener);
 		fish = new ObjBlock("img/fish_right.png", stage2BlockArr, manageListener);
 		toy = new ObjBlock("img/toy.png", stage2BlockArr, manageListener);
 		water1 = new ObjBlock("img/water.png", stage2BlockArr, manageListener);
@@ -196,7 +196,7 @@ public class Stage2Panel extends JPanel {
 		_is2.setVerb();
 		_win.setComplement();
 		fish.setIsPushable(false);
-		toy.setIsPushable(true);
+		toy.setIsPushable(false);
 		water1.setIsPushable(false);
 		water2.setIsPushable(false);
 		water3.setIsPushable(false);
