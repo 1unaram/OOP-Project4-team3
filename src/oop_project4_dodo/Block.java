@@ -209,8 +209,10 @@ public class Block extends JLabel {
                               this.fish.setYou(true);
 
                            // Set move
-                           if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
-                              this.fish.setMove(true);
+                           if (subBlock.getWeightBlock(2, 0).getText().equals("m")) {
+                        	   this.fish.setLocation(960, 180);
+                               this.fish.setMove(true);
+                           }                        
                         }
                         // 1-A-c. Set toy
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
@@ -251,8 +253,10 @@ public class Block extends JLabel {
                               this.fish.setYou(true);
 
                            // Set move
-                           if (subBlock.getWeightBlock(2, 0).getText().equals("m"))
-                              this.fish.setMove(true);
+                           if (subBlock.getWeightBlock(2, 0).getText().equals("m")) {
+                        	   this.fish.setLocation(960, 180);
+                               this.fish.setMove(true);
+                           }
                         }
                         // 2-A-c. Set toy
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
