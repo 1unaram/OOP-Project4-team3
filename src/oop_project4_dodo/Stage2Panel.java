@@ -29,6 +29,7 @@ public class Stage2Panel extends JPanel {
 	WordBlock _toy;
 	WordBlock _water;
 	WordBlock _is3;
+	WordBlock _wall;
 
 	/* Constructor */
 	Stage2Panel(Container cp) {
@@ -68,6 +69,7 @@ public class Stage2Panel extends JPanel {
 		_toy = new WordBlock("img/_toy.png", stage2BlockArr);
 		_water = new WordBlock("img/_water.png", stage2BlockArr);
 		_is3 = new WordBlock("img/_is.png", stage2BlockArr);
+		_wall = new WordBlock("img/_wall.png", stage2BlockArr);
 
 		// Set Block Position
 		dodo.setBounds(Stage2BlockPos.dodo[1] * 60, Stage2BlockPos.dodo[0] * 60, 60, 60);
@@ -85,6 +87,7 @@ public class Stage2Panel extends JPanel {
 		_toy.setBounds(Stage2BlockPos._toy[1] * 60, Stage2BlockPos._toy[0] * 60, 60, 60);
 		_water.setBounds(Stage2BlockPos._water[1] * 60, Stage2BlockPos._water[0] * 60, 60, 60);
 		_is3.setBounds(Stage2BlockPos._is3[1] * 60, Stage2BlockPos._is3[0] * 60, 60, 60);
+		_wall.setBounds(Stage2BlockPos._wall[1] * 60, Stage2BlockPos._wall[0] * 60, 60, 60);
 
 		// Add Block to Panel
 		this.add(dodo);
@@ -102,6 +105,7 @@ public class Stage2Panel extends JPanel {
 		this.add(_toy);
 		this.add(_water);
 		this.add(_is3);
+		this.add(_wall);
 
 		setAllObjects();
 	}
@@ -124,6 +128,7 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(_toy, Stage2BlockPos._toy[0], Stage2BlockPos._toy[1], "t");
 		stage2BlockArr.initPosition(_water, Stage2BlockPos._water[0], Stage2BlockPos._water[1], "wt");
 		stage2BlockArr.initPosition(_is3, Stage2BlockPos._is3[0], Stage2BlockPos._is3[1], "3");
+		stage2BlockArr.initPosition(_wall, Stage2BlockPos._wall[0], Stage2BlockPos._wall[1], "wl");
 	}
 
 	// Initialize WordBlock Member Variables
@@ -146,6 +151,7 @@ public class Stage2Panel extends JPanel {
 		_win.setComplement();
 		_water.setSubject();
 		_is3.setVerb();
+		_wall.setComplement();
 	}
 
 	// Initialize Banner
@@ -172,6 +178,7 @@ public class Stage2Panel extends JPanel {
 		_toy.setObjects(this);
 		_water.setObjects(this);
 		_is3.setObjects(this);
+		_wall.setObjects(this);
 	}
 }
 
@@ -192,4 +199,5 @@ class Stage2BlockPos {
 	static int[] _toy = { 5, 5 };
 	static int[] _water = { 10, 17 };
 	static int[] _is3 = { 10, 18 };
+	static int[] _wall = { 10, 19 };
 }
