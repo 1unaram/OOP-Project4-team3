@@ -14,7 +14,7 @@ class ObjBlock extends Block {
     private boolean isYou;
     private boolean isWin;
     private boolean isMove;
-    private boolean isWater = false;
+    private boolean isDefeat = false;
 
     // public
     Timer timer = null;
@@ -70,15 +70,8 @@ class ObjBlock extends Block {
     public void setMove(boolean flag) {
         this.isMove = flag;
 
-        ImageIcon icon_left = new ImageIcon("img/fish_left.png");
-        Image img_left = icon_left.getImage();
-        Image changeImg_left = img_left.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon changeIcon_left = new ImageIcon(changeImg_left);
-
-        ImageIcon icon_right = new ImageIcon("img/fish_right.png");
-        Image img_right = icon_right.getImage();
-        Image changeImg_right = img_right.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-        ImageIcon changeIcon_right = new ImageIcon(changeImg_right);
+        ImageIcon changeIcon_left = new ImageIcon("img/fish_left.png");
+        ImageIcon changeIcon_right = new ImageIcon("img/fish_right.png");
 
         if (stage3Panel != null) {
             if (flag) {
@@ -93,18 +86,25 @@ class ObjBlock extends Block {
                         int weightX = 0;
                         int weightY = 0;
 
+                        // Left
                         if (cnt % 4 == 0) {
                             weightX = -1;
                             fish.setIcon(changeIcon_left);
                             fish.moveBlock(weightX, weightY);
-                        } else if (cnt % 4 == 1) {
+                        }
+                        // Down
+                        else if (cnt % 4 == 1) {
                             weightY = 1;
                             fish.moveBlock(weightX, weightY);
-                        } else if (cnt % 4 == 2) {
+                        }
+                        // Right
+                        else if (cnt % 4 == 2) {
                             weightX = 1;
                             fish.setIcon(changeIcon_right);
                             fish.moveBlock(weightX, weightY);
-                        } else if (cnt % 4 == 3) {
+                        }
+                        // Up
+                        else if (cnt % 4 == 3) {
                             weightY = -1;
                             fish.moveBlock(weightX, weightY);
                         }
@@ -125,11 +125,11 @@ class ObjBlock extends Block {
         return this.isMove;
     }
 
-    public void setWater(boolean b) {
-        this.isWater = b;
+    public void setDefeat(boolean b) {
+        this.isDefeat = b;
     }
 
     public boolean isDefeat() {
-        return this.isWater;
+        return this.isDefeat;
     }
 }

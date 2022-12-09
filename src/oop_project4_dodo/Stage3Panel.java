@@ -119,15 +119,13 @@ public class Stage3Panel extends JPanel {
       setAllObjects();
    }
 
-
    // Initialize Block Array
    public void initBlockArr() {
       stage3BlockArr.initPosition(dodo, Stage3BlockPos.dodo[0], Stage3BlockPos.dodo[1], "D");
       stage3BlockArr.initPosition(fish, Stage3BlockPos.fish[0], Stage3BlockPos.fish[1], "F");
       stage3BlockArr.initPosition(toy, Stage3BlockPos.toy[0], Stage3BlockPos.toy[1], "T");
       for (int i = 0; i < water.length; i++) {
-         stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1],
-               "W" + Integer.toString(i + 1));
+         stage3BlockArr.initPosition(water[i], Stage3BlockPos.water[i][0], Stage3BlockPos.water[i][1], "WATER");
       }
       stage3BlockArr.initPosition(_dodo, Stage3BlockPos._dodo[0], Stage3BlockPos._dodo[1], "d");
       stage3BlockArr.initPosition(_is1, Stage3BlockPos._is1[0], Stage3BlockPos._is1[1], "1");
@@ -138,7 +136,7 @@ public class Stage3Panel extends JPanel {
       stage3BlockArr.initPosition(_fish, Stage3BlockPos._fish[0], Stage3BlockPos._fish[1], "f");
       stage3BlockArr.initPosition(_is3, Stage3BlockPos._is3[0], Stage3BlockPos._is3[1], "3");
       stage3BlockArr.initPosition(_move, Stage3BlockPos._move[0], Stage3BlockPos._move[1], "m");
-      stage3BlockArr.initPosition(_water, Stage3BlockPos._water[0], Stage3BlockPos._water[1], "a");
+      stage3BlockArr.initPosition(_water, Stage3BlockPos._water[0], Stage3BlockPos._water[1], "water");
       stage3BlockArr.initPosition(_is4, Stage3BlockPos._is4[0], Stage3BlockPos._is4[1], "4");
       stage3BlockArr.initPosition(_defeat, Stage3BlockPos._defeat[0], Stage3BlockPos._defeat[1], "d");
    }
@@ -165,7 +163,6 @@ public class Stage3Panel extends JPanel {
          water[i].setIsPushable(false);
       }
    }
-
 
    // Initialize Banner
    public void initBanner() {

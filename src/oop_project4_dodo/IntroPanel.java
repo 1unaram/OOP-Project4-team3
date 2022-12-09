@@ -45,7 +45,6 @@ public class IntroPanel extends JPanel {
 		this.add(dodo);
 		this.add(_is);
 		this.add(_you);
-
 	}
 
 	// Play Intro Animation

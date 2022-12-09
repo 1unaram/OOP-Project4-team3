@@ -210,9 +210,9 @@ public class Block extends JLabel {
 
                            // Set move
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m")) {
-                        	   this.fish.setLocation(960, 180);
-                               this.fish.setMove(true);
-                           }                        
+                              this.fish.setLocation(960, 180);
+                              this.fish.setMove(true);
+                           }
                         }
                         // 1-A-c. Set toy
                         else if (this.toy.getText().equals(subBlock.getText().toUpperCase())) {
@@ -254,8 +254,8 @@ public class Block extends JLabel {
 
                            // Set move
                            if (subBlock.getWeightBlock(2, 0).getText().equals("m")) {
-                        	   this.fish.setLocation(960, 180);
-                               this.fish.setMove(true);
+                              this.fish.setLocation(960, 180);
+                              this.fish.setMove(true);
                            }
                         }
                         // 2-A-c. Set toy
@@ -268,6 +268,23 @@ public class Block extends JLabel {
                            if (subBlock.getWeightBlock(0, 2).getText().equals("y"))
                               this.toy.setYou(true);
                         }
+                        // 2-A-d. Set water
+                        else if (this.water[0].getText().equals(subBlock.getText().toUpperCase())) {
+                           // Set win
+                           if (subBlock.getWeightBlock(0, 2).getText().equals("w")) {
+                              for (ObjBlock w : water) {
+                                 w.setWin(true);
+                              }
+                           }
+
+                           // Set you
+                           if (subBlock.getWeightBlock(0, 2).getText().equals("y")) {
+                              for (ObjBlock w : water) {
+                                 w.setYou(true);
+                              }
+                           }
+                        }
+
                      }
                   }
 
@@ -298,6 +315,15 @@ public class Block extends JLabel {
          toy.setWin(false);
          toy.setMove(false);
       }
+
+      // water
+      if (stage2Panel != null || stage3Panel != null) {
+         for (ObjBlock w : water) {
+            w.setYou(false);
+            w.setWin(false);
+            w.setMove(false);
+         }
+      }
    }
 
    // (10) Set dodo, fish, toy
@@ -312,14 +338,19 @@ public class Block extends JLabel {
          this.dodo = Stage2Panel.dodo;
          this.fish = Stage2Panel.fish;
          this.toy = Stage2Panel.toy;
+         this.water = new ObjBlock[Stage2Panel.water.length];
+         for (int i = 0; i < Stage2Panel.water.length; i++) {
+            this.water[i] = Stage2Panel.water[i];
+         }
       } else if (stagePanel instanceof Stage3Panel) {
          this.stage3Panel = (Stage3Panel) stagePanel;
          this.dodo = Stage3Panel.dodo;
          this.fish = Stage3Panel.fish;
          this.toy = Stage3Panel.toy;
          this.water = Stage3Panel.water;
-         for (int i = 0; i < this.water.length; i++) {
-            this.water[i].setWater(true);
+         for (int i = 0; i < Stage3Panel.water.length; i++) {
+            this.water[i] = Stage3Panel.water[i];
+            this.water[i].setDefeat(true);
          }
       }
    }

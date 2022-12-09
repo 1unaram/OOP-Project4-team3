@@ -14,12 +14,12 @@ public class Stage2Panel extends JPanel {
 	static ObjBlock dodo;
 	static ObjBlock fish;
 	static ObjBlock toy;
+	static ObjBlock[] water;
 	static StageBlockArray stage2BlockArr;
 	static ManageListener manageListener;
 
 	Container contentpane;
 
-	ObjBlock[] water = new ObjBlock[16];
 	WordBlock _dodo;
 	WordBlock _you;
 	WordBlock _is1;
@@ -57,6 +57,7 @@ public class Stage2Panel extends JPanel {
 		dodo = new ObjBlock("img/dodo_right.png", stage2BlockArr);
 		fish = new ObjBlock("img/fish_right.png", stage2BlockArr);
 		toy = new ObjBlock("img/toy.png", stage2BlockArr);
+		water = new ObjBlock[16];
 		for (int i = 0; i < water.length; i++) {
 			water[i] = new ObjBlock("img/water.png", stage2BlockArr);
 		}
@@ -116,8 +117,7 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(fish, Stage2BlockPos.fish[0], Stage2BlockPos.fish[1], "F");
 		stage2BlockArr.initPosition(toy, Stage2BlockPos.toy[0], Stage2BlockPos.toy[1], "T");
 		for (int i = 0; i < water.length; i++) {
-			String W = "W" + Integer.toString(i + 1);
-			stage2BlockArr.initPosition(water[i], Stage2BlockPos.water[i][0], Stage2BlockPos.water[i][1], W);
+			stage2BlockArr.initPosition(water[i], Stage2BlockPos.water[i][0], Stage2BlockPos.water[i][1], "WATER");
 		}
 		stage2BlockArr.initPosition(_dodo, Stage2BlockPos._dodo[0], Stage2BlockPos._dodo[1], "d");
 		stage2BlockArr.initPosition(_is1, Stage2BlockPos._is1[0], Stage2BlockPos._is1[1], "1");
@@ -126,7 +126,7 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(_is2, Stage2BlockPos._is2[0], Stage2BlockPos._is2[1], "2");
 		stage2BlockArr.initPosition(_win, Stage2BlockPos._win[0], Stage2BlockPos._win[1], "w");
 		stage2BlockArr.initPosition(_toy, Stage2BlockPos._toy[0], Stage2BlockPos._toy[1], "t");
-		stage2BlockArr.initPosition(_water, Stage2BlockPos._water[0], Stage2BlockPos._water[1], "wt");
+		stage2BlockArr.initPosition(_water, Stage2BlockPos._water[0], Stage2BlockPos._water[1], "water");
 		stage2BlockArr.initPosition(_is3, Stage2BlockPos._is3[0], Stage2BlockPos._is3[1], "3");
 		stage2BlockArr.initPosition(_wall, Stage2BlockPos._wall[0], Stage2BlockPos._wall[1], "wl");
 	}
