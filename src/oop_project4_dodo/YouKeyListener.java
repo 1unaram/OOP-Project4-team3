@@ -40,14 +40,6 @@ public class YouKeyListener extends KeyAdapter {
 				weightX = 1;
 				this.reverseYou(3);
 				break;
-			case KeyEvent.VK_ESCAPE:
-				// Exit Game
-				System.exit(0);
-				break;
-			case 'R':
-				// Reset Stage
-				MainFrame.ms.resetStage();
-				return;
 			default:
 				return;
 		}

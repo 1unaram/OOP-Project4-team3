@@ -27,6 +27,8 @@ public class Stage2Panel extends JPanel {
 	WordBlock _is2;
 	WordBlock _win;
 	WordBlock _toy;
+	WordBlock _water;
+	WordBlock _is3;
 
 	/* Constructor */
 	Stage2Panel(Container cp) {
@@ -64,6 +66,8 @@ public class Stage2Panel extends JPanel {
 		_is2 = new WordBlock("img/_is.png", stage2BlockArr);
 		_win = new WordBlock("img/_win.png", stage2BlockArr);
 		_toy = new WordBlock("img/_toy.png", stage2BlockArr);
+		_water = new WordBlock("img/_water.png", stage2BlockArr);
+		_is3 = new WordBlock("img/_is.png", stage2BlockArr);
 
 		// Set Block Position
 		dodo.setBounds(Stage2BlockPos.dodo[1] * 60, Stage2BlockPos.dodo[0] * 60, 60, 60);
@@ -79,6 +83,8 @@ public class Stage2Panel extends JPanel {
 		_is2.setBounds(Stage2BlockPos._is2[1] * 60, Stage2BlockPos._is2[0] * 60, 60, 60);
 		_win.setBounds(Stage2BlockPos._win[1] * 60, Stage2BlockPos._win[0] * 60, 60, 60);
 		_toy.setBounds(Stage2BlockPos._toy[1] * 60, Stage2BlockPos._toy[0] * 60, 60, 60);
+		_water.setBounds(Stage2BlockPos._water[1] * 60, Stage2BlockPos._water[0] * 60, 60, 60);
+		_is3.setBounds(Stage2BlockPos._is3[1] * 60, Stage2BlockPos._is3[0] * 60, 60, 60);
 
 		// Add Block to Panel
 		this.add(dodo);
@@ -94,6 +100,8 @@ public class Stage2Panel extends JPanel {
 		this.add(_is2);
 		this.add(_win);
 		this.add(_toy);
+		this.add(_water);
+		this.add(_is3);
 
 		setAllObjects();
 	}
@@ -106,7 +114,6 @@ public class Stage2Panel extends JPanel {
 		for (int i = 0; i < water.length; i++) {
 			String W = "W" + Integer.toString(i + 1);
 			stage2BlockArr.initPosition(water[i], Stage2BlockPos.water[i][0], Stage2BlockPos.water[i][1], W);
-
 		}
 		stage2BlockArr.initPosition(_dodo, Stage2BlockPos._dodo[0], Stage2BlockPos._dodo[1], "d");
 		stage2BlockArr.initPosition(_is1, Stage2BlockPos._is1[0], Stage2BlockPos._is1[1], "1");
@@ -115,6 +122,8 @@ public class Stage2Panel extends JPanel {
 		stage2BlockArr.initPosition(_is2, Stage2BlockPos._is2[0], Stage2BlockPos._is2[1], "2");
 		stage2BlockArr.initPosition(_win, Stage2BlockPos._win[0], Stage2BlockPos._win[1], "w");
 		stage2BlockArr.initPosition(_toy, Stage2BlockPos._toy[0], Stage2BlockPos._toy[1], "t");
+		stage2BlockArr.initPosition(_water, Stage2BlockPos._water[0], Stage2BlockPos._water[1], "wt");
+		stage2BlockArr.initPosition(_is3, Stage2BlockPos._is3[0], Stage2BlockPos._is3[1], "3");
 	}
 
 	// Initialize WordBlock Member Variables
@@ -125,7 +134,6 @@ public class Stage2Panel extends JPanel {
 		toy.setIsPushable(false);
 		for (int i = 0; i < water.length; i++) {
 			water[i].setIsPushable(false);
-
 		}
 
 		// Set Word Block
@@ -136,6 +144,8 @@ public class Stage2Panel extends JPanel {
 		_toy.setSubject();
 		_is2.setVerb();
 		_win.setComplement();
+		_water.setSubject();
+		_is3.setVerb();
 	}
 
 	// Initialize Banner
@@ -160,6 +170,8 @@ public class Stage2Panel extends JPanel {
 		_is2.setObjects(this);
 		_win.setObjects(this);
 		_toy.setObjects(this);
+		_water.setObjects(this);
+		_is3.setObjects(this);
 	}
 }
 
@@ -178,4 +190,6 @@ class Stage2BlockPos {
 	static int[] _is2 = { 5, 6 };
 	static int[] _win = { 5, 7 };
 	static int[] _toy = { 5, 5 };
+	static int[] _water = { 10, 17 };
+	static int[] _is3 = { 10, 18 };
 }

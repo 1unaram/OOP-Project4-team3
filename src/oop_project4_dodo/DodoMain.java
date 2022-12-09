@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
@@ -41,6 +43,7 @@ class MainFrame extends JFrame {
 
 		initIcon();
 		initStartPanel();
+		initKeyListen();
 
 		contentpane.revalidate();
 		contentpane.repaint();
@@ -57,5 +60,27 @@ class MainFrame extends JFrame {
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image img = toolkit.getImage("img/dodo-icon.png");
 		this.setIconImage(img);
+	}
+
+	public void initKeyListen() {
+
+		KeyAdapter ka = new KeyAdapter() {
+			// Press Enter to start game
+			public void keyPressed(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+
+				switch (keyCode) {
+					case KeyEvent.VK_ESCAPE:
+						// Exit Game
+						System.exit(0);
+						break;
+					case 'R':
+						// Reset Stage
+						MainFrame.ms.resetStage();
+						return;
+				}
+			}
+		};
+		contentpane.addKeyListener(ka);
 	}
 }
