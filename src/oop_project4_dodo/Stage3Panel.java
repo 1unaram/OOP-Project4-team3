@@ -116,6 +116,9 @@ public class Stage3Panel extends JPanel {
       this.add(_is4);
       this.add(_defeat);
 
+      // Add grass for demo
+		new Grasses(this);
+
       setAllObjects();
    }
 

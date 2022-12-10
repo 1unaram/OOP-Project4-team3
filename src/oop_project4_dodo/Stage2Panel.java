@@ -108,6 +108,9 @@ public class Stage2Panel extends JPanel {
 		this.add(_is3);
 		this.add(_wall);
 
+		// Add grass for demo
+		new Grasses(this);
+
 		setAllObjects();
 	}
 
