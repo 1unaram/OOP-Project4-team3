@@ -224,6 +224,22 @@ public class Block extends JLabel {
                            if (subBlock.getWeightBlock(2, 0).getText().equals("y"))
                               this.toy.setYou(true);
                         }
+                        // 1-A-d. Set water
+                        else if (this.water[0].getText().equals(subBlock.getText().toUpperCase())) {
+                           // Set win
+                           if (subBlock.getWeightBlock(2, 0).getText().equals("w")) {
+                              for (ObjBlock w : water) {
+                                 w.setWin(true);
+                              }
+                           }
+
+                           // Set you
+                           if (subBlock.getWeightBlock(2, 0).getText().equals("y")) {
+                              for (ObjBlock w : water) {
+                                 w.setYou(true);
+                              }
+                           }
+                        }
                      }
                   }
 
