@@ -210,7 +210,7 @@ class Stage3BlockPos {
    static int[] _dodo = { 1, 2 };
    static int[] _is1 = { 1, 3 };
    static int[] _you = { 1, 4 };
-   static int[] _toy = { 4, 5 };
+   static int[] _toy = { 3, 5 };
    static int[] _is2 = { 4, 6 };
    static int[] _win = { 4, 7 };
    static int[] _fish = { 7, 3 };
